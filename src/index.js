@@ -39,6 +39,7 @@ app.use((req, res, next) => {
 //RUTAS (url para el servidor)
 app.use(require('./routes'))
 app.use(require('./routes/autenticacion'))
+app.use(require('./routes/index'))
 app.use( '/pacientes', require('./routes/pacientes')) //si yo quiero todos los pacientes, debo usar prefijo /pacientes
 
 //ARCHIVOS PUBLICOS
@@ -48,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //PARA EMPEZAR EL SERVIDOR
 app.listen(app.get('port'), () =>{
-    console.log('ESTA VIIIVOOOOOO!!!! ' + app.get('port'))
+    console.log('ESTA VIIIVOOOOOO!!!! ' + app.get('port'));
 });
 
 
