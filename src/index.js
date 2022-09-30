@@ -10,7 +10,7 @@ const app = express();
 app.set('port', process.env.PORT || 4000);  //para desplegar en un servidor real, es una buena practica. 
     //Revisa si hay un puerto libre y si no toma el puerto 4000
 
-app.set('views', path.join(__dirname, 'views'));//indico donde esta la carpeta views con dirname
+app.set('views', path.join(__dirname, '/views'));//indico donde esta la carpeta views con dirname
 
 app.engine('.hbs', engine({ //'.hbs' es el nombre del engine y en el engine le doy un objeto
     defaultLayout: 'main', //nombre de la plantilla principal (en views tengo el archivo main.hbs)
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
 //RUTAS (url para el servidor)
 app.use(require('./routes'))
 app.use(require('./routes/autenticacion'))
-app.use( '/pacientes', require('./routes/pacientes')) //si yo quiero todos los pacientes, debo ir a /pacientes
+app.use( '/pacientes', require('./routes/pacientes')) //si yo quiero todos los pacientes, debo usar prefijo /pacientes
 
 //ARCHIVOS PUBLICOS
 app.use(express.static(path.join(__dirname, 'public')));
