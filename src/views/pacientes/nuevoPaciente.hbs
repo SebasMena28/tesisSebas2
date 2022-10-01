@@ -1,11 +1,11 @@
 <div class="container p-4">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 mx-auto">
             <div class="card">
                 <div class="card-body">
                     <form class="formulario" action="/pacientes/nuevoPaciente" method="POST" enctype="multipart/form-data">
                         <div class="form-group pt-2">
-                            <input type="text" class="form-control" name="cedula" placeholder="cedula" autofocus>
+                            <input type="text" class="form-control" name="cedula" maxlength="10" placeholder="cedula" autofocus>
                         </div>
                         <div class="form-group pt-2">
                             <input type="text" class="form-control" name="apellidoPaterno" placeholder="Apellido Paterno">
@@ -23,12 +23,30 @@
                             <input type="date" class="form-control" name="fechaNacimiento">
                         </div>
                         <div class="form-group pt-2">
-                            <select name="select" class="form-control">
+                            <select name="genero" class="form-control" aria-placeholder="Genero">
                                 <option value="Femenino" selected>Femenino</option>
                                 <option value="Masculino">Masculino</option>
                             </select>
                         </div>
-                    </form>
+                        <div class="form-group pt-2">
+                            <select name="estadoCivil" class="form-control" aria-placeholder="Genero">
+                                <option value="Soltero" selected>Soltero</option>
+                                <option value="Casado">Casado</option>
+                                <option value="Viudo">Viudo</option>
+                                <option value="Divorciado">Divorciado</option>
+                                <option value="Union Libre">Union Libre</option>
+                            </select>
+                        </div>
+                        <div class="form-group pt-2">
+                            <input type="text" class="form-control" name="ocupacion" placeholder="Ocupacion">
+                        </div>
+                        <div class="form-group pt-2">
+                            <input type="text" class="form-control" name="religion" placeholder="Religion">
+                        </div>
+                        <div class="form-group pt-2 mx-auto">
+                            <button class="btn btn-success btn-block">Guardar datos</button>
+                        </div>
+                    </form> 
                 </div>
             </div>
         </div>

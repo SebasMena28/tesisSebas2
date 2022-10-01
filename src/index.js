@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const  {engine} = require('express-handlebars');
+const bodyParser = require('body-parser');
+
 
 //INICIALIZACIONES
 const app = express();
@@ -28,7 +30,18 @@ app.set('view engine', '.hbs');
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));//para aceptar desde los formularios los datos que envia los usuarios
     //creo que con esto no acepta imagenes
-app.use(express.json());
+//////
+
+// configure the app to use bodyParser()
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+/////
+
+
+    app.use(express.json());
 
 //VARIABLES GLOBALES
 app.use((req, res, next) => {
