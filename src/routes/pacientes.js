@@ -8,4 +8,8 @@ router.get('/nuevoPaciente', (req, res) => {
     res.render('pacientes/nuevoPaciente'); 
 })
 
+router.post('/nuevoPaciente', (req, res)=>{
+    res.send('funciona xd');
+})
+
 module.exports = router;
