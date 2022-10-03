@@ -40,9 +40,6 @@ app.use(bodyParser.json());
 
 /////
 
-
-    app.use(express.json());
-
 //VARIABLES GLOBALES
 app.use((req, res, next) => {
 
