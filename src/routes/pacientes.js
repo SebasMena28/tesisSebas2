@@ -5,11 +5,11 @@ const router = express.Router();
 const pool = require('../basedatos'); //referencia a la conexion de la base de datos
 
 //PARA EL CRUD
-router.get('/nuevoPaciente', (req, res) => {
+router.get('/nuevoPaciente', (req, res) => { //VISTA PARA AGREGAR PACIENTE
     res.render('pacientes/nuevoPaciente'); 
 })
 
-router.post('/nuevoPaciente', async (req, res)=>{
+router.post('/nuevoPaciente', async (req, res)=>{ //PROCESO DE AGREGAR PACIENTE
     //res.send('funciona xd ' + req.body.cedula);
     //console.log( req.body);
 
@@ -30,13 +30,29 @@ router.post('/nuevoPaciente', async (req, res)=>{
     //await es porque es una funcion asincrona
     await pool.query('INSERT INTO PACIENTES set ?', [nuevoPaciente]) //QUERY para insertar datos del objeto nuevoPaciente
     console.log(nuevoPaciente);
+    res.redirect('/pacientes')
 });
 
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res) => { //VISTA PARA LISTAR PACIENTES
     const pacientes = await pool.query('SELECT * FROM PACIENTES');
     res.render('pacientes/lista', {pacientes}); //renderizando y mando los pacientes registrados
 })
+
+
+router.get('/borrar/:cedula', async (req, res) => {
+    //console.log(req.params.cedula);
+    //res.send('se eliminara este paciente ');
+
+    const {cedula} = req.params;
+    await pool.query('DELETE FROM PACIENTES WHERE CEDULA = ?', [cedula])
+    res.redirect('/pacientes')
+})
+
+router.get('editar/:cedula', async (req, res) => {
+    
+})
+
 
 
 module.exports = router;

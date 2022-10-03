@@ -4,19 +4,20 @@
         <div class="col-md-3">
             <div class="card text-center">
                 <div class="card-body">
-                    <a href="#" target="_blank">
-                        <h3 class="card-title text-uppercase">
+                    <a href="#" target="_blank"> <!-- target es para que abra la info en una ventana aparte -->
+                        <h4 class="card-title text-uppercase">
                             {{PRIMERNOMBRE}}
-                        </h3>
+                        </h4>
                     </a>
-                    <p class="m-2">{{description}}</p>
+                    <p class="m-2">{{APELLIDOPATERNO}}</p>
+                    <p class="m-2">{{CEDULA}}</p>
                     <p class="text-muted">
-                        {{CEDULA}}
+                        {{tiempo FECHANACIMIENTO}}
                     </p>
-                    <a class="btn btn-danger" href="#">
+                    <a class="btn btn-danger" href="/pacientes/borrar/{{CEDULA}}">
                         Borrar datos
                     </a>
-                    <a class="btn btn-secondary" href="#">
+                    <a class="btn btn-secondary" href="/pacientes/editar/{{CEDULA}}">
                         Editar
                     </a>
                 </div>
