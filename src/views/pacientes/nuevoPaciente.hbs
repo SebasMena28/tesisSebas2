@@ -1,25 +1,58 @@
 <div class="container p-4">
+    <h2 class="title text-center">
+        Nuevo Paciente
+    </h2>
+</div>
+
+<div class="container p-1">
     <div class="row">
         <div class="col-md-4 mx-auto">
 
             <div class="card">
                 <div class="card-body">
                     <form action="/pacientes/nuevoPaciente" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="cedula" class="form-control" placeholder="Title" autofocus>
+                        <div class="form-group pt-3">
+                            <input type="text" name="cedula" class="form-control" placeholder="Cedula" autofocus required>
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="nombre" class="form-control" placeholder="nombre">
+                        <div class="form-group pt-3">
+                            <input type="text" name="apellidoPaterno" class="form-control" placeholder="Apellido Paterno" required>
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="apellido" class="form-control" placeholder="apellido">
+                        <div class="form-group pt-3">
+                            <input type="text" name="apellidoMaterno" class="form-control" placeholder="Apellido Materno" required>
                         </div>
-                        <div class="form-group">
-                            <textarea name="description" rows="2" class="form-control" placeholder="Description"></textarea>
+                        <div class="form-group pt-3">
+                            <input type="text" name="primerNombre" class="form-control" placeholder="Primer Nombre" required>
                         </div>
-                        <div class="form-group">
-                            <button class="btn btn-success btn-block">
-                                Save
+                        <div class="form-group pt-3">
+                            <input type="text" name="segundoNombre" class="form-control" placeholder="Segundo Nombre">
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="date" name="fechaNacimiento" class="form-control" required>
+                        </div>
+                        <div class="form-group pt-3">
+                            <select name="genero" class="form-control">
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino" selected>Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group pt-3">
+                            <select name="estadoCivil" class="form-control">
+                                <option value="Soltero" selected>Soltero</option>
+                                <option value="Casado">Casado</option>
+                                <option value="Divorciado">Divorciado</option>
+                                <option value="Viudo">Viudo</option>
+                                <option value="Union Libre">Union Libre</option>
+                            </select>
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="text" name="ocupacion" class="form-control" placeholder="Ocupación">
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="text" name="religion" class="form-control" placeholder="Religión">
+                        </div>
+                        <div class="form-group pt-3">
+                            <button class="btn btn-success btn-block pl-5">
+                                Guardar
                             </button>
                         </div>
                     </form>
