@@ -1,0 +1,64 @@
+<div class="container p-4">
+    <h2 class="title text-center">
+        Editar Paciente 
+    </h2>
+</div>
+
+<div class="container p-1">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+
+            <div class="card">
+                <div class="card-body">
+                    <form action="/pacientes/editar/{{paciente.CEDULA}}" method="POST">
+                        <div class="form-group pt-3">
+                            <input type="text" value="{{paciente.CEDULA}}" name="cedula" class="form-control" placeholder="Cedula" readonly>
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="text" value="{{paciente.APELLIDOPATERNO}}" name="apellidoPaterno" class="form-control" placeholder="Apellido Paterno" required>
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="text" value="{{paciente.APELLIDOMATERNO}}" name="apellidoMaterno" class="form-control" placeholder="Apellido Materno" required>
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="text" value="{{paciente.PRIMERNOMBRE}}" name="primerNombre" class="form-control" placeholder="Primer Nombre" required>
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="text" value="{{paciente.SEGUNDONOMBRE}}" name="segundoNombre" class="form-control" placeholder="Segundo Nombre">
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="date" value="{{paciente.FECHANACIMIENTO}}" name="fechaNacimiento" class="form-control" required>
+                        </div>
+                        <div class="form-group pt-3">
+                            <select name="genero" value="{{paciente.GENERO}}" class="form-control">
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group pt-3">
+                            <select name="estadoCivil" value="{{paciente.ESTADOCIVIL}}" class="form-control">
+                                <option value="Soltero" selected>Soltero</option>
+                                <option value="Casado">Casado</option>
+                                <option value="Divorciado">Divorciado</option>
+                                <option value="Viudo">Viudo</option>
+                                <option value="Union Libre">Union Libre</option>
+                            </select>
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="text" value="{{paciente.OCUPACION}}" name="ocupacion" class="form-control" placeholder="Ocupación">
+                        </div>
+                        <div class="form-group pt-3">
+                            <input type="text" value="{{paciente.RELIGION}}" name="religion" class="form-control" placeholder="Religión">
+                        </div>
+                        <div class="form-group pt-3">
+                            <button class="btn btn-success btn-block pl-5">
+                                Guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

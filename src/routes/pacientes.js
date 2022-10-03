@@ -49,8 +49,35 @@ router.get('/borrar/:cedula', async (req, res) => {
     res.redirect('/pacientes')
 })
 
-router.get('editar/:cedula', async (req, res) => {
-    
+router.get('/editar/:cedula', async (req, res) => { //MUESTRA VISTA DE LOS DATOS PARA EDITAR, NO HACE EL PROCESO
+    const {cedula} = req.params;
+    //console.log(cedula);
+    const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
+    //console.log(paciente[0])
+    res.render('pacientes/editar', {paciente: paciente[0]})
+})
+
+router.post('/editar/:cedula', async (req, res) => {
+    const {_cedula} = req.params;
+    const {cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil, ocupacion, religion} = req.body;
+    const nuevoPaciente = {
+        cedula,
+        apellidoPaterno,
+        apellidoMaterno, 
+        primerNombre, 
+        segundoNombre, 
+        fechaNacimiento, 
+        genero,
+        estadoCivil,
+        ocupacion,
+        religion
+    }; 
+
+    //await es porque es una funcion asincrona
+    await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]) //QUERY para insertar datos del objeto nuevoPaciente
+    //console.log(nuevoPaciente);
+    res.redirect('/pacientes')
+    //res.send('actualizado')
 })
 
 
