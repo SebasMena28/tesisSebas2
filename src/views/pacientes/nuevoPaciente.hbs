@@ -8,33 +8,43 @@
     <div class="row">
         <div class="col-md-4 mx-auto">
 
-            <div class="card">
+            <div class="card    ">
                 <div class="card-body">
                     <form action="/pacientes/nuevoPaciente" method="POST">
+                    
+                    {{! esta es la seccion de datos del paciente}}
                         <div class="form-group pt-3">
                             <input type="text" name="cedula" class="form-control" placeholder="Cedula" autofocus required>
                         </div>
+                        
                         <div class="form-group pt-3">
                             <input type="text" name="apellidoPaterno" class="form-control" placeholder="Apellido Paterno" required>
                         </div>
+                        
                         <div class="form-group pt-3">
                             <input type="text" name="apellidoMaterno" class="form-control" placeholder="Apellido Materno" required>
                         </div>
+                        
                         <div class="form-group pt-3">
                             <input type="text" name="primerNombre" class="form-control" placeholder="Primer Nombre" required>
                         </div>
+                        
                         <div class="form-group pt-3">
                             <input type="text" name="segundoNombre" class="form-control" placeholder="Segundo Nombre">
                         </div>
+                        
                         <div class="form-group pt-3">
                             <input type="date" name="fechaNacimiento" class="form-control" required>
                         </div>
+                        
                         <div class="form-group pt-3">
                             <select name="genero" class="form-control">
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino" selected>Femenino</option>
                             </select>
                         </div>
+                        
+                        <label class="form-group pt-3">Estado Civil</label>
                         <div class="form-group pt-3">
                             <select name="estadoCivil" class="form-control">
                                 <option value="Soltero" selected>Soltero</option>
@@ -44,12 +54,77 @@
                                 <option value="Union Libre">Union Libre</option>
                             </select>
                         </div>
+                        
                         <div class="form-group pt-3">
                             <input type="text" name="ocupacion" class="form-control" placeholder="Ocupación">
                         </div>
+                        
                         <div class="form-group pt-3">
                             <input type="text" name="religion" class="form-control" placeholder="Religión">
                         </div>
+
+                    {{! esta es la seccion de historia clinica}}
+                        <label class="form-group pt-3">Motivo</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="motivo" class="form-control" placeholder=""> </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Historia de enfermedad</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="historiaEnfermedad" class="form-control" placeholder=""> </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Anamnesis</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="anamnesis" class="form-control" placeholder=""> </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Historia laboral</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="historiaLaboral" class="form-control" placeholder=""> </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Historia social</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="historiaSocial" class="form-control" placeholder=""> </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Grupo familiar de origen</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="grupoFamiliarOrigen" class="form-control" placeholder=""> </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Grupo familiar propio</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="grupoFamiliarPropio" class="form-control" placeholder=""> </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Funciones Psíquicas</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="funcionesPsiquicas" class="form-control" placeholder=""> </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Diagnóstico</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="diagnostico" class="form-control" placeholder=""> </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Plan</label>
+                        <div class="form-group pt-3">
+                            <input type="text" name="plan" class="form-control" placeholder="Plan">
+                        </div>
+
+                        <label class="form-group pt-3">Referencia</label>
+                        <div class="form-group pt-3">
+                            <select name="referencia" class="form-control">
+                                <option value="Sesiones" selected>Sesiones</option>
+                                <option value="Fisioterapia">Fisioterapia</option>
+                                <option value="Med. Especialidad">Med. Especialidad</option>
+                                <option value="Laboratorio">Laboratorio</option>
+                            </select>
+                        </div>
+                        
+                    {{!boton XDXDXDXD}}    
                         <div class="form-group pt-3">
                             <button class="btn btn-success btn-block pl-5">
                                 Guardar

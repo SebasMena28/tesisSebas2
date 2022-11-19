@@ -13,7 +13,9 @@ router.post('/nuevoPaciente', async (req, res)=>{ //PROCESO DE AGREGAR PACIENTE
     //res.send('funciona xd ' + req.body.cedula);
     //console.log( req.body);
 
-    const {cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil, ocupacion, religion} = req.body;
+    const {cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil, 
+        ocupacion, religion, motivo, historiaEnfermedad, anamnesis, historiaLaboral, historiaSocial, grupoFamiliarOrigen, 
+        grupoFamiliarPropio, funcionesPsiquicas, diagnostico, plan, referencia} = req.body;
     const nuevoPaciente = {
         cedula,
         apellidoPaterno,
@@ -24,12 +26,24 @@ router.post('/nuevoPaciente', async (req, res)=>{ //PROCESO DE AGREGAR PACIENTE
         genero,
         estadoCivil,
         ocupacion,
-        religion
+        religion,
+        motivo, 
+        historiaEnfermedad, 
+        anamnesis, 
+        historiaLaboral, 
+        historiaSocial, 
+        grupoFamiliarOrigen, 
+        grupoFamiliarPropio, 
+        funcionesPsiquicas, 
+        diagnostico, 
+        plan, 
+        referencia
     }; 
 
     //await es porque es una funcion asincrona
     await pool.query('INSERT INTO PACIENTES set ?', [nuevoPaciente]) //QUERY para insertar datos del objeto nuevoPaciente
     console.log(nuevoPaciente);
+    req.flash('Guardado!', 'Datos del paciente almacenados con éxito '); //para usar el modulo flash
     res.redirect('/pacientes')
 });
 
@@ -59,7 +73,10 @@ router.get('/editar/:cedula', async (req, res) => { //MUESTRA VISTA DE LOS DATOS
 
 router.post('/editar/:cedula', async (req, res) => {
     const {_cedula} = req.params;
-    const {cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil, ocupacion, religion} = req.body;
+    
+    const {cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil, 
+        ocupacion, religion, motivo, historiaEnfermedad, anamnesis, historiaLaboral, historiaSocial, grupoFamiliarOrigen, 
+        grupoFamiliarPropio, funcionesPsiquicas, diagnostico, plan, referencia} = req.body;
     const nuevoPaciente = {
         cedula,
         apellidoPaterno,
@@ -70,7 +87,18 @@ router.post('/editar/:cedula', async (req, res) => {
         genero,
         estadoCivil,
         ocupacion,
-        religion
+        religion,
+        motivo, 
+        historiaEnfermedad, 
+        anamnesis, 
+        historiaLaboral, 
+        historiaSocial, 
+        grupoFamiliarOrigen, 
+        grupoFamiliarPropio, 
+        funcionesPsiquicas, 
+        diagnostico, 
+        plan, 
+        referencia
     }; 
 
     //await es porque es una funcion asincrona

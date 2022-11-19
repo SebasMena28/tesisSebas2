@@ -50,6 +50,68 @@
                         <div class="form-group pt-3">
                             <input type="text" value="{{paciente.RELIGION}}" name="religion" class="form-control" placeholder="Religión">
                         </div>
+
+                        {{! esta es la seccion de historia clinica}}
+                        <label class="form-group pt-3">Motivo</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="motivo" class="form-control">{{paciente.MOTIVO}} </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Historia de enfermedad</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="historiaEnfermedad" class="form-control">{{paciente.HISTORIAENFERMEDAD}} </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Anamnesis</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="anamnesis" class="form-control">{{paciente.ANAMNESIS}} </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Historia laboral</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="historiaLaboral" class="form-control">{{paciente.HISTORIALABORAL}} </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Historia social</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="historiaSocial" class="form-control"> {{paciente.HISTORIASOCIAL}} </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Grupo familiar de origen</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="grupoFamiliarOrigen" class="form-control">{{paciente.GRUPOFAMILIARORIGEN}} </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Grupo familiar propio</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="grupoFamiliarPropio" class="form-control">{{paciente.GRUPOFAMILIARPROPIO}} </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Funciones Psíquicas</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="funcionesPsiquicas" class="form-control">{{paciente.FUNCIONESPSIQUICAS}} </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Diagnóstico</label>
+                        <div class="form-group pt-3">
+                            <textarea type="text" name="diagnostico" class="form-control">{{paciente.DIAGNOSTICO}} </textarea>
+                        </div>
+
+                        <label class="form-group pt-3">Plan</label>
+                        <div class="form-group pt-3">
+                            <input type="text" value="{{paciente.PLAN}}" name="plan" class="form-control" placeholder="Plan">
+                        </div>
+
+                        <label class="form-group pt-3">Referencia</label>
+                        <div class="form-group pt-3">
+                            <select name="referencia" value="{{paciente.REFERENCIA}}" class="form-control">
+                                <option value="Sesiones" selected>Sesiones</option>
+                                <option value="Fisioterapia">Fisioterapia</option>
+                                <option value="Med. Especialidad">Med. Especialidad</option>
+                                <option value="Laboratorio">Laboratorio</option>
+                            </select>
+                        </div>
+
                         <div class="form-group pt-3">
                             <button class="btn btn-success btn-block pl-5">
                                 Guardar

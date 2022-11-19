@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const path = require('path');
 const  {engine} = require('express-handlebars');
 const bodyParser = require('body-parser');
+const flash = require('connect-flash'); //modulo para enviar mensajes por vistas
 
 
 //INICIALIZACIONES
@@ -29,8 +30,7 @@ app.set('view engine', '.hbs');
 //MIDDLEWARS -- FUNCIONES A EJECUTARSE CADA QUE UN USUARIO PIDA UNA PETICION
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));//para aceptar desde los formularios los datos que envia los usuarios
-    //creo que con esto no acepta imagenes
-//////
+app.use(flash()); //para usar el modulo
 
 // configure the app to use bodyParser()
 app.use(bodyParser.urlencoded({
