@@ -1,0 +1,103 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img
+                src="https://st2.depositphotos.com/3687485/9315/v/600/depositphotos_93151836-stock-illustration-psychologist-office-cabinet-room-vector.jpg"
+                alt="login form" class="img-fixed" height="650" width="400" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                <form action="/citas/nuevaCita" object="" method="POST">
+
+                  <h2 class="title text-center mb-4">
+                    Nueva Evaluacion
+                  </h2>
+
+                  <div class="form-floating mb-4">
+                    <input type="text" name="cedula" class="form-control" placeholder="Cedula" autofocus required>
+                    <label for="floatingInput">Cedula</label>
+                  </div>
+
+                  <div class="col-md">
+                    <div class="form-floating mb-3">
+                      <input type="date" name="fecha" class="form-control" placeholder="Fecha de la cita" required>
+                      <label for="floatingInput">Fecha</label>
+                    </div>
+                  </div>
+
+                  <div class="row g-2">
+                    <div class="col-md mb-3">
+                      <div class="form-floating mb-3">
+                        <textarea name="grupoFamiliarPropio" class="form-control" placeholder="Anamnesis"
+                          id="floatingTextarea2" style="height: 100px" required></textarea>
+                        <label for="floatingTextarea2">Técnica</label>
+                      </div>
+                    </div>
+                    <div class="col-md">
+                      <div class="form-floating mb-3">
+                        <textarea name="funcionesPsiquicas" class="form-control" placeholder="Anamnesis"
+                          id="floatingTextarea2" style="height: 100px" required></textarea>
+                        <label for="floatingTextarea2">Descripción</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <textarea name="diagnostico" class="form-control" placeholder="Anamnesis" id="floatingTextarea2"
+                      style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Resultados</label>
+                  </div>
+
+                  <div class="row g-2">
+                    <div class="col-md mb-3">
+                      <div class="form-group p-3">
+                        <a class="btn btn-warning btn-block w-100" href="/evaluaciones">
+                          Regresar
+                        </a>
+                      </div>
+                    </div>
+                    <div class="col-md">
+                      <div class="form-group p-3">
+                        <button class="btn btn-success btn-block w-100">
+                          Guardar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  body {
+    /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
+    background-color: #6495ed;
+    /* Fijar la imagen de fondo este vertical y
+    horizontalmente y centrado */
+    background-position: center center;
+
+    /* Esta imagen no debe de repetirse */
+    background-repeat: no-repeat;
+
+    /* COn esta regla fijamos la imagen en la pantalla. */
+    background-attachment: fixed;
+
+    /* La imagen ocupa el 100% y se reescala */
+    background-size: cover;
+  }
+
+  .card {
+    border: solid 1px;
+    border-radius: 15px;
+  }

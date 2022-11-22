@@ -5,13 +5,19 @@ const router = express.Router();
 const pool = require('../basedatos'); //referencia a la conexion de la base de datos
 
 //PARA EL CRUD
-router.get('/evaluaciones', (req, res) => { //VISTA PARA AGREGAR PACIENTE
-    res.render('evaluacion/lista'); 
+router.get('/', (req, res) => { //VISTA PARA AGREGAR PACIENTE
+    res.send('aqui va a lita de evaluaciones'); 
+})
+
+router.get('/nuevaEvaluacion', (req, res) => { //VISTA PARA AGREGAR PACIENTE
+    res.send('aqui va a lita de evaluaciones'); 
 })
 
 router.post('/nuevaEvaluacion', async (req, res)=>{ //PROCESO DE AGREGAR PACIENTE
     //res.send('funciona xd ' + req.body.cedula);
     //console.log( req.body);
+
+    res.render('eval/lista');
 
     const {cedula, fecha, tecnica, descripcion, resultados} = req.body;
     const nuevaEvaluacion = {
