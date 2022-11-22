@@ -1,121 +1,218 @@
-<div class="container p-4">
-    <h2 class="title text-center">
-        Editar Paciente 
-    </h2>
-</div>
-
 <div class="container p-1">
     <div class="row">
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-12 mx-auto">
 
-            <div class="card">
+            <div class="card w-100">
                 <div class="card-body">
+                    <div class="container p-4">
+                        <h2 class="title text-center">
+                            Editar datos de {{paciente.PRIMERNOMBRE}} {{paciente.APELLIDOPATERNO}}
+                        </h2>
+                    </div>
                     <form action="/pacientes/editar/{{paciente.CEDULA}}" method="POST">
-                        <div class="form-group pt-3">
-                            <input type="text" value="{{paciente.CEDULA}}" name="cedula" class="form-control" placeholder="Cedula" readonly>
+                        {{! esta es la seccion de datos del paciente}}
+                        <div class="form-floating mb-4">
+                            <input type="text" name="cedula" value="{{paciente.CEDULA}}" class="form-control" placeholder="Cedula" autofocus
+                                required>
+                            <label for="floatingInput">Cedula</label>
                         </div>
-                        <div class="form-group pt-3">
-                            <input type="text" value="{{paciente.APELLIDOPATERNO}}" name="apellidoPaterno" class="form-control" placeholder="Apellido Paterno" required>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" value="{{paciente.APELLIDOPATERNO}}" name="apellidoPaterno" class="form-control"
+                                        placeholder="Apellido Paterno" required>
+                                    <label for="floatingInput">Apellido Paterno</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" value="{{paciente.APELLIDOMATERNO}}" name="apellidoMaterno" class="form-control"
+                                        placeholder="Apellido Materno" required>
+                                    <label for="floatingInput">Apellido Materno</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group pt-3">
-                            <input type="text" value="{{paciente.APELLIDOMATERNO}}" name="apellidoMaterno" class="form-control" placeholder="Apellido Materno" required>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" value="{{paciente.PRIMERNOMBRE}}" name="primerNombre" class="form-control"
+                                        placeholder="Primer Nombre" required>
+                                    <label for="floatingInput">Primer Nombre</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" value="{{paciente.SEGUNDONOMBRE}}" name="segundoNombre" class="form-control"
+                                        placeholder="Segundo Nombre">
+                                    <label for="floatingInput">Segundo Nombre</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group pt-3">
-                            <input type="text" value="{{paciente.PRIMERNOMBRE}}" name="primerNombre" class="form-control" placeholder="Primer Nombre" required>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <input type="date" value="{{paciente.FECHANACIMIENTO}}" name="fechaNacimiento" class="form-control" required>
+                                    <label for="floatingInput">Fecha de nacimiento</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <select name="genero" value="{{paciente.GENERO}}" class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example">
+                                        <option value="Masculino" selected>Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                        <option value="LGBT">LGBT</option>
+                                    </select>
+                                    <label for="floatingSelect">Género</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group pt-3">
-                            <input type="text" value="{{paciente.SEGUNDONOMBRE}}" name="segundoNombre" class="form-control" placeholder="Segundo Nombre">
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <select name="estadoCivil"  value="{{paciente.ESTADOCIVIL}}" class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example">
+                                        <option value="Soltero" selected>Soltero</option>
+                                        <option value="Casado">Casado</option>
+                                        <option value="Divorciado">Divorciado</option>
+                                        <option value="Viudo">Viudo</option>
+                                        <option value="Union Libre">Union Libre</option>
+                                    </select>
+                                    <label for="floatingSelect">Estado Civil</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="ocupacion"  value="{{paciente.OCUPACION}}" class="form-control" placeholder="Ocupación">
+                                    <label for="floatingSelect">Ocupación</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group pt-3">
-                            <input type="date" value="{{paciente.FECHANACIMIENTO}}" name="fechaNacimiento" class="form-control" required>
-                        </div>
-                        <div class="form-group pt-3">
-                            <select name="genero" value="{{paciente.GENERO}}" class="form-control">
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                            </select>
-                        </div>
-                        <div class="form-group pt-3">
-                            <select name="estadoCivil" value="{{paciente.ESTADOCIVIL}}" class="form-control">
-                                <option value="Soltero" selected>Soltero</option>
-                                <option value="Casado">Casado</option>
-                                <option value="Divorciado">Divorciado</option>
-                                <option value="Viudo">Viudo</option>
-                                <option value="Union Libre">Union Libre</option>
-                            </select>
-                        </div>
-                        <div class="form-group pt-3">
-                            <input type="text" value="{{paciente.OCUPACION}}" name="ocupacion" class="form-control" placeholder="Ocupación">
-                        </div>
-                        <div class="form-group pt-3">
-                            <input type="text" value="{{paciente.RELIGION}}" name="religion" class="form-control" placeholder="Religión">
+
+
+
+                        <div class="form-floating mb-3">
+                            <input type="text" name="religion"  value="{{paciente.RELIGION}}" class="form-control" placeholder="Religión">
+                            <label for="floatingSelect">Religión</label>
                         </div>
 
                         {{! esta es la seccion de historia clinica}}
-                        <label class="form-group pt-3">Motivo</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="motivo" class="form-control">{{paciente.MOTIVO}} </textarea>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="motivo" class="form-control" placeholder="Motivo de la terapia"
+                                        id="floatingTextarea2" style="height: 100px"> {{paciente.MOTIVO}} </textarea>
+                                    <label for="floatingTextarea2">Motivo</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="historiaEnfermedad"  class="form-control"
+                                        placeholder="Historia de la enfermedad" id="floatingTextarea2"
+                                        style="height: 100px"> {{paciente.HISTORIAENFERMEDAD}} </textarea>
+                                    <label for="floatingTextarea2">Historia de enfermedad</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <label class="form-group pt-3">Historia de enfermedad</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="historiaEnfermedad" class="form-control">{{paciente.HISTORIAENFERMEDAD}} </textarea>
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="anamnesis" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"> {{paciente.ANAMNESIS}}</textarea>
+                                    <label for="floatingTextarea2">Anamnesis</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="historiaLaboral" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"> {{paciente.HISTORIALABORAL}} </textarea>
+                                    <label for="floatingTextarea2">Historia Laboral</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <label class="form-group pt-3">Anamnesis</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="anamnesis" class="form-control">{{paciente.ANAMNESIS}} </textarea>
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="historiaSocial" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"> {{paciente.HISTORIASOCIAL}} </textarea>
+                                    <label for="floatingTextarea2">Historia Social</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="grupoFamiliarOrigen" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"> {{paciente.GRUPOFAMILIARORIGEN}} </textarea>
+                                    <label for="floatingTextarea2">Grupo familiar de origen</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <label class="form-group pt-3">Historia laboral</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="historiaLaboral" class="form-control">{{paciente.HISTORIALABORAL}} </textarea>
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="grupoFamiliarPropio" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"> {{paciente.GRUPOFAMILIARPROPIO}} </textarea>
+                                    <label for="floatingTextarea2">Grupo familiar propio</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="funcionesPsiquicas" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"> {{paciente.FUNCIONESPSIQUICAS}} </textarea>
+                                    <label for="floatingTextarea2">Funciones Psíquicas</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <label class="form-group pt-3">Historia social</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="historiaSocial" class="form-control"> {{paciente.HISTORIASOCIAL}} </textarea>
+
+                        <div class="form-floating mb-3">
+                            <textarea name="diagnostico" class="form-control" placeholder="Anamnesis"
+                                id="floatingTextarea2" style="height: 100px"> {{paciente.DIAGNOSTICO}} </textarea>
+                            <label for="floatingTextarea2">Diagnóstico</label>
                         </div>
 
-                        <label class="form-group pt-3">Grupo familiar de origen</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="grupoFamiliarOrigen" class="form-control">{{paciente.GRUPOFAMILIARORIGEN}} </textarea>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" value="{{paciente.PLAN}}" name="plan" class="form-control" placeholder="plan">
+                            <label for="floatingInput">Plan</label>
                         </div>
 
-                        <label class="form-group pt-3">Grupo familiar propio</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="grupoFamiliarPropio" class="form-control">{{paciente.GRUPOFAMILIARPROPIO}} </textarea>
-                        </div>
-
-                        <label class="form-group pt-3">Funciones Psíquicas</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="funcionesPsiquicas" class="form-control">{{paciente.FUNCIONESPSIQUICAS}} </textarea>
-                        </div>
-
-                        <label class="form-group pt-3">Diagnóstico</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="diagnostico" class="form-control">{{paciente.DIAGNOSTICO}} </textarea>
-                        </div>
-
-                        <label class="form-group pt-3">Plan</label>
-                        <div class="form-group pt-3">
-                            <input type="text" value="{{paciente.PLAN}}" name="plan" class="form-control" placeholder="Plan">
-                        </div>
-
-                        <label class="form-group pt-3">Referencia</label>
-                        <div class="form-group pt-3">
-                            <select name="referencia" value="{{paciente.REFERENCIA}}" class="form-control">
+                        <div class="form-floating mb-3">
+                            <select name="referencia" value="{{paciente.REFERENCIA}}" class="form-select" id="floatingSelect"
+                                aria-label="Floating label select example">
                                 <option value="Sesiones" selected>Sesiones</option>
                                 <option value="Fisioterapia">Fisioterapia</option>
                                 <option value="Med. Especialidad">Med. Especialidad</option>
                                 <option value="Laboratorio">Laboratorio</option>
                             </select>
+                            <label for="floatingSelect">Referencia</label>
                         </div>
 
-                        <div class="form-group pt-3">
-                            <button class="btn btn-success btn-block pl-5">
-                                Guardar
-                            </button>
+
+                        {{!boton XDXDXDXD}}
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-group p-3">
+                                    <a class="btn btn-warning btn-block w-100" href="/pacientes">
+                                        Regresar
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group p-3">
+                                    <button class="btn btn-success btn-block w-100">
+                                        Guardar
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -124,3 +221,4 @@
 
     </div>
 </div>
+

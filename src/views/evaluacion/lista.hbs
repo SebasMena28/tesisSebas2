@@ -7,13 +7,13 @@
                     <a href="/pacientes/editar/{{CEDULA}}" target="_blank">
                         <!-- target es para que abra la info en una ventana aparte -->
                         <h4 class="card-title text-uppercase">
-                            {{PRIMERNOMBRE}}
+                            {{CEDULA}}
                         </h4>
                     </a>
-                    <p class="m-2">{{APELLIDOPATERNO}}</p>
+                    <p class="m-2">{{CEDULA}}</p>
                     <p class="m-2">{{CEDULA}}</p>
                     <p class="text-muted">
-                        {{tiempo FECHANACIMIENTO}}
+                        {{tiempo FECHA}}
                     </p>
                     <a class="btn btn-danger" href="/pacientes/borrar/{{CEDULA}}">
                         Borrar datos
@@ -27,7 +27,7 @@
         {{else}}
         <div class="col-md-4 mx-auto">
             <div class="card card-body text-center">
-                <p>No se encuentra pacientes registrados.</p>
+                <p>No se encuentra evaluaciones registradas.</p>
                 <a class="btn btn-warning btn-block w-100" href="/pacientes/nuevoPaciente">
                     Empezar
                     </a>

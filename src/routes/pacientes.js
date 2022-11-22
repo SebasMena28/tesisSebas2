@@ -43,7 +43,7 @@ router.post('/nuevoPaciente', async (req, res)=>{ //PROCESO DE AGREGAR PACIENTE
     //await es porque es una funcion asincrona
     await pool.query('INSERT INTO PACIENTES set ?', [nuevoPaciente]) //QUERY para insertar datos del objeto nuevoPaciente
     console.log(nuevoPaciente);
-    req.flash('Guardado!', 'Datos del paciente almacenados con éxito '); //para usar el modulo flash
+    req.flash('guardado', 'Datos del paciente almacenados con éxito!'); //para usar el modulo flash
     res.redirect('/pacientes')
 });
 

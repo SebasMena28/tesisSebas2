@@ -4,14 +4,18 @@ const path = require('path');
 const  {engine} = require('express-handlebars');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash'); //modulo para enviar mensajes por vistas
+const session = require('express-session');
+const mysqlstore = require('express-mysql-session');
+const {database} = require('./claves');
+const passport = require('passport');
 
 
 //INICIALIZACIONES
 const app = express();
+require('./lib/passport');
 
 //SETTINGS -- CONFIGURACIONES PARA SERVIDOR
 app.set('port', process.env.PORT || 4000);  //para desplegar en un servidor real, es una buena practica. 
-    //Revisa si hay un puerto libre y si no toma el puerto 4000
 
 app.set('views', path.join(__dirname, '/views'));//indico donde esta la carpeta views con dirname
 
@@ -28,9 +32,19 @@ app.set('view engine', '.hbs');
 
 
 //MIDDLEWARS -- FUNCIONES A EJECUTARSE CADA QUE UN USUARIO PIDA UNA PETICION
+app.use(session({
+    secret: 'session',
+    resave: false,
+    saveUninitialized: false,
+    store: new mysqlstore(database)
+}));
+app.use(flash()); //para usar el modulo
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));//para aceptar desde los formularios los datos que envia los usuarios
-app.use(flash()); //para usar el modulo
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 // configure the app to use bodyParser()
 app.use(bodyParser.urlencoded({
@@ -42,7 +56,7 @@ app.use(bodyParser.json());
 
 //VARIABLES GLOBALES
 app.use((req, res, next) => {
-
+    app.locals.guardado = req.flash('guardado'); //para hacer disponible el mensaje en las vistas
     next(); //toma la informacion del usuario (req), toma la respuesta del servidor (res) y toma una funcion para seguir con el resto del codigo
 })
 
@@ -51,6 +65,7 @@ app.use(require('./routes'))
 app.use(require('./routes/autenticacion'))
 app.use(require('./routes/index'))
 app.use( '/pacientes', require('./routes/pacientes')) //si yo quiero todos los pacientes, debo usar prefijo /pacientes
+app.use( '/evaluaciones', require('./routes/evaluaciones'))
 
 //ARCHIVOS PUBLICOS
 app.use(express.static(path.join(__dirname, 'public')));

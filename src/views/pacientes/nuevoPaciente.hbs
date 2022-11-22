@@ -1,134 +1,223 @@
-<div class="container p-4">
-    <h2 class="title text-center">
-        Nuevo Paciente
-    </h2>
-</div>
-
-<div class="container p-1">
+<div class="container p-1 mb-5 mt-5">
     <div class="row">
-        <div class="col-md-4 mx-auto">
+        <div class="col-md-12 mx-auto">
 
-            <div class="card    ">
+            <div class="card w-100">
                 <div class="card-body">
-                    <form action="/pacientes/nuevoPaciente" method="POST">
-                    
-                    {{! esta es la seccion de datos del paciente}}
-                        <div class="form-group pt-3">
-                            <input type="text" name="cedula" class="form-control" placeholder="Cedula" autofocus required>
+                    <div class="container p-4">
+                        <h2 class="title text-center">
+                            Nuevo Paciente
+                        </h2>
+                    </div>
+                    <form action="/pacientes/nuevoPaciente" method="POST" class="row g-3 needs-validation" validate>
+
+
+                        {{! esta es la seccion de datos del paciente}}
+                        <div class="form-floating mb-4">
+                            <input type="text" name="cedula" class="form-control" placeholder="Cedula" autofocus
+                                required>
+                            <label for="floatingInput">Cedula</label>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
                         </div>
-                        
-                        <div class="form-group pt-3">
-                            <input type="text" name="apellidoPaterno" class="form-control" placeholder="Apellido Paterno" required>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="apellidoPaterno" class="form-control"
+                                        placeholder="Apellido Paterno" required>
+                                    <label for="floatingInput">Apellido Paterno</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="apellidoMaterno" class="form-control"
+                                        placeholder="Apellido Materno" required>
+                                    <label for="floatingInput">Apellido Materno</label>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="form-group pt-3">
-                            <input type="text" name="apellidoMaterno" class="form-control" placeholder="Apellido Materno" required>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="primerNombre" class="form-control"
+                                        placeholder="Primer Nombre" required>
+                                    <label for="floatingInput">Primer Nombre</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="segundoNombre" class="form-control"
+                                        placeholder="Segundo Nombre">
+                                    <label for="floatingInput">Segundo Nombre</label>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="form-group pt-3">
-                            <input type="text" name="primerNombre" class="form-control" placeholder="Primer Nombre" required>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <input type="date" name="fechaNacimiento" class="form-control" required>
+                                    <label for="floatingInput">Fecha de nacimiento</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <select name="genero" class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example">
+                                        <option value="Masculino" selected>Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                        <option value="LGBT">LGBT</option>
+                                    </select>
+                                    <label for="floatingSelect">Género</label>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="form-group pt-3">
-                            <input type="text" name="segundoNombre" class="form-control" placeholder="Segundo Nombre">
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <select name="estadoCivil" class="form-select" id="floatingSelect"
+                                        aria-label="Floating label select example">
+                                        <option value="Soltero" selected>Soltero</option>
+                                        <option value="Casado">Casado</option>
+                                        <option value="Divorciado">Divorciado</option>
+                                        <option value="Viudo">Viudo</option>
+                                        <option value="Union Libre">Union Libre</option>
+                                    </select>
+                                    <label for="floatingSelect">Estado Civil</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="ocupacion" class="form-control" placeholder="Ocupación">
+                                    <label for="floatingSelect">Ocupación</label>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="form-group pt-3">
-                            <input type="date" name="fechaNacimiento" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group pt-3">
-                            <select name="genero" class="form-control">
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino" selected>Femenino</option>
-                            </select>
-                        </div>
-                        
-                        <label class="form-group pt-3">Estado Civil</label>
-                        <div class="form-group pt-3">
-                            <select name="estadoCivil" class="form-control">
-                                <option value="Soltero" selected>Soltero</option>
-                                <option value="Casado">Casado</option>
-                                <option value="Divorciado">Divorciado</option>
-                                <option value="Viudo">Viudo</option>
-                                <option value="Union Libre">Union Libre</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group pt-3">
-                            <input type="text" name="ocupacion" class="form-control" placeholder="Ocupación">
-                        </div>
-                        
-                        <div class="form-group pt-3">
+
+
+
+                        <div class="form-floating mb-3">
                             <input type="text" name="religion" class="form-control" placeholder="Religión">
+                            <label for="floatingSelect">Religión</label>
                         </div>
 
-                    {{! esta es la seccion de historia clinica}}
-                        <label class="form-group pt-3">Motivo</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="motivo" class="form-control" placeholder=""> </textarea>
+                        {{! esta es la seccion de historia clinica}}
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="motivo" class="form-control" placeholder="Motivo de la terapia"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Motivo</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="historiaEnfermedad" class="form-control"
+                                        placeholder="Historia de la enfermedad" id="floatingTextarea2"
+                                        style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Historia de enfermedad</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <label class="form-group pt-3">Historia de enfermedad</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="historiaEnfermedad" class="form-control" placeholder=""> </textarea>
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="anamnesis" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Anamnesis</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="historiaLaboral" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Historia Laboral</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <label class="form-group pt-3">Anamnesis</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="anamnesis" class="form-control" placeholder=""> </textarea>
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="historiaSocial" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Historia Social</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="grupoFamiliarOrigen" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Grupo familiar de origen</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <label class="form-group pt-3">Historia laboral</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="historiaLaboral" class="form-control" placeholder=""> </textarea>
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="grupoFamiliarPropio" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Grupo familiar propio</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="funcionesPsiquicas" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Funciones Psíquicas</label>
+                                </div>
+                            </div>
                         </div>
 
-                        <label class="form-group pt-3">Historia social</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="historiaSocial" class="form-control" placeholder=""> </textarea>
+
+                        <div class="form-floating mb-3">
+                            <textarea name="diagnostico" class="form-control" placeholder="Anamnesis"
+                                id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2">Diagnóstico</label>
                         </div>
 
-                        <label class="form-group pt-3">Grupo familiar de origen</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="grupoFamiliarOrigen" class="form-control" placeholder=""> </textarea>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" name="plan" class="form-control" placeholder="plan">
+                            <label for="floatingInput">Plan</label>
                         </div>
 
-                        <label class="form-group pt-3">Grupo familiar propio</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="grupoFamiliarPropio" class="form-control" placeholder=""> </textarea>
-                        </div>
-
-                        <label class="form-group pt-3">Funciones Psíquicas</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="funcionesPsiquicas" class="form-control" placeholder=""> </textarea>
-                        </div>
-
-                        <label class="form-group pt-3">Diagnóstico</label>
-                        <div class="form-group pt-3">
-                            <textarea type="text" name="diagnostico" class="form-control" placeholder=""> </textarea>
-                        </div>
-
-                        <label class="form-group pt-3">Plan</label>
-                        <div class="form-group pt-3">
-                            <input type="text" name="plan" class="form-control" placeholder="Plan">
-                        </div>
-
-                        <label class="form-group pt-3">Referencia</label>
-                        <div class="form-group pt-3">
-                            <select name="referencia" class="form-control">
+                        <div class="form-floating mb-3">
+                            <select name="referencia" class="form-select" id="floatingSelect"
+                                aria-label="Floating label select example">
                                 <option value="Sesiones" selected>Sesiones</option>
                                 <option value="Fisioterapia">Fisioterapia</option>
                                 <option value="Med. Especialidad">Med. Especialidad</option>
                                 <option value="Laboratorio">Laboratorio</option>
                             </select>
+                            <label for="floatingSelect">Referencia</label>
                         </div>
-                        
-                    {{!boton XDXDXDXD}}    
-                        <div class="form-group pt-3">
-                            <button class="btn btn-success btn-block pl-5">
-                                Guardar
-                            </button>
+
+
+                        {{!boton XDXDXDXD}}
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-group p-3">
+                                    <a class="btn btn-warning btn-block w-100" href="/pacientes">
+                                        Regresar
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group p-3">
+                                    <button class="btn btn-success btn-block w-100">
+                                        Guardar
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -137,3 +226,26 @@
 
     </div>
 </div>
+
+<style>
+    body {
+        /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
+        background-color: #6495ed;
+        /* Fijar la imagen de fondo este vertical y
+    horizontalmente y centrado */
+        background-position: center center;
+
+        /* Esta imagen no debe de repetirse */
+        background-repeat: no-repeat;
+
+        /* COn esta regla fijamos la imagen en la pantalla. */
+        background-attachment: fixed;
+
+        /* La imagen ocupa el 100% y se reescala */
+        background-size: cover;
+    }
+
+    .card {
+        border: solid 1px;
+        border-radius: 15px;
+    }
