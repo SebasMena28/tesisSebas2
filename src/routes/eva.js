@@ -6,7 +6,7 @@ router.get('/eva', (req, res) => {
 });
 
 router.post('/eva', (req, res) => {
-
+    res.send('creo  que ya')
 })
 
 module.exports = router
