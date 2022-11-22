@@ -63,11 +63,12 @@ app.use((req, res, next) => {
 //RUTAS (url para el servidor)
 app.use(require('./routes'));
 app.use(require('./routes/autenticacion'));
-app.use(require('./routes/citas'));
-app.use(require('./routes/eva'));
+//app.use(require('./routes/citas'));
+//app.use(require('./routes/eva'));
 app.use(require('./routes/index'));
 app.use( '/pacientes', require('./routes/pacientes')); //si yo quiero todos los pacientes, debo usar prefijo /pacientes
-app.use( '/evaluaciones', require('./routes/evaluaciones'));
+app.use( '/evaluaciones', require('./routes/eva'));
+app.use( '/citas', require('./routes/citas'));
 
 //ARCHIVOS PUBLICOS
 app.use(express.static(path.join(__dirname, 'public')));

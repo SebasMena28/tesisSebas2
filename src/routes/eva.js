@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/eva', (req, res) => {
+router.get('/', (req, res) => {
     res.render('eval/evaluacion');
 });
 

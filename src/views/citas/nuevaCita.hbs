@@ -1,4 +1,4 @@
-<section class="vh-100" style="background-color: #3a7ecc;">
+<section class="vh-100">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
@@ -10,32 +10,55 @@
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
-                                <form th:action="" object="" method="">
+                                <form action="/citas/nuevaCita" object="" method="POST">
 
-                                    <h2>AGENDAR CITA</h2>
-                                    <label for="exampleInputPassword1" class="form-label">Hora:</label>
-                                    <select th:field="*{hora}" class="form-select" required>
-                                        <option value="7:00">7:00</option>
-                                        <option value="8:00">8:00</option>
-                                        <option value="9:00">9:00</option>
-                                        <option value="10:00">10:00</option>
-                                        <option value="11:00">11:00</option>
-                                        <option value="12:00">12:00</option>
-                                        <option value="15:00">15:00</option>
-                                        <option value="16:00">16:00</option>
-                                        <option value="17:00">17:00</option>
-                                        <option value="18:00">18:00</option>
-                                    </select>
-                                    <label for="exampleInputPassword1" class="form-label">Fecha:</label>
-                                    <input id="startDate" th:field="*{createDate}" required class="form-control"
-                                        type="date" />
-                                    <label for="exampleInputPassword1" class="form-label">Paciente:</label>
-                                    <select th:field="*{idPersona}" class="form-select " id="selectPacientes" required>
-                                    </select>
-                                    <input type="submit" class="btn btn-primary m-3"></input>
-                                    <a href="/citas" class="btn btn-warning m-3">
-                                        Cancelar
-                                    </a>
+                                    <h2 class="title text-center mb-4">
+                                        Nueva Cita
+                                    </h2>
+
+                                    <div class="col-md">
+                                        <div class="form-floating mb-3">
+                                            <input type="date" name="fecha" class="form-control"
+                                                placeholder="Fecha de la cita" required>
+                                            <label for="floatingInput">Fecha</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md mb-3">
+                                        <div class="form-floating mb-3">
+                                            <input type="time" min="16:00:00" max="22:00:00" name="hora"
+                                                class="form-control" placeholder="Hora" required>
+                                            <label for="floatingSelect">Hora</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <textarea name="Ob" class="form-control"
+                                                placeholder="Historia de la enfermedad" id="floatingTextarea2"
+                                                style="height: 100px"></textarea>
+                                            <label for="floatingTextarea2">Observaciones</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row g-2">
+                                        <div class="col-md mb-3">
+                                            <div class="form-group p-3">
+                                                <a class="btn btn-warning btn-block w-100" href="/citas">
+                                                    Regresar
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group p-3">
+                                                <button class="btn btn-success btn-block w-100">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </form>
                             </div>
@@ -46,3 +69,36 @@
         </div>
     </div>
 </section>
+
+<style>
+    body {
+        /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
+        background-color: #6495ed;
+        /* Fijar la imagen de fondo este vertical y
+    horizontalmente y centrado */
+        background-position: center center;
+
+        /* Esta imagen no debe de repetirse */
+        background-repeat: no-repeat;
+
+        /* COn esta regla fijamos la imagen en la pantalla. */
+        background-attachment: fixed;
+
+        /* La imagen ocupa el 100% y se reescala */
+        background-size: cover;
+    }
+
+    img {
+        background-repeat: no-repeat;
+
+        /* COn esta regla fijamos la imagen en la pantalla. */
+        background-attachment: fixed;
+
+        /* La imagen ocupa el 100% y se reescala */
+        background-size: cover;
+    }
+
+    .card {
+        border: solid 1px;
+        border-radius: 15px;
+    }

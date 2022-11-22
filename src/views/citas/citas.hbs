@@ -1,0 +1,70 @@
+<div class="col-10 container center">
+
+<div class="card w-100 mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Cita</td>
+                    <td>Fecha</td>
+                    <td>Hora</td>
+                    <td>Observaciones</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+
+    {{#each citas}}
+    <div class="row my-2">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <a href="/citas/nuevaCita" type="button" class="btn btn-dark">Agregar cita</a>
+        </div>
+    </div>
+    
+            <tbody id="bodyCitas">
+                <tr>
+                    <td>{{IDCITANUEVA}} </td>
+                    <td>{{FECHA}}</td>
+                    <td>{{HORA}}</td>
+                    <td>{{OBSERVACIONES}}</td>
+                    <td style="max-width: 100px;">
+                        <a class="btn btn-success mb-2">Ver</a>
+                        <a class="btn btn-danger" href=""> Eliminar</a>
+                    </td>
+                </tr>
+        </table>
+    </div>
+    {{else}}
+    <div class="col-md-4 mx-auto mt-5 mb-5">
+        <div class="card card-body text-center">
+            <p>No se encuentran citas registradas.</p>
+            <a class="btn btn-warning btn-block w-100" href="/citas/nuevaCita">
+                Empezar
+            </a>
+        </div>
+    </div>
+    {{/each}}
+
+</div>
+
+<style>
+    body {
+        /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
+        background-color: #6495ed;
+        /* Fijar la imagen de fondo este vertical y
+    horizontalmente y centrado */
+        background-position: center center;
+
+        /* Esta imagen no debe de repetirse */
+        background-repeat: no-repeat;
+
+        /* COn esta regla fijamos la imagen en la pantalla. */
+        background-attachment: fixed;
+
+        /* La imagen ocupa el 100% y se reescala */
+        background-size: cover;
+    }
+
+    .card {
+        border: solid 1px;
+        border-radius: 15px;
+    }
