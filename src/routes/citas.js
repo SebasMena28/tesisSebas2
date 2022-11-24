@@ -13,9 +13,9 @@ router.get('/nuevaCita', (req, res) => {
 });
 
 router.post('/nuevaCita', async (req, res) => {
-    const {fecha, hora} = req.body;
+    const {fecha, hora, observaciones} = req.body;
     const nuevaCita = {
-        fecha, hora
+        fecha, hora, observaciones
     }; 
 
     //await es porque es una funcion asincrona

@@ -1,6 +1,12 @@
 <div class="col-10 container center">
+    <div class="row my-2">
+        <div class="col-10"></div>
+        <div class="col-2">
+            <a href="/citas/nuevaCita" type="button" class="btn btn-dark">Agregar cita</a>
+        </div>
+    </div>
 
-<div class="card w-100 mt-4">
+    <div class="card w-100 mt-4">
         <table class="table">
             <thead>
                 <tr>
@@ -11,15 +17,7 @@
                     <td>Acciones</td>
                 </tr>
             </thead>
-
-    {{#each citas}}
-    <div class="row my-2">
-        <div class="col-10"></div>
-        <div class="col-2">
-            <a href="/citas/nuevaCita" type="button" class="btn btn-dark">Agregar cita</a>
-        </div>
-    </div>
-    
+            {{#each citas}}
             <tbody id="bodyCitas">
                 <tr>
                     <td>{{IDCITANUEVA}} </td>
@@ -32,19 +30,21 @@
                     </td>
                 </tr>
         </table>
-    </div>
-    {{else}}
-    <div class="col-md-4 mx-auto mt-5 mb-5">
-        <div class="card card-body text-center">
-            <p>No se encuentran citas registradas.</p>
-            <a class="btn btn-warning btn-block w-100" href="/citas/nuevaCita">
-                Empezar
-            </a>
-        </div>
-    </div>
-    {{/each}}
 
+        {{else}}
+        <div class="col-md-4 mx-auto mt-5 mb-5">
+            <div class="card card-body text-center">
+                <p>No se encuentran citas registradas.</p>
+                <a class="btn btn-warning btn-block w-100" href="/citas/nuevaCita">
+                    Empezar
+                </a>
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
 </div>
+
 
 <style>
     body {
