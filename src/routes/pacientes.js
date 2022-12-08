@@ -1,4 +1,5 @@
 const express = require('express');
+const validar = require('../validation/pacientes');
 const router = express.Router();
 
 
@@ -8,6 +9,7 @@ const pool = require('../basedatos'); //referencia a la conexion de la base de d
 router.get('/nuevoPaciente', (req, res) => { //VISTA PARA AGREGAR PACIENTE
     res.render('pacientes/nuevoPaciente'); 
 })
+
 
 router.post('/nuevoPaciente', async (req, res)=>{ //PROCESO DE AGREGAR PACIENTE
     //res.send('funciona xd ' + req.body.cedula);
@@ -40,11 +42,16 @@ router.post('/nuevoPaciente', async (req, res)=>{ //PROCESO DE AGREGAR PACIENTE
         referencia
     }; 
 
-    //await es porque es una funcion asincrona
-    await pool.query('INSERT INTO PACIENTES set ?', [nuevoPaciente]) //QUERY para insertar datos del objeto nuevoPaciente
-    console.log(nuevoPaciente);
-    req.flash('guardado', 'Datos del paciente almacenados con éxito!'); //para usar el modulo flash
-    res.redirect('/pacientes')
+    if(validar.validarCedula(cedula)){
+        //await es porque es una funcion asincrona
+        await pool.query('INSERT INTO PACIENTES set ?', [nuevoPaciente]) //QUERY para insertar datos del objeto nuevoPaciente
+        console.log(nuevoPaciente);
+        req.flash('guardado', 'Datos del paciente almacenados con éxito!'); //para usar el modulo flash
+        res.redirect('/pacientes');
+    }
+    else{
+        console.log('jeje');
+    }
 });
 
 

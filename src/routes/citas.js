@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const pool = require('../basedatos'); //referencia a la conexion de la base de datos
+const pool = require('../basedatos'); 
 
 router.get('/', async (req, res) => {
     const citas = await pool.query('SELECT * FROM CITAS');
@@ -19,7 +19,7 @@ router.post('/nuevaCita', async (req, res) => {
     }; 
 
     //await es porque es una funcion asincrona
-    await pool.query('INSERT INTO CITAS set ?', [nuevaCita]) //QUERY para insertar datos del objeto nuevoPaciente
+    await pool.query('INSERT INTO CITAS set ?', [nuevaCita]) 
     console.log(nuevaCita);
     req.flash('guardado', 'Datos del paciente almacenados con éxito!'); //para usar el modulo flash
     res.redirect('/citas')
