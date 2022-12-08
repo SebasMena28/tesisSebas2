@@ -30,7 +30,6 @@
     "mysql": "^2.18.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "sweetalert2": "^11.6.15",
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
