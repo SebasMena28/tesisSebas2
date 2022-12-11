@@ -9,30 +9,26 @@
                             Nuevo Paciente
                         </h2>
                     </div>
-                    <form action="/pacientes/nuevoPaciente" method="POST" class="row g-3 needs-validation" validate>
+                    <form action="/pacientes/nuevaFuncion" method="POST" class="row g-3 needs-validation" validate>
 
                         <h4 class="text-center">
-                            Datos generales del paciente
+                            Funciones Psíquicas
                         </h4>
-                        {{! esta es la seccion de datos del paciente}}
-                        <div class="form-floating mb-4">
-                            <input type="text" name="cedula" class="form-control" placeholder="Cedula" autofocus>
-                            <label for="floatingInput">Cedula</label>
-                        </div>
-
+                        
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
-                                    <input type="text" name="apellidoPaterno" class="form-control"
-                                        placeholder="Apellido Paterno">
-                                    <label for="floatingInput">Apellido Paterno</label>
+                                    <textarea name="orientacion" class="form-control" placeholder="Motivo de la terapia"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Orientación</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <input type="text" name="apellidoMaterno" class="form-control"
-                                        placeholder="Apellido Materno">
-                                    <label for="floatingInput">Apellido Materno</label>
+                                    <textarea name="atencion" class="form-control"
+                                        placeholder="Historia de la enfermedad" id="floatingTextarea2"
+                                        style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Atencion</label>
                                 </div>
                             </div>
                         </div>
@@ -40,16 +36,17 @@
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
-                                    <input type="text" name="primerNombre" class="form-control"
-                                        placeholder="Primer Nombre">
-                                    <label for="floatingInput">Primer Nombre</label>
+                                    <textarea name="conciencia" class="form-control" placeholder="Motivo de la terapia"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Conciencia</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <input type="text" name="segundoNombre" class="form-control"
-                                        placeholder="Segundo Nombre">
-                                    <label for="floatingInput">Segundo Nombre</label>
+                                    <textarea name="sensopercepcion" class="form-control"
+                                        id="floatingTextarea2"
+                                        style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Sensopercepción</label>
                                 </div>
                             </div>
                         </div>
@@ -57,19 +54,17 @@
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
-                                    <input type="date" name="fechaNacimiento" class="form-control">
-                                    <label for="floatingInput">Fecha de nacimiento</label>
+                                    <textarea name="memoria" class="form-control" placeholder="Motivo de la terapia"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Memoria</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <select name="genero" class="form-select" id="floatingSelect"
-                                        aria-label="Floating label select example">
-                                        <option value="Masculino" selected>Masculino</option>
-                                        <option value="Femenino">Femenino</option>
-                                        <option value="LGBT">LGBT</option>
-                                    </select>
-                                    <label for="floatingSelect">Género</label>
+                                    <textarea name="pensamiento" class="form-control"
+                                        id="floatingTextarea2"
+                                        style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Pensamiento</label>
                                 </div>
                             </div>
                         </div>
@@ -77,43 +72,17 @@
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
-                                    <select name="estadoCivil" class="form-select" id="floatingSelect"
-                                        aria-label="Floating label select example">
-                                        <option value="Soltero" selected>Soltero</option>
-                                        <option value="Casado">Casado</option>
-                                        <option value="Divorciado">Divorciado</option>
-                                        <option value="Viudo">Viudo</option>
-                                        <option value="Union Libre">Union Libre</option>
-                                    </select>
-                                    <label for="floatingSelect">Estado Civil</label>
+                                    <textarea name="lenguaje" class="form-control" placeholder="Motivo de la terapia"
+                                        id="floatingTextarea2" style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Lenguaje</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <input type="text" name="ocupacion" class="form-control" placeholder="Ocupación">
-                                    <label for="floatingSelect">Ocupación</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-floating mb-3">
-                            <input type="text" name="religion" class="form-control" placeholder="Religión">
-                            <label for="floatingSelect">Religión</label>
-                        </div>
-
-                        <div class="row g-2">
-                            <div class="col-md mb-3">
-                                <div class="form-floating mb-3">
-                                    <input type="text" name="correo" class="form-control"
-                                        placeholder="Primer Nombre">
-                                    <label for="floatingInput">Correo</label>
-                                </div>
-                            </div>
-                            <div class="col-md">
-                                <div class="form-floating mb-3">
-                                    <input type="text" name="telefono" class="form-control"
-                                        placeholder="Segundo Nombre">
-                                    <label for="floatingInput">Teléfono</label>
+                                    <textarea name="inteligencia" class="form-control"
+                                        id="floatingTextarea2"
+                                        style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Inteligencia</label>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +92,7 @@
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-group p-3">
-                                    <a class="btn btn-warning btn-block w-100" href="/pacientes">
+                                    <a class="btn btn-warning btn-block w-100" href="/pacientes/nuevaHistoria">
                                         Regresar
                                     </a>
                                 </div>

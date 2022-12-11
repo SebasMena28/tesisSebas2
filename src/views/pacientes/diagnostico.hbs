@@ -1,0 +1,174 @@
+<div class="container p-1 mb-5 mt-5">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+
+            <div class="card w-100">
+                <div class="card-body">
+                    <div class="container p-4">
+                        <h2 class="title text-center">
+                            Nuevo Paciente
+                        </h2>
+                    </div>
+                    <form action="/pacientes/diagnostico" method="POST" class="row g-3 needs-validation" validate>
+
+                        <h4 class="text-center">
+                            Diagnóstico
+                        </h4>
+                        
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="diagnostico" class="form-control"
+                                        placeholder="Historia de la enfermedad" id="floatingTextarea2"
+                                        style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Diagnóstico</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="planes" class="form-control"
+                                        id="floatingTextarea2"
+                                        style="height: 100px"></textarea>
+                                    <label for="floatingTextarea2">Plan</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select name="referencia" class="form-select" id="floatingSelect"
+                                aria-label="Floating label select example">
+                                <option value="Sesiones" selected>Sesiones</option>
+                                <option value="Fisioterapia">Fisioterapia</option>
+                                <option value="Med. Especialidad">Med. Especialidad</option>
+                                <option value="Laboratorio">Laboratorio</option>
+                            </select>
+                            <label for="floatingSelect">Referencia</label>
+                        </div>
+
+                        {{!boton XDXDXDXD}}
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-group p-3">
+                                    <a class="btn btn-warning btn-block w-100" href="/pacientes">
+                                        Regresar
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group p-3">
+                                    <button class="btn btn-success btn-block w-100">
+                                        Siguiente
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<section class="modal">
+    <div class="modal_container">
+
+        <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="" class="image">
+
+        <h2 class="title">
+            Esta es la ventana modal
+        </h2>
+        <p class="text">
+            Esta en serio es la ventana modal
+        </p>
+        <a href="#" class="modal_close">Cerrar</a>
+    </div>
+</section>
+
+<style>
+    body {
+        /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
+        background-color: #6495ed;
+        /* Fijar la imagen de fondo este vertical y
+    horizontalmente y centrado */
+        background-position: center center;
+
+        /* Esta imagen no debe de repetirse */
+        background-repeat: no-repeat;
+
+        /* COn esta regla fijamos la imagen en la pantalla. */
+        background-attachment: fixed;
+
+        /* La imagen ocupa el 100% y se reescala */
+        background-size: cover;
+    }
+
+    .card {
+        border: solid 1px;
+        border-radius: 15px;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #111111bd;
+        display: flex;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .modal--show {
+        opacity: 1;
+        pointer-events: unset;
+    }
+
+    .modal_container {
+        width: 90%;
+        max-width: 600px;
+        max-height: 90%;
+        background-color: #fff;
+        margin: auto;
+        border-radius: 6px;
+        padding: 3em 2.5em;
+        display: grid;
+        gap: 1em;
+        place-items: center;
+        grid-auto-columns: 100%;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .text {
+        margin-bottom: 10px;
+    }
+
+    .image {
+        width: 70%;
+        max-width: 200px;
+    }
+
+    .modal_close {
+        text-decoration: none;
+        color: #fff;
+        background-color: #f26250;
+        padding: 1em 3em;
+        border: 1px solid;
+        border-radius: 6px;
+        display: inline-block;
+        font-weight: 300;
+        transition: background-color 0.3s;
+    }
+
+    .modal_close:hover {
+        color: #f26250;
+        background-color: #fff;
+    }
+</style>
