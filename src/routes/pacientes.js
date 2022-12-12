@@ -9,7 +9,6 @@ const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
 var ced;
 var paciente = {}, historia = {}, funcion = {}, diag = {};
-var registro = {};
 
 //PARA EL CRUD
 router.get('/nuevoPaciente', (req, res) => { //VISTA PARA AGREGAR PACIENTE
@@ -39,8 +38,6 @@ router.post('/nuevoPaciente', async (req, res) => {
 
     ced = req.body.cedula;
     paciente = nuevoPaciente;
-
-    //req.flash('guardado', 'Datos del paciente almacenados con éxito!'); //para usar el modulo flash
     res.render('pacientes/nuevaHistoria');
 
     /*if (validar.validarCedula(cedula)) {
@@ -123,21 +120,19 @@ router.post('/diagnostico', async (req, res) => {
 
     diag = nuevoDiagnostico;
     res.redirect('/pacientes');
-
-    console.log('Todo todo todo');
     
     //registro de datos
     await pool.query('INSERT INTO PACIENTES set ?', [paciente]);
-    console.log(paciente);
+    //console.log(paciente);
 
     await pool.query('INSERT INTO HISTORIAENFERMEDAD set ?', [historia]);
-    console.log(historia);
+    //console.log(historia);
 
     await pool.query('INSERT INTO FUNCIONESPSIQUICAS set ?', [funcion]);
-    console.log(funcion);
+    //console.log(funcion);
 
     await pool.query('INSERT INTO DIAGNOSTICO set ?', [diag]);
-    console.log(diag);
+    //console.log(diag);
 });
 
 
@@ -203,10 +198,9 @@ router.post('/editar/:cedula', async (req, res) => {
     };
 
     //await es porque es una funcion asincrona
-    await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]) //QUERY para insertar datos del objeto nuevoPaciente
+    await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]);
     //console.log(nuevoPaciente);
-    res.redirect('/pacientes')
-    //res.send('actualizado')
+    res.redirect('/pacientes');
 })
 
 

@@ -1,0 +1,199 @@
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100" id="contenedor">
+            <div class="text-center">
+                <h1> BIENVENID@ AL SISTEMA OCUMEDIC </h1>
+            </div>
+            <div class="col-md-9 col-lg-6 col-xl-3">
+                <img src="https://pbs.twimg.com/profile_images/1158408311932432384/bjvit15u_400x400.jpg"
+                    class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+
+                <form action="/autenticacion/inicio" method="POST" class="formulario">
+                    <div class="text-center">
+                        <h3>Inicio de sesion</h3>
+                    </div>
+
+                    <div class="col-md">
+                        <div class="form-floating mb-3">
+                            <input type="text" name="usuario" class="form-control" placeholder="Nombre de usuario">
+                            <label for="floatingInput">Nombre de usuario</label>
+                        </div>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="col-md">
+                        <div class="form-floating mb-3">
+                            <input type="password" name="contrasenia" class="form-control" placeholder="Contraseña">
+                            <label for="floatingInput">Contraseña</label>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="text-center">
+                            <button class="button"> Iniciar Sesion
+                            </button>
+                        </div>
+                    </div>
+
+                    {{!
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-center text-lg-start mt-2">
+                            <button type="button" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem; width: 100%;">
+                                Iniciar Sesion
+                            </button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Eres nuev@?
+                                <br>
+                                <a href="#!" class="link-danger">
+                                    Registrarse </a>
+                            </p>
+                        </div>
+                    </div>}}
+                </form>
+            </div>
+        </div>
+    </div>
+    <div
+        class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+        <!-- Copyright -->
+        <div class="text-white mb-3 mb-md-0">
+            OCUMEDIC © 2022.
+        </div>
+        <!-- Copyright -->
+
+        <!-- Right -->
+        <div>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="#!" class="text-white">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </div>
+</section>
+
+<style>
+    .divider:after,
+    .divider:before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #eee;
+    }
+
+    .h-custom {
+        height: calc(100% - 73px);
+    }
+
+    @media (max-width: 450px) {
+        .h-custom {
+            height: 100%;
+        }
+    }
+
+    #contenedor{
+        background-color: #ffffff;
+        border-radius: 6px;
+        margin-top: 45px;
+        padding: 3px 3px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 12px 24px;
+        border: 1px solid #4f4f4f;
+        border-radius: 4px;
+        transition: all 0.2s ease-in;
+        position: relative;
+        overflow: hidden;
+        font-size: 19px;
+        color: white;
+        z-index: 1;
+        background-color: #6495ed;
+        width: 100%;
+    }
+
+    .button:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) scaleY(1) scaleX(1.25);
+        top: 100%;
+        width: 140%;
+        height: 180%;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 50%;
+        display: block;
+        transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+        z-index: -1;
+    }
+
+    .button:after {
+        content: "";
+        position: absolute;
+        left: 55%;
+        transform: translateX(-50%) scaleY(1) scaleX(1.45);
+        top: 180%;
+        width: 160%;
+        height: 190%;
+        background-color: #39bda7;
+        border-radius: 50%;
+        display: block;
+        transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+        z-index: -1;
+    }
+
+    .button:hover {
+        color: #ffffff;
+        border: 1px solid #39bda7;
+    }
+
+    .button:hover:before {
+        top: -35%;
+        background-color: #39bda7;
+        transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+    }
+
+    .button:hover:after {
+        top: -45%;
+        background-color: #39bda7;
+        transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+    }
+</style>
+
+{{!
+<div class="container p4">
+    <div class="row">
+        <div class="col md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Registro de usuario</h3>
+                </div>
+                <div class="card-body">
+                    <form class="form" action="/registro" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="usuario" placeholder="Ingrese el nombre de usuario"
+                                class="form-control" autofocus>
+                        </div>
+                        <div class="form-gro">
+                            <input type="password" name="password" placeholder="Contraseña" class="form-control">
+                        </div>
+                        <div class="form-gro">
+                            <button type="submit" value="Registrarse">Registrarse</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}}

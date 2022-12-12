@@ -11,12 +11,12 @@
                     </div>
                     <form action="/pacientes/editar/{{paciente.CEDULA}}" method="POST">
                         {{! esta es la seccion de datos del paciente}}
-                        <div class="form-floating mb-4">
-                            <input type="text" name="cedula" value="{{paciente.CEDULA}}" class="form-control" placeholder="Cedula" autofocus
-                                required>
-                            <label for="floatingInput">Cedula</label>
-                        </div>
 
+                        <h2 class="text-center">
+                            Datos Generales
+                        </h2>
+
+                        
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
@@ -98,6 +98,23 @@
                         <div class="form-floating mb-3">
                             <input type="text" name="religion"  value="{{paciente.RELIGION}}" class="form-control" placeholder="Religión">
                             <label for="floatingSelect">Religión</label>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <input type="text" value="{{paciente.CORREO}}" name="correo" class="form-control"
+                                        placeholder="Primer Nombre" required>
+                                    <label for="floatingInput">Correo</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input type="text" value="{{paciente.TELEFONO}}" name="telefono" class="form-control"
+                                        placeholder="Telefono">
+                                    <label for="floatingInput">Telefono</label>
+                                </div>
+                            </div>
                         </div>
 
                         {{! esta es la seccion de historia clinica}}

@@ -3,9 +3,12 @@ const router = express.Router();
 const passport = require('passport')
 
 router.get('/registro', (req, res) =>{
-    res.render('logeo/registro');
+    res.render('logeo/inicioSesion');
 })
 
+router.post('/autenticacion/inicio', (req, res) =>{
+    res.render('layouts/main');
+})
 
 /*router.post('/registro', (req, res) => {
     //console.log(req.body)
