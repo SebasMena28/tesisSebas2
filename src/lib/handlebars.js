@@ -8,7 +8,7 @@ register('es_ES', (number, index, total_sec) => [
     ['hace 1 minuto', 'en 1 minuto'],
     ['hace %s minutos', 'en %s minutos'],
     ['hace 1 hora', 'en 1 hora'],
-    ['hace %s horas', 'in %s horas'],
+    ['hace %s horas', 'en %s horas'],
     ['hace 1 dia', 'en 1 dia'],
     ['hace %s dias', 'en %s dias'],
     ['hace 1 semana', 'en 1 semana'],

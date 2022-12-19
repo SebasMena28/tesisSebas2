@@ -2,7 +2,6 @@ const express = require('express');
 const validar = require('../validation/pacientes');
 const router = express.Router();
 
-
 const pool = require('../basedatos'); //referencia a la conexion de la base de datos
 
 const tiempoTranscurrido = Date.now();
@@ -14,7 +13,6 @@ var paciente = {}, historia = {}, funcion = {}, diag = {};
 router.get('/nuevoPaciente', (req, res) => { //VISTA PARA AGREGAR PACIENTE
     res.render('pacientes/nuevoPaciente');
 })
-
 
 router.post('/nuevoPaciente', async (req, res) => {
     const { cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil,
@@ -39,7 +37,7 @@ router.post('/nuevoPaciente', async (req, res) => {
     ced = req.body.cedula;
     paciente = nuevoPaciente;
     res.render('pacientes/nuevaHistoria');
-
+    
     /*if (validar.validarCedula(cedula)) {
         //await es porque es una funcion asincrona
         //await pool.query('INSERT INTO PACIENTES set ?', [nuevoPaciente]) //QUERY para insertar datos del objeto nuevoPaciente
@@ -123,25 +121,25 @@ router.post('/diagnostico', async (req, res) => {
     
     //registro de datos
     await pool.query('INSERT INTO PACIENTES set ?', [paciente]);
-    //console.log(paciente);
+    console.log(paciente);
 
     await pool.query('INSERT INTO HISTORIAENFERMEDAD set ?', [historia]);
-    //console.log(historia);
+    console.log(historia);
 
     await pool.query('INSERT INTO FUNCIONESPSIQUICAS set ?', [funcion]);
-    //console.log(funcion);
+    console.log(funcion);
 
     await pool.query('INSERT INTO DIAGNOSTICO set ?', [diag]);
-    //console.log(diag);
+    console.log(diag);
 });
-
 
 router.get('/datos/:cedula', async (req, res) => { 
     const { cedula } = req.params;
     //console.log(cedula);
-    const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
+    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ?', [cedula])
+    const pacientes = await pool.query('SELECT * FROM PACIENTES');
     //console.log(paciente[0])
-    res.render('pacientes/datos', { paciente: paciente[0] })
+    res.render('pacientes/datos', { seguimiento }, {pacientes});
 })
 
 router.get('/', async (req, res) => { //VISTA PARA LISTAR PACIENTES
@@ -149,21 +147,15 @@ router.get('/', async (req, res) => { //VISTA PARA LISTAR PACIENTES
     res.render('pacientes/lista', { pacientes }); //renderizando y mando los pacientes registrados
 });
 
-
 router.get('/borrar/:cedula', async (req, res) => {
-    //console.log(req.params.cedula);
-    //res.send('se eliminara este paciente ');
-
     const { cedula } = req.params;
     await pool.query('DELETE FROM PACIENTES WHERE CEDULA = ?', [cedula])
     res.redirect('/pacientes')
 })
 
-router.get('/editar/:cedula', async (req, res) => { //MUESTRA VISTA DE LOS DATOS PARA EDITAR, NO HACE EL PROCESO
+router.get('/editar/:cedula', async (req, res) => {
     const { cedula } = req.params;
-    //console.log(cedula);
     const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
-    //console.log(paciente[0])
     res.render('pacientes/editar', { paciente: paciente[0] })
 })
 
@@ -197,9 +189,7 @@ router.post('/editar/:cedula', async (req, res) => {
         referencia
     };
 
-    //await es porque es una funcion asincrona
     await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]);
-    //console.log(nuevoPaciente);
     res.redirect('/pacientes');
 })
 

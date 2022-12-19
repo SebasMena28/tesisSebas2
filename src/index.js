@@ -69,6 +69,7 @@ app.use(require('./routes/index'));
 app.use( '/pacientes', require('./routes/pacientes')); //si yo quiero todos los pacientes, debo usar prefijo /pacientes
 app.use( '/evaluaciones', require('./routes/eva'));
 app.use( '/citas', require('./routes/citas'));
+app.use( '/seguimientos', require('./routes/seguimientos'));
 
 //ARCHIVOS PUBLICOS
 app.use(express.static(path.join(__dirname, 'public')));

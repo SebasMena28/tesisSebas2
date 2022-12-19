@@ -19,6 +19,7 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 
 
 </head>
@@ -27,48 +28,26 @@
 
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">Inicio</a>
+            <a class="navbar-brand" href="/"> <img src="https://pbs.twimg.com/profile_images/1158408311932432384/bjvit15u_400x400.jpg" height="25" width="25" alt="">   Inicio</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/pacientes">Pacientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/pacientes/nuevoPaciente">Nuevo Paciente</a>
+                        <a class="nav-link active" aria-current="page" href="/pacientes"> Pacientes </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/citas">Citas</a>
+                        <a class="nav-link active" aria-current="page" href="/pacientes/nuevoPaciente"> Nuevo Paciente</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/evaluaciones/nuevaEvaluacion">Evaluaciones</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Pacientes
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Nuevo Paciente</a></li>
-                            <li><a class="dropdown-item" href="#">Ver Pacientes</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <a class="nav-link active" aria-current="page" href="/citas">  Citas </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                        <a class="nav-link active" aria-current="page" href="/evaluaciones/nuevaEvaluacion">  Evaluaciones </a>
                     </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
             </div>
         </div>
     </nav>
@@ -76,7 +55,6 @@
     {{{
     body
     }}}
-    <!-- sintaxis de handlebars, la pagina solo va a cambiar en esta seccion -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -90,3 +68,10 @@
 </body>
 
 </html>
+
+<style>
+    .nav-item:hover {
+        transform: scale(1.1, 1.1);
+        cursor: pointer;
+    }
+</style>
