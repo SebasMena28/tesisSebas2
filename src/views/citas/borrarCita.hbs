@@ -6,11 +6,11 @@
                     <div class="row g-0">
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
                             <img src="https://www.ligarporinternet.info/pics/2018/12/que-hacer-cuando-un-chico-cancela-una-cita-por-texto.jpg"
-                                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                                alt="login form" height="100%" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
-                                <form action="/citas/borrarCita/{{cita.IDNUE}}" object="" method="POST">
+                                <form action="/citas/borrarCita/{{citas.IDCITANUEVA}}" object="" method="POST">
 
                                     <h2 class="title text-center mb-4">
                                         ¿Realmente desea eliminar esta cita?
@@ -19,7 +19,7 @@
                                     <div class="col-md">
                                         <div class="form-floating mb-3">
                                             <input type="date" name="fecha" class="form-control"
-                                                placeholder="Fecha de la cita" required>
+                                                placeholder="Fecha de la cita">
                                             <label for="floatingInput">Fecha</label>
                                         </div>
                                     </div>
@@ -28,7 +28,7 @@
                                     <div class="col-md mb-3">
                                         <div class="form-floating mb-3">
                                             <input type="time" min="16:00:00" max="22:00:00" name="hora"
-                                                class="form-control" placeholder="Hora" required>
+                                                class="form-control" placeholder="Hora">
                                             <label for="floatingSelect">Hora</label>
                                         </div>
                                     </div>
@@ -37,7 +37,7 @@
                                         <div class="form-floating">
                                             <textarea name="observaciones" class="form-control"
                                                 placeholder="Historia de la enfermedad" id="floatingTextarea2"
-                                                style="height: 100px"> {{cita.OBSERVACIONES}}</textarea>
+                                                style="height: 100px"> {{citas.OBSERVACIONES}}</textarea>
                                             <label for="floatingTextarea2">Observaciones</label>
                                         </div>
                                     </div>

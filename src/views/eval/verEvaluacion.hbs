@@ -14,15 +14,14 @@
                 <form action="/evaluaciones/nuevaEvaluacion/{{paciente.CEDULA}}" object="" method="POST">
 
                   <h2 class="title text-center mb-4">
-                    Evaluacion de {{paciente.PRIMERNOMBRE}} {{paciente.SEGUNDONOMBRE}} {{paciente.APELLIDOPATERNO}} {{paciente.APELLIDOMATERNO}} 
+                    Evaluacion hecha el {{evaluacion.FECHA}}  
                   </h2>
-
 
                   <div class="row g-2">
                     <div class="col-md">
                       <div class="form-floating mb-3">
                         <textarea name="tecnica" class="form-control" placeholder="Anamnesis"
-                          id="floatingTextarea2" style="height: 100px" required></textarea>
+                          id="floatingTextarea2" style="height: 100px" readonly >{{evaluacion.TECNICA}} </textarea>
                         <label for="floatingTextarea2">Técnica</label>
                       </div>
                     </div>
@@ -32,7 +31,7 @@
                     <div class="col-md">
                       <div class="form-floating mb-3">
                         <textarea name="descripcion" class="form-control" placeholder="Anamnesis"
-                          id="floatingTextarea2" style="height: 100px" required></textarea>
+                          id="floatingTextarea2" style="height: 100px" readonly >{{evaluacion.DESCRIPCION}}</textarea>
                         <label for="floatingTextarea2">Descripción</label>
                       </div>
                     </div>
@@ -40,7 +39,7 @@
 
                   <div class="form-floating mb-3">
                     <textarea name="resultados" class="form-control" placeholder="Anamnesis" id="floatingTextarea2"
-                      style="height: 100px"></textarea>
+                      style="height: 100px"readonly >{{evaluacion.RESULTADOS}}</textarea>
                     <label for="floatingTextarea2">Resultados</label>
                   </div>
 
@@ -72,24 +71,25 @@
 </section>
 
 <style>
-  body {
-    /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
-    background-color: #6495ed;
-    /* Fijar la imagen de fondo este vertical y
+    body {
+        /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
+        background-color: #6495ed;
+        /* Fijar la imagen de fondo este vertical y
     horizontalmente y centrado */
-    background-position: center center;
+        background-position: center center;
 
-    /* Esta imagen no debe de repetirse */
-    background-repeat: no-repeat;
+        /* Esta imagen no debe de repetirse */
+        background-repeat: no-repeat;
 
-    /* COn esta regla fijamos la imagen en la pantalla. */
-    background-attachment: fixed;
+        /* COn esta regla fijamos la imagen en la pantalla. */
+        background-attachment: fixed;
 
-    /* La imagen ocupa el 100% y se reescala */
-    background-size: cover;
-  }
+        /* La imagen ocupa el 100% y se reescala */
+        background-size: cover;
+    }
 
-  .card {
-    border: solid 1px;
-    border-radius: 15px;
-  }
+    .card {
+        border: solid 1px;
+        border-radius: 5px;
+        padding: 5px, 5px;
+    }

@@ -30,12 +30,13 @@ router.post('/nuevoPaciente', async (req, res) => {
         ocupacion,
         religion,
         correo,
-        telefono,
+        telefono: '+593' + telefono[1]+telefono[2]+telefono[3]+telefono[4]+telefono[5]+telefono[6]+telefono[7]+telefono[8]+telefono[9],
         ultimacita: hoy.toLocaleDateString()
     }
 
     ced = req.body.cedula;
     paciente = nuevoPaciente;
+    console.log(paciente);
     res.render('pacientes/nuevaHistoria');
     
     /*if (validar.validarCedula(cedula)) {
@@ -133,13 +134,25 @@ router.post('/diagnostico', async (req, res) => {
     console.log(diag);
 });
 
+router.post('/BuscarPaciente/', async (req, res) => {
+
+    const { dato } = req.body;
+    console.log(dato);
+    
+    const resultados = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [dato]);
+    console.log(resultados);
+
+    res.render('pacientes/busqueda', {resultados});
+});
+
 router.get('/datos/:cedula', async (req, res) => { 
     const { cedula } = req.params;
     //console.log(cedula);
     const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ?', [cedula])
-    const pacientes = await pool.query('SELECT * FROM PACIENTES');
+    const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
     //console.log(paciente[0])
-    res.render('pacientes/datos', { seguimiento }, {pacientes});
+    console.log(seguimiento);
+    res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento});
 })
 
 router.get('/', async (req, res) => { //VISTA PARA LISTAR PACIENTES

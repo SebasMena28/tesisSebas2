@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-
 const pool = require('../basedatos'); 
 
 router.get('/', async (req, res) => {
-    const citas = await pool.query('SELECT P.PRIMERNOMBRE, P.APELLIDOPATERNO, P.CEDULA, P.TELEFONO, C.IDCITANUEVA, C.FECHA, C.HORA FROM PACIENTES P, CITAS C WHERE P.CEDULA = C.PACIENTE;');
+    const citas = await pool.query('SELECT P.PRIMERNOMBRE, P.APELLIDOPATERNO, P.CEDULA, P.TELEFONO, C.IDCITANUEVA, C.FECHA, C.HORA FROM PACIENTES P, CITAS C WHERE P.CEDULA = C.CEDULA ORDER BY FECHA, HORA DESC;');
+    console.log(citas);
     res.render('citas/citas', {citas});
 });
 
@@ -14,30 +14,33 @@ router.get('/nuevaCita', async (req, res) => {
 });
 
 router.post('/nuevaCita', async (req, res) => {
-    const {paciente, fecha, hora, observaciones} = req.body;
+    const {cedula, fecha, hora, observaciones} = req.body;
+
     const nuevaCita = {
-        paciente, fecha, hora, observaciones
+        cedula, 
+        fecha, 
+        hora, 
+        observaciones
     }; 
 
-    //await es porque es una funcion asincrona
     await pool.query('INSERT INTO CITAS set ?', [nuevaCita]) 
     console.log(nuevaCita);
-    req.flash('guardado', 'Datos del paciente almacenados con éxito!'); //para usar el modulo flash
     res.redirect('/citas')
 })
 
-router.get('/verCita/:id', async (req, res) => {
-    const { id } = req.params;
-    console.log(id);
-    const cita = await pool.query('SELECT P.PRIMERNOMBRE, P.APELLIDOPATERNO, P.CEDULA, P.TELEFONO, C.IDCITANUEVA, C.FECHA, C.HORA, C.OBSERVACIONES FROM PACIENTES P, CITAS C WHERE C.IDCITANUEVA = ?'  , [id]);
-    console.log({ cita: cita[0] });
+router.get('/verCita/:cedula/:id', async (req, res) => {
+    const { cedula, id } = req.params;
+    console.log(cedula, id);
+    const cita = await pool.query('SELECT P.PRIMERNOMBRE, P.APELLIDOPATERNO, P.CEDULA, P.TELEFONO, C.IDCITANUEVA, C.FECHA, C.HORA, C.OBSERVACIONES FROM PACIENTES P, CITAS C WHERE C.IDCITANUEVA = ? AND P.CEDULA = ?'  , [id, cedula]);
+    console.log(cita, 'esta es la cita');
+    console.log(cita[0], 'esta es la cita');
     res.render('citas/verCita', { cita: cita[0] });
 });
 
-router.get('/editarCita/:id', async (req, res) => {
-    const { id } = req.params;
-    console.log(id);
-    const cita = await pool.query('SELECT P.PRIMERNOMBRE, P.APELLIDOPATERNO, P.CEDULA, P.TELEFONO, C.IDCITANUEVA, C.FECHA, C.HORA, C.OBSERVACIONES FROM PACIENTES P, CITAS C WHERE C.IDCITANUEVA = ?'  , [id])
+router.get('/editarCita/:cedula/:id', async (req, res) => {
+    const { cedula, id } = req.params;
+    console.log(cedula, id);
+    const cita = await pool.query('SELECT P.PRIMERNOMBRE, P.APELLIDOPATERNO, P.CEDULA, P.TELEFONO, C.IDCITANUEVA, C.FECHA, C.HORA, C.OBSERVACIONES FROM PACIENTES P, CITAS C WHERE C.IDCITANUEVA = ? AND P.CEDULA = ?'  , [id, cedula])
     console.log(cita);
     res.render('citas/editarCita', { cita: cita[0] })
 });
@@ -53,24 +56,24 @@ router.post('/editarCita/:idcitanueva', async (req, res) => {
     };
 
     await pool.query('UPDATE CITAS set ? WHERE IDCITANUEVA = ?', [cita, idcitanueva]);
-    console.log(cita);
+    console.log(cita, 'la cita actualizada');
     res.redirect('/citas');
 })
 
 router.get('/borrarCita/:cita', async (req, res) => {
-    const { citaBorrar } = req.params;
-    console.log(cedula);
-    const cita = await pool.query('SELECT * FROM CITAS WHERE IDCITANUEVA = ?'  , [citaBorrar])
+    const { cita } = req.params;
     console.log(cita);
-    res.render('citas/borrarCita', { cita: cita[0] })
+    const citas = await pool.query('SELECT * FROM CITAS WHERE IDCITANUEVA = ?'  , [cita])
+    console.log(citas);
+    res.render('citas/borrarCita', { citas: citas[0] })
 });
 
-router.post('/borrarCita/:cedula', async (req, res) => {
-    const cedula = req.params;
-    console.log(cedula);
+router.post('/borrarCita/:idcitanueva', async (req, res) => {
+    const idcitanueva = req.params;
+    console.log(idcitanueva);
 
-    await pool.query('UPDATE CITAS set ? WHERE PACIENTE = ?', [cita, cedula]);
-    console.log(cita);
+    await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva])
+    console.log('ya se debio eliminar')
     res.redirect('/citas');
 })
 

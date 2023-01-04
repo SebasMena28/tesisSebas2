@@ -10,10 +10,11 @@
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
-                                <form action="/citas/nuevaCita" object="" method="POST">
+                                <form action="/seguimientos/nuevoSeguimiento/{{paciente.CEDULA}}" object=""
+                                    method="POST">
 
                                     <h2 class="title text-center mb-4">
-                                        Seguimiento para NOMBRE DE PACIENTE
+                                        Seguimiento de {{paciente.PRIMERNOMBRE}} {{paciente.APELLIDOPATERNO}}
                                     </h2>
 
                                     <div class="col-md">
@@ -36,7 +37,7 @@
 
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <textarea name="indicaciones" class="form-control"
+                                            <textarea name="tareapaciente" class="form-control"
                                                 placeholder="Indicaciones" id="floatingTextarea2"
                                                 style="height: 100px"></textarea>
                                             <label for="floatingTextarea2">Indicaciones</label>
@@ -47,21 +48,28 @@
                                         <div class="card card-body text-center" style="width: 100%; height: 100%;">
                                             <p>Nueva cita.</p>
                                             <div class="row g-2">
-                                                <div class="col-md mb-3">
-                                                    <div class="col-md mb-3">
-                                                        <div class="form-floating mb-3">
-                                                            <input type="date" name="fechaNacimiento"
-                                                                class="form-control">
-                                                            <label for="floatingInput">Fecha de nacimiento</label>
+                                                <div class="col-md">
+                                                    <div class="col-md">
+                                                        <div class="form-floating">
+                                                            <input type="date" name="proximacita" class="form-control">
+                                                            <label for="floatingInput">Fecha de la siguiente cita</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md mb-3">
-                                                    <div class="form-floating mb-3">
-                                                        <input type="time" min="16:00:00" max="22:00:00" name="hora"
-                                                            class="form-control" placeholder="Hora" required>
+                                                    <div class="form-floating">
+                                                        <input type="time" min="16:00:00" max="22:00:00"
+                                                            name="proximahora" class="form-control" placeholder="Hora">
                                                         <label for="floatingSelect">Hora</label>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <textarea name="observaciones" class="form-control"
+                                                        placeholder="Historia de la enfermedad" id="floatingTextarea2"
+                                                        style="height: 100px"></textarea>
+                                                    <label for="floatingTextarea2">Observaciones</label>
                                                 </div>
                                             </div>
                                         </div>

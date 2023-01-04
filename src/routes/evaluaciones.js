@@ -2,20 +2,25 @@ const express = require('express');
 const router = express.Router();
 
 
-const pool = require('../basedatos'); //referencia a la conexion de la base de datos
+const pool = require('../basedatos'); 
+const tiempoTranscurrido = Date.now();
+const hoy = new Date(tiempoTranscurrido);
 
-//PARA EL CRUD
-router.get('/', (req, res) => { //VISTA PARA AGREGAR
+router.get('/NuevaEvaluacion/:cedula', async (req, res) => { 
+    const { cedula } = req.params;
+    console.log(cedula);
+    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO S, PACIENTES P WHERE P.CEDULA = ?', [cedula])
+    console.log(hoy.toLocaleDateString());
+    console.log(seguimiento);
+    res.render('eval/NuevaEvaluacion'); 
+})
+
+router.get('/nuevaEvaluacion', (req, res) => { 
     res.send('aqui va a lita de evaluaciones'); 
 })
 
-router.get('/nuevaEvaluacion', (req, res) => { //VISTA PARA AGREGAR 
-    res.send('aqui va a lita de evaluaciones'); 
-})
+router.post('/nuevaEvaluacion', async (req, res)=>{
 
-router.post('/nuevaEvaluacion', async (req, res)=>{ //PROCESO DE AGREGAR
-    //res.send('funciona xd ' + req.body.cedula);
-    //console.log( req.body);
 
     res.render('eval/lista');
 
@@ -24,10 +29,8 @@ router.post('/nuevaEvaluacion', async (req, res)=>{ //PROCESO DE AGREGAR
         cedula, fecha, tecnica, descripcion, resultados
     }; 
 
-    //await es porque es una funcion asincrona
-    await pool.query('INSERT INTO EVALUACIONPSICOLOGICA set ?', [nuevaEvaluacion]) //QUERY para insertar datos del objeto nuevoPaciente
+    await pool.query('INSERT INTO EVALUACIONPSICOLOGICA set ?', [nuevaEvaluacion]) 
     console.log(nuevaEvaluacion);
-    req.flash('guardado', 'Datos del paciente almacenados con éxito!'); //para usar el modulo flash
     res.redirect('/evaluaciones')
 });
 
