@@ -8,16 +8,24 @@
                         <div class="text-center">
                             <h3> Evaluaciones de {{paciente.PRIMERNOMBRE}} {{paciente.SEGUNDONOMBRE}}
                                 {{paciente.APELLIDOPATERNO}} {{paciente.APELLIDOMATERNO}}</h3>
+
+
+
                             <div class="row g-2">
                                 <div class="col-md mb-3">
-                                    <div class="form-group p-3">
-                                        <a class="btn btn-success btn-block w-100 p-3"
-                                            href="/evaluaciones/NuevaEvaluacion/{{paciente.CEDULA}}">
-                                            Nueva evaluación
-                                        </a>
-                                    </div>
+                                    <a class="btn btn-warning btn-block w-100"
+                                        href="/pacientes/datos/{{paciente.CEDULA}}">
+                                        Volver
+                                    </a>
+                                </div>
+                                <div class="col-md">
+                                    <a class="btn btn-success btn-block w-100"
+                                        href="/evaluaciones/NuevaEvaluacion/{{paciente.CEDULA}}">
+                                        Nueva evaluación
+                                    </a>
                                 </div>
                             </div>
+
                         </div>
                         {{#each evaluacion}}
                         <div class="card mb-3 text-center">
@@ -28,7 +36,8 @@
                                 <h5 class="card-title">Resultado</h5>
                                 <p class="card-text">{{RESULTADOS}}
                                 </p>
-                                <a href="/evaluaciones/verEvaluacion/{{ID}}" class="btn btn-secondary" style="width:30%">Ver</a>
+                                <a href="/evaluaciones/verEvaluacion/{{ID}}" class="btn btn-secondary"
+                                    style="width:30%">Ver</a>
                             </div>
                         </div>
                         {{else}}

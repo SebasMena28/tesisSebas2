@@ -36,7 +36,7 @@
                                     <div class="form-group p-3">
                                         <a class="btn btn-secondary btn-block w-100"
                                             href="/evaluaciones/NuevaEvaluacion/{{pacientes.CEDULA}}">
-                                            Nueva evaluación 
+                                            Nueva evaluación
                                         </a>
                                     </div>
                                 </div>
@@ -45,13 +45,23 @@
                         {{#each seguimiento}}
                         <div class="card mb-3 text-center">
                             <div class="card-header">
-                                {{FECHA}}
+                                Seguimiento hecho el: {{FECHA}}
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Indicaciones</h5>
                                 <p class="card-text">{{TAREAPACIENTE}}
                                 </p>
-                                <a href="/seguimientos/verSeguimiento/{{ID}}" class="btn btn-secondary" style="width:30%">Ver</a>
+                                
+
+                                <div class="">
+                                    <a class="btn btn-danger" href="/seguimiento/borrar/{{CEDULA}}">
+                                        Borrar datos
+                                    </a>
+                                    <a class="btn btn-secondary" href="/seguimientos/verSeguimiento/{{ID}}">
+                                        Ver datos
+                                    </a>
+                                </div>
+
                             </div>
                         </div>
                         {{else}}

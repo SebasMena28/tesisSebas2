@@ -148,7 +148,7 @@ router.post('/BuscarPaciente/', async (req, res) => {
 router.get('/datos/:cedula', async (req, res) => { 
     const { cedula } = req.params;
     //console.log(cedula);
-    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ?', [cedula])
+    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
     const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
     //console.log(paciente[0])
     console.log(seguimiento);

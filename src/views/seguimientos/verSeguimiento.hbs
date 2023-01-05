@@ -1,79 +1,75 @@
 <section class="vh-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col col-xl-10">
-        <div class="card mb-3" style="border-radius: 1rem;">
-          <div class="row g-0">
-            <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img
-                src="http://www.espaciobenessere.uy/assets/images/evaluacion-porte-de-armas-700x600.jpg"
-                alt="login form" class="img-fixed" height="100%" width="100%" style="border-radius: 1rem 0 0 1rem;" />
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card mb-3" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="http://www.espaciobenessere.uy/assets/images/evaluacion-porte-de-armas-700x600.jpg"
+                                alt="login form" class="img-fixed" height="100%" width="100%"
+                                style="border-radius: 1rem 0 0 1rem;" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <form action="/evaluaciones/nuevaEvaluacion/{{paciente.CEDULA}}" object=""
+                                    method="POST">
+
+                                    <h2 class="title text-center mb-4">
+                                        Seguimiento hecho el {{seguimiento.FECHA}}
+                                    </h2>
+
+                                    <div class="row g-2">
+                                        <div class="col-md">
+                                            <div class="form-floating mb-3">
+                                                <textarea name="tecnica" class="form-control" placeholder="Anamnesis"
+                                                    id="floatingTextarea2" style="height: 100px"
+                                                    readonly>{{seguimiento.DIAGNOSTICOINICIAL}} </textarea>
+                                                <label for="floatingTextarea2">Diagnóstico Inicial</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-2">
+                                        <div class="col-md">
+                                            <div class="form-floating mb-3">
+                                                <textarea name="descripcion" class="form-control"
+                                                    placeholder="Anamnesis" id="floatingTextarea2" style="height: 100px"
+                                                    readonly>{{seguimiento.ACTIVIDADES}}</textarea>
+                                                <label for="floatingTextarea2">Actividades</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <textarea name="resultados" class="form-control" placeholder="Anamnesis"
+                                            id="floatingTextarea2" style="height: 100px"
+                                            readonly>{{seguimiento.TAREAPACIENTE}}</textarea>
+                                        <label for="floatingTextarea2">Indicaciones </label>
+                                    </div>
+
+                                    <div class="form-group text-center">
+                                        <label for="staticEmail" class=""> Proxima Cita: {{seguimiento.PROXIMACITA}} </label>
+                                    </div>
+
+
+                                    <div class="row g-2">
+                                        <div class="col-md mb-3">
+                                            <div class="form-group p-3">
+                                                <a class="btn btn-warning btn-block w-100" href="/pacientes/datos/{{seguimiento.CEDULA}}">
+                                                    Volver
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 col-lg-7 d-flex align-items-center">
-              <div class="card-body p-4 p-lg-5 text-black">
-                <form action="/evaluaciones/nuevaEvaluacion/{{paciente.CEDULA}}" object="" method="POST">
-
-                  <h2 class="title text-center mb-4">
-                    Seguimiento hecho el {{seguimiento.FECHA}}  
-                  </h2>
-
-                  <div class="row g-2">
-                    <div class="col-md">
-                      <div class="form-floating mb-3">
-                        <textarea name="tecnica" class="form-control" placeholder="Anamnesis"
-                          id="floatingTextarea2" style="height: 100px" readonly >{{seguimiento.DIAGNOSTICOINICIAL}} </textarea>
-                        <label for="floatingTextarea2">Diagnóstico Inicial</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row g-2">
-                    <div class="col-md">
-                      <div class="form-floating mb-3">
-                        <textarea name="descripcion" class="form-control" placeholder="Anamnesis"
-                          id="floatingTextarea2" style="height: 100px" readonly >{{seguimiento.ACTIVIDADES}}</textarea>
-                        <label for="floatingTextarea2">Actividades</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="form-floating mb-3">
-                    <textarea name="resultados" class="form-control" placeholder="Anamnesis" id="floatingTextarea2"
-                      style="height: 100px"readonly >{{seguimiento.TAREAPACIENTE}}</textarea>
-                    <label for="floatingTextarea2">Indicaciones </label>
-                  </div>
-
-                  <div class="form-floating mb-3">
-                    <textarea name="resultados" class="form-control" placeholder="Anamnesis" id="floatingTextarea2"
-                      style="height: 100px"readonly >{{seguimiento.TAREAPACIENTE}}</textarea>
-                    <label for="floatingTextarea2">Indicaciones </label>
-                  </div>
-
-                  <div class="row g-2">
-                    <div class="col-md mb-3">
-                      <div class="form-group p-3">
-                        <a class="btn btn-warning btn-block w-100" href="/evaluaciones">
-                          Regresar
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-md">
-                      <div class="form-group p-3">
-                        <button class="btn btn-success btn-block w-100">
-                          Guardar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                </form>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <style>
