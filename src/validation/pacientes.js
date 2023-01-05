@@ -1,3 +1,5 @@
+var error;
+
 
 ///FUNCIONES PARA VALIDAR CAMPOS
 function validarCedula(cedula) {
@@ -75,7 +77,7 @@ function validarCedula(cedula) {
     }
 }
 
-/*
+
 
 function validarNombre(nombre) {
     if (/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(nombre) && nombre != "" && nombre.length > 1) {
@@ -95,21 +97,6 @@ function validarNombre(nombre) {
     }
 }
 
-function validarUsuario(usuario) {
-    if (/^[a-zA-Z0-9\_\-]{4,16}$/.test(usuario) && usuario != "") {
-        return true;
-    }
-    else {
-        if (usuario == "") {
-            error += 'El usuario no puede quedar vacio. \n';
-        }
-        else {
-            error += 'El usuario no puede ser ' + usuario + '. \n'
-        }
-        return false;
-    }
-}
-
 function validarEmail(email) {
     if (/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email) && email != "") {
         return true;
@@ -120,6 +107,35 @@ function validarEmail(email) {
         }
         else {
             error += 'El correo no puede ser ' + email + '. \n'
+        }
+        return false;
+    }
+}
+
+function validarFecha(fecha) {
+    return true;
+}
+
+function validarTelefono(telefono) {
+    if(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(telefono) && telefono.length == 13){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+/*
+function validarUsuario(usuario) {
+    if (/^[a-zA-Z0-9\_\-]{4,16}$/.test(usuario) && usuario != "") {
+        return true;
+    }
+    else {
+        if (usuario == "") {
+            error += 'El usuario no puede quedar vacio. \n';
+        }
+        else {
+            error += 'El usuario no puede ser ' + usuario + '. \n'
         }
         return false;
     }
@@ -243,5 +259,9 @@ function validar(objeto) {
 }*/
 
 module.exports = {
-    validarCedula
+    validarCedula,
+    validarNombre,
+    validarEmail,
+    validarFecha,
+    validarTelefono
 }

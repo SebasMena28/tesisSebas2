@@ -16,19 +16,19 @@
                             Datos Generales
                         </h2>
 
-                        
+
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
-                                    <input type="text" value="{{paciente.APELLIDOPATERNO}}" name="apellidoPaterno" class="form-control"
-                                        placeholder="Apellido Paterno" required>
+                                    <input type="text" value="{{paciente.APELLIDOPATERNO}}" name="apellidoPaterno"
+                                        class="form-control" placeholder="Apellido Paterno" required>
                                     <label for="floatingInput">Apellido Paterno</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <input type="text" value="{{paciente.APELLIDOMATERNO}}" name="apellidoMaterno" class="form-control"
-                                        placeholder="Apellido Materno" required>
+                                    <input type="text" value="{{paciente.APELLIDOMATERNO}}" name="apellidoMaterno"
+                                        class="form-control" placeholder="Apellido Materno" required>
                                     <label for="floatingInput">Apellido Materno</label>
                                 </div>
                             </div>
@@ -37,15 +37,15 @@
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
-                                    <input type="text" value="{{paciente.PRIMERNOMBRE}}" name="primerNombre" class="form-control"
-                                        placeholder="Primer Nombre" required>
+                                    <input type="text" value="{{paciente.PRIMERNOMBRE}}" name="primerNombre"
+                                        class="form-control" placeholder="Primer Nombre" required>
                                     <label for="floatingInput">Primer Nombre</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <input type="text" value="{{paciente.SEGUNDONOMBRE}}" name="segundoNombre" class="form-control"
-                                        placeholder="Segundo Nombre">
+                                    <input type="text" value="{{paciente.SEGUNDONOMBRE}}" name="segundoNombre"
+                                        class="form-control" placeholder="Segundo Nombre">
                                     <label for="floatingInput">Segundo Nombre</label>
                                 </div>
                             </div>
@@ -54,14 +54,15 @@
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
-                                    <input type="date" value="{{paciente.FECHANACIMIENTO}}" name="fechaNacimiento" class="form-control" required>
+                                    <input type="date" value="{{paciente.FECHANACIMIENTO}}" name="fechaNacimiento"
+                                        class="form-control" required>
                                     <label for="floatingInput">Fecha de nacimiento</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <select name="genero" value="{{paciente.GENERO}}" class="form-select" id="floatingSelect"
-                                        aria-label="Floating label select example">
+                                    <select name="genero" value="{{paciente.GENERO}}" class="form-select"
+                                        id="floatingSelect" aria-label="Floating label select example">
                                         <option value="Masculino" selected>Masculino</option>
                                         <option value="Femenino">Femenino</option>
                                         <option value="LGBT">LGBT</option>
@@ -74,8 +75,8 @@
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
-                                    <select name="estadoCivil"  value="{{paciente.ESTADOCIVIL}}" class="form-select" id="floatingSelect"
-                                        aria-label="Floating label select example">
+                                    <select name="estadoCivil" value="{{paciente.ESTADOCIVIL}}" class="form-select"
+                                        id="floatingSelect" aria-label="Floating label select example">
                                         <option value="Soltero" selected>Soltero</option>
                                         <option value="Casado">Casado</option>
                                         <option value="Divorciado">Divorciado</option>
@@ -87,7 +88,8 @@
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <input type="text" name="ocupacion"  value="{{paciente.OCUPACION}}" class="form-control" placeholder="Ocupación">
+                                    <input type="text" name="ocupacion" value="{{paciente.OCUPACION}}"
+                                        class="form-control" placeholder="Ocupación">
                                     <label for="floatingSelect">Ocupación</label>
                                 </div>
                             </div>
@@ -96,7 +98,8 @@
 
 
                         <div class="form-floating mb-3">
-                            <input type="text" name="religion"  value="{{paciente.RELIGION}}" class="form-control" placeholder="Religión">
+                            <input type="text" name="religion" value="{{paciente.RELIGION}}" class="form-control"
+                                placeholder="Religión">
                             <label for="floatingSelect">Religión</label>
                         </div>
 
@@ -110,8 +113,8 @@
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <input type="text" value="{{paciente.TELEFONO}}" name="telefono" class="form-control"
-                                        placeholder="Telefono">
+                                    <input type="text" value="{{paciente.TELEFONO}}" name="telefono"
+                                        class="form-control" placeholder="Telefono">
                                     <label for="floatingInput">Telefono</label>
                                 </div>
                             </div>
@@ -119,19 +122,23 @@
 
                         {{! esta es la seccion de historia clinica}}
 
+                        <h2 class="text-center">
+                            Historia del Paciente
+                        </h2>
+
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
                                     <textarea name="motivo" class="form-control" placeholder="Motivo de la terapia"
-                                        id="floatingTextarea2" style="height: 100px"> {{paciente.MOTIVO}} </textarea>
+                                        id="floatingTextarea2" style="height: 100px"> {{historia.MOTIVO}} </textarea>
                                     <label for="floatingTextarea2">Motivo</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <textarea name="historiaEnfermedad"  class="form-control"
+                                    <textarea name="historiaEnfermedad" class="form-control"
                                         placeholder="Historia de la enfermedad" id="floatingTextarea2"
-                                        style="height: 100px"> {{paciente.HISTORIAENFERMEDAD}} </textarea>
+                                        style="height: 100px"> {{historia.HISTORIAENFERMEDAD}} </textarea>
                                     <label for="floatingTextarea2">Historia de enfermedad</label>
                                 </div>
                             </div>
@@ -140,16 +147,104 @@
                         <div class="row g-2">
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
-                                    <textarea name="anamnesis" class="form-control" placeholder="Anamnesis"
-                                        id="floatingTextarea2" style="height: 100px"> {{paciente.ANAMNESIS}}</textarea>
-                                    <label for="floatingTextarea2">Anamnesis</label>
+                                    <textarea name="prenatal" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px">{{historia.PRENATAL}}</textarea>
+                                    <label for="floatingTextarea2">Preconcepcional, Concepcional y Prenatal</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <textarea name="historiaLaboral" class="form-control" placeholder="Anamnesis"
-                                        id="floatingTextarea2" style="height: 100px"> {{paciente.HISTORIALABORAL}} </textarea>
-                                    <label for="floatingTextarea2">Historia Laboral</label>
+                                    <textarea name="natal" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px">{{historia.NATAL}}</textarea>
+                                    <label for="floatingTextarea2">Periodo Natal</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="postnatal" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px">{{historia.POSTNATAL}}</textarea>
+                                    <label for="floatingTextarea2">Postnatal</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="primeraInfancia" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{historia.PRIMERAINFANCIA}}</textarea>
+                                    <label for="floatingTextarea2">Primera Infancia (1 - 3 años)</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="segundaInfancia" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{historia.SEGUNDAINFANCIA}}</textarea>
+                                    <label for="floatingTextarea2">Segunda Infancia (3 - 7 años) </label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="terceraInfancia" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{historia.TERCERAINFANCIA}}</textarea>
+                                    <label for="floatingTextarea2">Tercera Infancia (7 - 10 años)</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="pubertad" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px">{{historia.PUBERTAD}}</textarea>
+                                    <label for="floatingTextarea2">Pubertad (10 - 14 años) </label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="adolescencia" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{historia.ADOLESCENCIA}}</textarea>
+                                    <label for="floatingTextarea2">Adolescencia (14 - 18 años)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="juventud" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px">{{historia.JUVENTUD}}</textarea>
+                                    <label for="floatingTextarea2">Juventud (18 - 35 años) </label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="adultez" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px">{{historia.ADULTEZ}}</textarea>
+                                    <label for="floatingTextarea2">Adultez (35 - 50 años)</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="madurez" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px">{{historia.MADUREZ}}</textarea>
+                                    <label for="floatingTextarea2">Madurez (50 - 60 años) </label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="vejez" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2" style="height: 100px">{{historia.VEJEZ}}</textarea>
+                                    <label for="floatingTextarea2">Vejez (60 años en adelante)</label>
                                 </div>
                             </div>
                         </div>
@@ -158,15 +253,17 @@
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
                                     <textarea name="historiaSocial" class="form-control" placeholder="Anamnesis"
-                                        id="floatingTextarea2" style="height: 100px"> {{paciente.HISTORIASOCIAL}} </textarea>
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{historia.HISTORIASOCIAL}}</textarea>
                                     <label for="floatingTextarea2">Historia Social</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <textarea name="grupoFamiliarOrigen" class="form-control" placeholder="Anamnesis"
-                                        id="floatingTextarea2" style="height: 100px"> {{paciente.GRUPOFAMILIARORIGEN}} </textarea>
-                                    <label for="floatingTextarea2">Grupo familiar de origen</label>
+                                    <textarea name="historiaLaboral" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{historia.HISTORIALABORAL}}</textarea>
+                                    <label for="floatingTextarea2">Historia Laboral</label>
                                 </div>
                             </div>
                         </div>
@@ -175,43 +272,132 @@
                             <div class="col-md mb-3">
                                 <div class="form-floating mb-3">
                                     <textarea name="grupoFamiliarPropio" class="form-control" placeholder="Anamnesis"
-                                        id="floatingTextarea2" style="height: 100px"> {{paciente.GRUPOFAMILIARPROPIO}} </textarea>
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{historia.GRUPOFAMILIARPROPRIO}}</textarea>
                                     <label for="floatingTextarea2">Grupo familiar propio</label>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <div class="form-floating mb-3">
-                                    <textarea name="funcionesPsiquicas" class="form-control" placeholder="Anamnesis"
-                                        id="floatingTextarea2" style="height: 100px"> {{paciente.FUNCIONESPSIQUICAS}} </textarea>
-                                    <label for="floatingTextarea2">Funciones Psíquicas</label>
+                                    <textarea name="grupoFamiliarOrigen" class="form-control" placeholder="Anamnesis"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{historia.GRUPOFAMILIARORIGEN}}</textarea>
+                                    <label for="floatingTextarea2">Grupo familiar de origen</label>
                                 </div>
                             </div>
                         </div>
 
+                        <h2 class="text-center">
+                            Funciones Psíquicas
+                        </h2>
 
-                        <div class="form-floating mb-3">
-                            <textarea name="diagnostico" class="form-control" placeholder="Anamnesis"
-                                id="floatingTextarea2" style="height: 100px"> {{paciente.DIAGNOSTICO}} </textarea>
-                            <label for="floatingTextarea2">Diagnóstico</label>
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="orientacion" class="form-control" placeholder="Motivo de la terapia"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{funciones.ORIENTACION}}</textarea>
+                                    <label for="floatingTextarea2">Orientación</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="atencion" class="form-control" placeholder="Atención"
+                                        id="floatingTextarea2" style="height: 100px">{{funciones.ATENCION}}</textarea>
+                                    <label for="floatingTextarea2">Atencion</label>
+                                </div>
+                            </div>
                         </div>
 
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="conciencia" class="form-control" placeholder="Conciencia"
+                                        id="floatingTextarea2" style="height: 100px">{{funciones.CONCIENCIA}}</textarea>
+                                    <label for="floatingTextarea2">Conciencia</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="sensopercepcion" class="form-control" placeholder="Sensopercepcion"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{funciones.SENSOPERCEPCION}}</textarea>
+                                    <label for="floatingTextarea2">Sensopercepción</label>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div class="form-floating mb-3">
-                            <input type="text" value="{{paciente.PLAN}}" name="plan" class="form-control" placeholder="plan">
-                            <label for="floatingInput">Plan</label>
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="memoria" class="form-control" placeholder="Memoria"
+                                        id="floatingTextarea2" style="height: 100px">{{funciones.MEMORIA}}</textarea>
+                                    <label for="floatingTextarea2">Memoria</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="pensamiento" class="form-control" placeholder="Pensamiento"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{funciones.PENSAMIENTO}}</textarea>
+                                    <label for="floatingTextarea2">Pensamiento</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="lenguaje" class="form-control" placeholder="Lenguaje"
+                                        id="floatingTextarea2" style="height: 100px">{{funciones.LENGUAJE}}</textarea>
+                                    <label for="floatingTextarea2">Lenguaje</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="inteligencia" class="form-control" placeholder="Inteligencia"
+                                        id="floatingTextarea2"
+                                        style="height: 100px">{{funciones.INTELIGENCIA}}</textarea>
+                                    <label for="floatingTextarea2">Inteligencia</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="text-center">
+                            Diagnóstico
+                        </h2>
+
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="diagnostico" class="form-control" placeholder="Diagnostico"
+                                        id="floatingTextarea2" style="height: 100px">{{diagnostico.DIAGNOSTICO}}</textarea>
+                                    <label for="floatingTextarea2">Diagnóstico</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="planes" class="form-control" placeholder="Plan"
+                                        id="floatingTextarea2" style="height: 100px">{{diagnostico.PLANES}}</textarea>
+                                    <label for="floatingTextarea2">Plan</label>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <select name="referencia" value="{{paciente.REFERENCIA}}" class="form-select" id="floatingSelect"
+                            <select name="referencia" class="form-select" id="floatingSelect"
                                 aria-label="Floating label select example">
-                                <option value="Sesiones" selected>Sesiones</option>
+                                <option value="Sesiones" selected>{{diagnostico.REFERENCIA}}</option>
+                                <option value="Sesiones">Sesiones</option>
                                 <option value="Fisioterapia">Fisioterapia</option>
                                 <option value="Med. Especialidad">Med. Especialidad</option>
                                 <option value="Laboratorio">Laboratorio</option>
                             </select>
                             <label for="floatingSelect">Referencia</label>
                         </div>
-
 
                         {{!boton XDXDXDXD}}
 
@@ -240,25 +426,24 @@
 </div>
 
 <style>
-  body {
-    /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
-    background-color: #6495ed;
-    /* Fijar la imagen de fondo este vertical y
+    body {
+        /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
+        background-color: #6495ed;
+        /* Fijar la imagen de fondo este vertical y
     horizontalmente y centrado */
-    background-position: center center;
+        background-position: center center;
 
-    /* Esta imagen no debe de repetirse */
-    background-repeat: no-repeat;
+        /* Esta imagen no debe de repetirse */
+        background-repeat: no-repeat;
 
-    /* COn esta regla fijamos la imagen en la pantalla. */
-    background-attachment: fixed;
+        /* COn esta regla fijamos la imagen en la pantalla. */
+        background-attachment: fixed;
 
-    /* La imagen ocupa el 100% y se reescala */
-    background-size: cover;
-  }
+        /* La imagen ocupa el 100% y se reescala */
+        background-size: cover;
+    }
 
-  .card {
-    border: solid 1px;
-    border-radius: 15px;
-  }
-
+    .card {
+        border: solid 1px;
+        border-radius: 15px;
+    }
