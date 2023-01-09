@@ -15,14 +15,8 @@ router.get('/NuevaEvaluacion/:cedula', async (req, res) => {
     res.render('eval/NuevaEvaluacion'); 
 })
 
-router.get('/nuevaEvaluacion', (req, res) => { 
-    res.send('aqui va a lita de evaluaciones'); 
-})
 
-router.post('/nuevaEvaluacion', async (req, res)=>{
-
-
-    res.render('eval/lista');
+router.post('/nuevaEvaluacion/:cedula', async (req, res)=>{
 
     const {cedula, fecha, tecnica, descripcion, resultados} = req.body;
     const nuevaEvaluacion = {
@@ -31,7 +25,9 @@ router.post('/nuevaEvaluacion', async (req, res)=>{
 
     await pool.query('INSERT INTO EVALUACIONPSICOLOGICA set ?', [nuevaEvaluacion]) 
     console.log(nuevaEvaluacion);
-    res.redirect('/evaluaciones')
+    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ?', [cedula])
+    const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
+    res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento});
 });
 
 

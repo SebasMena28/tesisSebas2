@@ -10,8 +10,7 @@
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
-                                <form action="/seguimientos/nuevoSeguimiento/{{paciente.CEDULA}}" object=""
-                                    method="POST">
+                                <form id="form" action="/seguimientos/nuevoSeguimiento/{{paciente.CEDULA}}" object="" method="POST">
 
                                     <h2 class="title text-center mb-4">
                                         Seguimiento de {{paciente.PRIMERNOMBRE}} {{paciente.APELLIDOPATERNO}}
@@ -52,7 +51,8 @@
                                                     <div class="col-md">
                                                         <div class="form-floating">
                                                             <input type="date" name="proximacita" class="form-control">
-                                                            <label for="floatingInput">Fecha de la siguiente cita</label>
+                                                            <label for="floatingInput">Fecha de la siguiente
+                                                                cita</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="col-md">
                                             <div class="form-group p-3">
-                                                <button class="btn btn-success btn-block w-100">
+                                                <button id="button" class="btn btn-success btn-block w-100">
                                                     Guardar
                                                 </button>
                                             </div>
@@ -94,6 +94,13 @@
                                     </div>
 
                                 </form>
+
+                                <!--<script type="text/javascript"
+                                    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+                                <script type="text/javascript">
+                                    emailjs.init('6mzQ8O_Y05EEQ1fb4')
+                                </script>-->
                             </div>
                         </div>
                     </div>
@@ -135,3 +142,27 @@
         border: solid 1px;
         border-radius: 15px;
     }
+</style>
+<!--
+<script>
+    const btn = document.getElementById('button');
+
+    document.getElementById('form')
+        .addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            btn.value = 'Enviando...';
+
+            const serviceID = 'default_service';
+            const templateID = 'template_fnhq168';
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    btn.value = 'Enviado';
+                    alert('Sent!');
+                }, (err) => {
+                    btn.value = 'Send Email';
+                    alert(JSON.stringify(err));
+                });
+        });
+</script>-->

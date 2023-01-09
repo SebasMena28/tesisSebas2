@@ -1,5 +1,11 @@
 var error;
 
+function arreglarVista(objeto){
+    for(var i=0; i<objeto.length; i++){
+        objeto[i].PROXIMACITA = objeto[i].PROXIMACITA.toLocaleDateString();
+        objeto[i].FECHA = objeto[i].FECHA.toLocaleDateString();
+    }
+}
 
 ///FUNCIONES PARA VALIDAR CAMPOS
 function validarCedula(cedula) {
@@ -117,7 +123,7 @@ function validarFecha(fecha) {
 }
 
 function validarTelefono(telefono) {
-    if(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(telefono) && telefono.length == 13){
+    if(!(/^\d{9}$/.test(telefono)) && telefono.length == 12){
         return true;
     }
     else {
@@ -263,5 +269,6 @@ module.exports = {
     validarNombre,
     validarEmail,
     validarFecha,
-    validarTelefono
+    validarTelefono,
+    arreglarVista
 }

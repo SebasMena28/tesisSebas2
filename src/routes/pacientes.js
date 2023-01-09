@@ -9,65 +9,66 @@ const hoy = new Date(tiempoTranscurrido);
 var ced;
 var paciente = {}, historia = {}, funcion = {}, diag = {};
 
-function validaciones(atributo, valor){
+function validaciones(atributo, valor) {
     let pasa = true;
-  switch(atributo){
-    case 'cedula':
-      pasa = validar.validarCedula(valor);
-      console.log('La cedula es: ' + valor + ' ' + pasa);
-      break;
-    case 'apellidoPaterno':
-      pasa = validar.validarNombre(valor);
-      console.log('apellidoPaterno es: ' + valor  + ' ' + pasa);
-      break;
-    case 'apellidoMaterno':
-      pasa = validar.validarNombre(valor);
-      console.log('apellidoMaterno es: ' + valor + ' ' + pasa);
-      break;
-    case 'primerNombre':
-      pasa = validar.validarNombre(valor);
-      console.log('primerNombre es: ' + valor + ' ' + pasa);
-      break;
-    case 'segundoNombre':
-      pasa = validar.validarNombre(valor);
-      console.log('segundoNombre es: ' + valor + ' ' + pasa);
-      break;
-    case 'fechaNacimiento':
-      pasa = validar.validarFecha(valor);
-      console.log('fechanacimiento es: ' + valor + ' ' + pasa);
-      break;
-    case 'correo':
-      pasa = validar.validarEmail(valor);
-      console.log('correo es: ' + valor + ' ' + pasa);
-      break;
-    case 'telefono':
-      pasa = validar.validarTelefono(valor);
-      console.log('telefono es: ' + valor + ' ' + pasa);
-      break;
-  }
-  return pasa;
+    switch (atributo) {
+        case 'cedula':
+            pasa = validar.validarCedula(valor);
+            console.log('La cedula es: ' + valor + ' ' + pasa);
+            break;
+        case 'apellidoPaterno':
+            pasa = validar.validarNombre(valor);
+            console.log('apellidoPaterno es: ' + valor + ' ' + pasa);
+            break;
+        case 'apellidoMaterno':
+            pasa = validar.validarNombre(valor);
+            console.log('apellidoMaterno es: ' + valor + ' ' + pasa);
+            break;
+        case 'primerNombre':
+            pasa = validar.validarNombre(valor);
+            console.log('primerNombre es: ' + valor + ' ' + pasa);
+            break;
+        case 'segundoNombre':
+            pasa = validar.validarNombre(valor);
+            console.log('segundoNombre es: ' + valor + ' ' + pasa);
+            break;
+        case 'fechaNacimiento':
+            pasa = validar.validarFecha(valor);
+            console.log('fechanacimiento es: ' + valor + ' ' + pasa);
+            break;
+        case 'correo':
+            pasa = validar.validarEmail(valor);
+            console.log('correo es: ' + valor + ' ' + pasa);
+            break;
+        case 'telefono':
+            pasa = validar.validarTelefono(valor);
+            console.log('telefono es: ' + valor + ' ' + pasa);
+            break;
+    }
+    return pasa;
 }
 
 
-function validarDatos (objeto){
-  let atributos = Object.keys(objeto);
-  let datos = Object.values(objeto)
-  let aprovado = false;
-  let confirmado = true;
-  /*console.log('atributos');
-  console.log(atributos);
-  console.log('datos');
-  console.log(datos);*/
-  
-  for (let i = 0; i < atributos.length; i++){
-    aprovado = validaciones(atributos[i], datos[i]);
-    //console.log(atributos[i], datos[i], aprovado);
-    if(!aprovado) confirmado = aprovado;
-  }
-  //console.log(atributos.length, datos.length);
-  
-  return confirmado;
+function validarDatos(objeto) {
+    let atributos = Object.keys(objeto);
+    let datos = Object.values(objeto)
+    let aprovado = false;
+    let confirmado = true;
+    /*console.log('atributos');
+    console.log(atributos);
+    console.log('datos');
+    console.log(datos);*/
+
+    for (let i = 0; i < atributos.length; i++) {
+        aprovado = validaciones(atributos[i], datos[i]);
+        //console.log(atributos[i], datos[i], aprovado);
+        if (!aprovado) confirmado = aprovado;
+    }
+    //console.log(atributos.length, datos.length);
+
+    return confirmado;
 }
+
 
 //PARA EL CRUD
 router.get('/nuevoPaciente', (req, res) => { //VISTA PARA AGREGAR PACIENTE
@@ -92,7 +93,7 @@ router.post('/nuevoPaciente', async (req, res) => {
         ocupacion,
         religion,
         correo,
-        telefono: '+593'+tel2,
+        telefono: '593' + tel2,
         ultimacita: hoy.toLocaleDateString()
     }
 
@@ -100,20 +101,20 @@ router.post('/nuevoPaciente', async (req, res) => {
 
     ced = req.body.cedula;
     paciente = nuevoPaciente;
-    console.log(paciente);
-    console.log(Object.values(paciente)[11].length);
+    //console.log(paciente);
+    //console.log(Object.values(paciente)[11].length);
 
     const existe = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
     console.log(existe, 'hay este paciente');
-    if (existe == ""){
-        if(validarDatos(paciente)){
+    if (existe == "") {
+        if (validarDatos(paciente)) {
             res.render('pacientes/nuevaHistoria');
         }
-        else{
+        else {
             console.log('la cedula ', ced, ' no es valida');
         }
     }
-    else{
+    else {
         console.log('ESTE PACIENTE YA EXISTE')
     }
 });
@@ -179,14 +180,14 @@ router.post('/diagnostico', async (req, res) => {
 
     const nuevoDiagnostico = {
         cedula: ced,
-        diagnostico, 
-        planes, 
+        diagnostico,
+        planes,
         referencia
     }
 
     diag = nuevoDiagnostico;
     res.redirect('/pacientes');
-    
+
     //registro de datos
     await pool.query('INSERT INTO PACIENTES set ?', [paciente]);
     console.log(paciente);
@@ -205,21 +206,21 @@ router.post('/BuscarPaciente/', async (req, res) => {
 
     const { dato } = req.body;
     console.log(dato);
-    
+
     const resultados = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [dato]);
     console.log(resultados);
 
-    res.render('pacientes/busqueda', {resultados});
+    res.render('pacientes/busqueda', { resultados });
 });
 
-router.get('/datos/:cedula', async (req, res) => { 
+router.get('/datos/:cedula', async (req, res) => {
     const { cedula } = req.params;
     //console.log(cedula);
     const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
     const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
-    //console.log(paciente[0])
-    console.log(seguimiento);
-    res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento});
+    
+    validar.arreglarVista(seguimiento)
+    res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
 })
 
 router.get('/', async (req, res) => { //VISTA PARA LISTAR PACIENTES
@@ -241,13 +242,110 @@ router.get('/editar/:cedula', async (req, res) => {
     const funciones = await pool.query('SELECT * FROM FUNCIONESPSIQUICAS WHERE CEDULA = ?', [cedula])
     const diagnostico = await pool.query('SELECT * FROM DIAGNOSTICO WHERE CEDULA = ?', [cedula])
 
+    var tel = paciente[0].TELEFONO;
+    tel = tel.split("593").join('0');
+    //console.log(tel);
+    paciente[0].TELEFONO = tel;
+
+    //console.log(paciente[0].TELEFONO, 'dato final');
+
     res.render('pacientes/editar', { paciente: paciente[0], historia: historia[0], funciones: funciones[0], diagnostico: diagnostico[0]})
 })
 
 router.post('/editar/:cedula', async (req, res) => {
-    const { _cedula } = req.params;
+    const { cedula } = req.params;
 
-    const { cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil,
+    //para editar datos del paciente
+    const { apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil,
+        ocupacion, religion, correo, telefono } = req.body;
+
+    var tel2 = telefono - telefono[0];
+
+    const nuevoPaciente = {
+        apellidoPaterno,
+        apellidoMaterno,
+        primerNombre,
+        segundoNombre,
+        fechaNacimiento,
+        genero,
+        estadoCivil,
+        ocupacion,
+        religion,
+        correo,
+        telefono: '593' + tel2,
+        ultimacita: hoy.toLocaleDateString()
+    }
+    
+    console.log(nuevoPaciente);
+
+    //para editar datos de la historia
+
+    const { motivo, historiaEnfermedad, prenatal, natal, postnatal, primeraInfancia, segundaInfancia, terceraInfancia,
+        pubertad, adolescencia, juventud, adultez, madurez, vejez, historiaSocial, historiaLaboral, grupoFamiliarPropio, grupoFamiliarOrigen } = req.body;
+
+    const nuevaHistoria = {
+        //cedula: cedula,
+        motivo,
+        historiaEnfermedad,
+        prenatal,
+        natal,
+        postnatal,
+        primeraInfancia,
+        segundaInfancia,
+        terceraInfancia,
+        pubertad,
+        adolescencia,
+        juventud,
+        adultez,
+        madurez,
+        vejez,
+        historiaSocial,
+        historiaLaboral,
+        grupoFamiliarPropio,
+        grupoFamiliarOrigen
+    }
+
+    //para editar datos de la funcion
+    const { orientacion, atencion, conciencia, sensopercepcion, memoria, pensamiento,
+        lenguaje, inteligencia } = req.body;
+
+    const nuevaFuncion = {
+        //cedula: cedula,
+        orientacion,
+        atencion,
+        conciencia,
+        sensopercepcion,
+        memoria,
+        pensamiento,
+        lenguaje,
+        inteligencia
+    }
+
+    //para editar datos del diagnostico
+
+    const { diagnostico, planes, referencia } = req.body;
+
+    const nuevoDiagnostico = {
+        //cedula: cedula,
+        diagnostico,
+        planes,
+        referencia
+    }
+
+    if (validarDatos(nuevoPaciente)) {
+        await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]);
+        await pool.query('UPDATE HISTORIAENFERMEDAD set ? WHERE CEDULA = ?', [nuevaHistoria, cedula]);
+        await pool.query('UPDATE FUNCIONESPSIQUICAS set ? WHERE CEDULA = ?', [nuevaFuncion, cedula]);
+        await pool.query('UPDATE DIAGNOSTICO set ? WHERE CEDULA = ?', [nuevoDiagnostico, cedula]);
+        res.redirect('/pacientes');
+    }
+    else {
+        console.log('Revisar los datos xd');
+    }
+
+    
+
+    /*const { cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil,
         ocupacion, religion, motivo, historiaEnfermedad, anamnesis, historiaLaboral, historiaSocial, grupoFamiliarOrigen,
         grupoFamiliarPropio, funcionesPsiquicas, diagnostico, plan, referencia } = req.body;
     const nuevoPaciente = {
@@ -272,10 +370,10 @@ router.post('/editar/:cedula', async (req, res) => {
         diagnostico,
         plan,
         referencia
-    };
+    };*/
 
-    await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]);
-    res.redirect('/pacientes');
+    //await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]);
+    //res.redirect('/pacientes');
 })
 
 

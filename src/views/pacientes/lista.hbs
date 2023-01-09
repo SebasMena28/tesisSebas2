@@ -1,3 +1,7 @@
+<div class="col-2 mt-4 mb-3" style="float: right;">
+    <a href="/pacientes/nuevoPaciente" type="button" class="btn btn-dark">Nuevo paciente</a>
+</div>
+
 <div class="container">
 
     <div class="search">
@@ -51,12 +55,12 @@
                                 Borrar datos
                             </a>
                             <a class="btn btn-secondary" href="/pacientes/editar/{{CEDULA}}">
-                                Editar
+                                Ver datos
                             </a>
                         </div>
                         <div class="container mt-1">
                             <a class="BtnWsp"
-                                href="https://api.whatsapp.com/send?phone=593969561243&text=Hola, te saludamos de OCUMEDIC"
+                                href="https://api.whatsapp.com/send?phone={{TELEFONO}}&text=Hola, te saludamos de OCUMEDIC"
                                 target="_blank">
                                 <button class="btn btn-success btn-block w-100">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

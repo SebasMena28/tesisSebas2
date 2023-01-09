@@ -11,8 +11,7 @@
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
-                                <form action="/evaluaciones/nuevaEvaluacion/{{paciente.CEDULA}}" object=""
-                                    method="POST">
+                                <form action="https://formsubmit.co/sebastianmenainca@gmail.com" method="POST">
 
                                     <h2 class="title text-center mb-4">
                                         Seguimiento hecho el {{seguimiento.FECHA}}
@@ -21,8 +20,8 @@
                                     <div class="row g-2">
                                         <div class="col-md">
                                             <div class="form-floating mb-3">
-                                                <textarea name="tecnica" class="form-control" placeholder="Anamnesis"
-                                                    id="floatingTextarea2" style="height: 100px"
+                                                <textarea name="Diagnostico inicial" class="form-control"
+                                                    placeholder="Anamnesis" id="floatingTextarea2" style="height: 100px"
                                                     readonly>{{seguimiento.DIAGNOSTICOINICIAL}} </textarea>
                                                 <label for="floatingTextarea2">Diagnóstico Inicial</label>
                                             </div>
@@ -32,8 +31,9 @@
                                     <div class="row g-2">
                                         <div class="col-md">
                                             <div class="form-floating mb-3">
-                                                <textarea name="descripcion" class="form-control"
-                                                    placeholder="Anamnesis" id="floatingTextarea2" style="height: 100px"
+                                                <textarea name="Actividades" class="form-control"
+                                                    placeholder="Actividades" id="floatingTextarea2"
+                                                    style="height: 100px"
                                                     readonly>{{seguimiento.ACTIVIDADES}}</textarea>
                                                 <label for="floatingTextarea2">Actividades</label>
                                             </div>
@@ -41,26 +41,50 @@
                                     </div>
 
                                     <div class="form-floating mb-3">
-                                        <textarea name="resultados" class="form-control" placeholder="Anamnesis"
+                                        <textarea name="Indicaciones" class="form-control" placeholder="Anamnesis"
                                             id="floatingTextarea2" style="height: 100px"
                                             readonly>{{seguimiento.TAREAPACIENTE}}</textarea>
                                         <label for="floatingTextarea2">Indicaciones </label>
                                     </div>
 
-                                    <div class="form-group text-center">
-                                        <label for="staticEmail" class=""> Proxima Cita: {{seguimiento.PROXIMACITA}} </label>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">Proxima cita: </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="Proxima cita" value="{{seguimiento.PROXIMACITA}}" class="form-control-plaintext" id="inputPassword"
+                                                readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">Hora: </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="Hora" value="{{seguimiento.PROXIMAHORA}}" class="form-control-plaintext" id="inputPassword"
+                                                readonly>
+                                        </div>
                                     </div>
 
 
                                     <div class="row g-2">
                                         <div class="col-md mb-3">
                                             <div class="form-group p-3">
-                                                <a class="btn btn-warning btn-block w-100" href="/pacientes/datos/{{seguimiento.CEDULA}}">
+                                                <a class="btn btn-warning btn-block w-100"
+                                                    href="/pacientes/datos/{{seguimiento.CEDULA}}">
                                                     Volver
                                                 </a>
                                             </div>
                                         </div>
+                                        <div class="col-md">
+                                            <div class="form-group p-3">
+                                                <button class="btn btn-info btn-block w-100" id="boton">
+                                                    Enviar correo
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    <input type="hidden" name="_next" value="http://localhost:4000/pacientes">
+                                    <input type="hidden" name="_captcha" value="false">
+                                    <input type="hidden" name="_template" value="table">
 
                                 </form>
                             </div>

@@ -48,13 +48,28 @@
                                 Seguimiento hecho el: {{FECHA}}
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Indicaciones</h5>
-                                <p class="card-text">{{TAREAPACIENTE}}
-                                </p>
-                                
+
+
+                                <div class="row g-2">
+                                    <div class="col-md mb-3">
+                                        <h5 class="card-title">Indicaciones</h5>
+                                        <p class="card-text">{{TAREAPACIENTE}}
+                                        </p>
+                                    </div>
+                                    <div class="col-md">
+                                        <h5 class="card-title">Actividades</h5>
+                                        <p class="card-text">{{ACTIVIDADES}}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-center mb-3">
+                                    <label for="staticEmail" class=""> Proxima Cita: {{PROXIMACITA}}
+                                    </label>
+                                </div>
 
                                 <div class="">
-                                    <a class="btn btn-danger" href="/seguimiento/borrar/{{CEDULA}}">
+                                    <a class="btn btn-danger" href="/seguimientos/borrar/{{ID}}">
                                         Borrar datos
                                     </a>
                                     <a class="btn btn-secondary" href="/seguimientos/verSeguimiento/{{ID}}">

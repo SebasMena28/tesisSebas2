@@ -15,9 +15,9 @@
                             {{PRIMERNOMBRE}} {{APELLIDOPATERNO}}
                         </h4>
                     
-                    <p class="m-2">{{TELEFONO}}</p>
+                    <p class="m-2">{{FECHA}}</p>
                     <p class="text-muted">
-                        {{FECHA}}
+                        {{HORA}}
                     </p>
                     <p class="text-muted">
                         {{tiempo FECHA}}
@@ -26,13 +26,13 @@
                         <a class="btn btn-danger" href="/citas/borrarCita/{{IDCITANUEVA}}">
                             Cancelar cita
                         </a>
-                        <a class="btn btn-secondary" href="/citas/verCita/{{IDCITANUEVA}}">
+                        <a class="btn btn-secondary" href="/citas/verCita/{{CEDULA}}/{{IDCITANUEVA}}">
                             Ver detalles
                         </a>
                     </div>
                     <div class="container mt-1">
                         <a class="BtnWsp"
-                            href="https://api.whatsapp.com/send?phone=593969561243&text=Hola, te saludamos de OCUMEDIC"
+                            href="https://api.whatsapp.com/send?phone={{TELEFONO}}&text=Hola, te saludamos de OCUMEDIC"
                             target="_blank">
                             <button class="btn btn-success btn-block w-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

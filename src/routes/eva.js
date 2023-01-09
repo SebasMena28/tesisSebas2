@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../basedatos'); 
+const validar = require('../validation/eval');
 
 //const tiempoTranscurrido = Date.now();
 //const hoy = new Date(tiempoTranscurrido);
@@ -41,8 +42,7 @@ router.get('/evaluacionesPaciente/:cedula', async (req, res) => {
     console.log(cedula);
     const evaluacion = await pool.query('SELECT * FROM EVALUACIONPSICOLOGICA WHERE CEDULA = ?', [cedula])
     const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
-    console.log(evaluacion);
-    console.log(paciente);
+    validar.arreglarVista(evaluacion)
     res.render('eval/evaluacionesPaciente',{ evaluacion, paciente: paciente[0]}); 
 })
 
@@ -50,7 +50,7 @@ router.get('/verEvaluacion/:id', async (req, res) => {
     const { id } = req.params;
     console.log(id);
     const evaluacion = await pool.query('SELECT * FROM EVALUACIONPSICOLOGICA WHERE ID = ?', [id])
-    console.log(evaluacion);
+    validar.arreglarVista(evaluacion)
     res.render('eval/verEvaluacion',{ evaluacion: evaluacion[0]}); 
 })
 

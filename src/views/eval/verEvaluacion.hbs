@@ -5,23 +5,22 @@
         <div class="card mb-3" style="border-radius: 1rem;">
           <div class="row g-0">
             <div class="col-md-6 col-lg-5 d-none d-md-block">
-              <img
-                src="http://www.espaciobenessere.uy/assets/images/evaluacion-porte-de-armas-700x600.jpg"
+              <img src="http://www.espaciobenessere.uy/assets/images/evaluacion-porte-de-armas-700x600.jpg"
                 alt="login form" class="img-fixed" height="100%" width="100%" style="border-radius: 1rem 0 0 1rem;" />
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
-                <form action="/evaluaciones/nuevaEvaluacion/{{paciente.CEDULA}}" object="" method="POST">
+                <form action="https://formsubmit.co/sebastianmenainca@gmail.com" method="POST">
 
                   <h2 class="title text-center mb-4">
-                    Evaluacion hecha el {{evaluacion.FECHA}}  
+                    Evaluación hecha el {{evaluacion.FECHA}}
                   </h2>
 
                   <div class="row g-2">
                     <div class="col-md">
                       <div class="form-floating mb-3">
-                        <textarea name="tecnica" class="form-control" placeholder="Anamnesis"
-                          id="floatingTextarea2" style="height: 100px" readonly >{{evaluacion.TECNICA}} </textarea>
+                        <textarea name="Tecnica" class="form-control" placeholder="Anamnesis" id="floatingTextarea2"
+                          style="height: 100px" readonly>{{evaluacion.TECNICA}} </textarea>
                         <label for="floatingTextarea2">Técnica</label>
                       </div>
                     </div>
@@ -30,35 +29,40 @@
                   <div class="row g-2">
                     <div class="col-md">
                       <div class="form-floating mb-3">
-                        <textarea name="descripcion" class="form-control" placeholder="Anamnesis"
-                          id="floatingTextarea2" style="height: 100px" readonly >{{evaluacion.DESCRIPCION}}</textarea>
+                        <textarea name="Descripcion" class="form-control" placeholder="Anamnesis" id="floatingTextarea2"
+                          style="height: 100px" readonly>{{evaluacion.DESCRIPCION}}</textarea>
                         <label for="floatingTextarea2">Descripción</label>
                       </div>
                     </div>
                   </div>
 
                   <div class="form-floating mb-3">
-                    <textarea name="resultados" class="form-control" placeholder="Anamnesis" id="floatingTextarea2"
-                      style="height: 100px"readonly >{{evaluacion.RESULTADOS}}</textarea>
+                    <textarea name="Resultados" class="form-control" placeholder="Anamnesis" id="floatingTextarea2"
+                      style="height: 100px" readonly>{{evaluacion.RESULTADOS}}</textarea>
                     <label for="floatingTextarea2">Resultados</label>
                   </div>
 
                   <div class="row g-2">
                     <div class="col-md mb-3">
                       <div class="form-group p-3">
-                        <a class="btn btn-warning btn-block w-100" href="/evaluaciones">
+                        <a class="btn btn-warning btn-block w-100"
+                          href="/evaluaciones/evaluacionesPaciente/{{evaluacion.CEDULA}}">
                           Regresar
                         </a>
                       </div>
                     </div>
                     <div class="col-md">
                       <div class="form-group p-3">
-                        <button class="btn btn-success btn-block w-100">
-                          Guardar
+                        <button class="btn btn-info btn-block w-100">
+                          Enviar correo
                         </button>
                       </div>
                     </div>
                   </div>
+                  
+                  <input type="hidden" name="_next" value="http://localhost:4000/pacientes">
+                  <input type="hidden" name="_captcha" value="false">
+                  <input type="hidden" name="_template" value="table">
 
                 </form>
               </div>
@@ -71,25 +75,25 @@
 </section>
 
 <style>
-    body {
-        /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
-        background-color: #6495ed;
-        /* Fijar la imagen de fondo este vertical y
+  body {
+    /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
+    background-color: #6495ed;
+    /* Fijar la imagen de fondo este vertical y
     horizontalmente y centrado */
-        background-position: center center;
+    background-position: center center;
 
-        /* Esta imagen no debe de repetirse */
-        background-repeat: no-repeat;
+    /* Esta imagen no debe de repetirse */
+    background-repeat: no-repeat;
 
-        /* COn esta regla fijamos la imagen en la pantalla. */
-        background-attachment: fixed;
+    /* COn esta regla fijamos la imagen en la pantalla. */
+    background-attachment: fixed;
 
-        /* La imagen ocupa el 100% y se reescala */
-        background-size: cover;
-    }
+    /* La imagen ocupa el 100% y se reescala */
+    background-size: cover;
+  }
 
-    .card {
-        border: solid 1px;
-        border-radius: 5px;
-        padding: 5px, 5px;
-    }
+  .card {
+    border: solid 1px;
+    border-radius: 5px;
+    padding: 5px, 5px;
+  }
