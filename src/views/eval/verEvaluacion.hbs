@@ -59,10 +59,11 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   <input type="hidden" name="_next" value="http://localhost:4000/pacientes">
                   <input type="hidden" name="_captcha" value="false">
                   <input type="hidden" name="_template" value="table">
+                  <input type="hidden" name="_subject" value="Informe de evaluación psicológica">
 
                 </form>
               </div>
@@ -73,6 +74,23 @@
     </div>
   </div>
 </section>
+
+<script>
+  fetch("https://formsubmit.co/ajax/sebastianmenainca@gmail.com", {
+    method: "POST",
+    headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+        name: "Informe de Evaluación - OCUMEDIC",
+        message: "Buen día, adjuntamos el informe de su última revisión psicológica: "
+    })
+})
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
+</script>
 
 <style>
   body {
