@@ -111,6 +111,7 @@ router.post('/nuevoPaciente', async (req, res) => {
             res.render('pacientes/nuevaHistoria');
         }
         else {
+
             console.log('la cedula ', ced, ' no es valida');
         }
     }
@@ -186,7 +187,7 @@ router.post('/diagnostico', async (req, res) => {
     }
 
     diag = nuevoDiagnostico;
-    res.redirect('/pacientes');
+
 
     //registro de datos
     await pool.query('INSERT INTO PACIENTES set ?', [paciente]);
@@ -200,17 +201,21 @@ router.post('/diagnostico', async (req, res) => {
 
     await pool.query('INSERT INTO DIAGNOSTICO set ?', [diag]);
     console.log(diag);
+
+    res.redirect('/pacientes');
 });
 
 router.post('/BuscarPaciente/', async (req, res) => {
 
     const { dato } = req.body;
-    console.log(dato);
+    //console.log(dato);
+    const [dato1, dato2] = dato.split(' ');
+    //console.log(dato1, dato2);
 
-    const resultados = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [dato]);
-    console.log(resultados);
+    const resultados = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ? OR (PRIMERNOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (PRIMERNOMBRE LIKE ? AND SEGUNDONOMBRE LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOPATERNO LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOMATERNO LIKE ? AND APELLIDOPATERNO LIKE ?)', [dato, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2]);
+    //console.log(resultados);
 
-    res.render('pacientes/busqueda', { resultados });
+    res.render('pacientes/busqueda', { resultados, dato1, dato2 });
 });
 
 router.get('/datos/:cedula', async (req, res) => {
@@ -218,13 +223,13 @@ router.get('/datos/:cedula', async (req, res) => {
     //console.log(cedula);
     const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
     const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
-    
+
     validar.arreglarVista(seguimiento)
     res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
 })
 
 router.get('/', async (req, res) => { //VISTA PARA LISTAR PACIENTES
-    const pacientes = await pool.query('SELECT * FROM PACIENTES');
+    const pacientes = await pool.query('SELECT * FROM PACIENTES ORDER BY ULTIMACITA DESC');
     res.render('pacientes/lista', { pacientes }); //renderizando y mando los pacientes registrados
 });
 
@@ -249,7 +254,7 @@ router.get('/editar/:cedula', async (req, res) => {
 
     //console.log(paciente[0].TELEFONO, 'dato final');
 
-    res.render('pacientes/editar', { paciente: paciente[0], historia: historia[0], funciones: funciones[0], diagnostico: diagnostico[0]})
+    res.render('pacientes/editar', { paciente: paciente[0], historia: historia[0], funciones: funciones[0], diagnostico: diagnostico[0] })
 })
 
 router.post('/editar/:cedula', async (req, res) => {
@@ -275,7 +280,7 @@ router.post('/editar/:cedula', async (req, res) => {
         telefono: '593' + tel2,
         ultimacita: hoy.toLocaleDateString()
     }
-    
+
     console.log(nuevoPaciente);
 
     //para editar datos de la historia
@@ -343,7 +348,7 @@ router.post('/editar/:cedula', async (req, res) => {
         console.log('Revisar los datos xd');
     }
 
-    
+
 
     /*const { cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil,
         ocupacion, religion, motivo, historiaEnfermedad, anamnesis, historiaLaboral, historiaSocial, grupoFamiliarOrigen,

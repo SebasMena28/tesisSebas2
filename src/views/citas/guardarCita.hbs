@@ -6,11 +6,12 @@
                     <div class="row g-0">
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%;" />
+                                alt="login form" class="img-fluid"
+                                style="border-radius: 1rem 0 0 1rem; height: 100%;" />
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
-                                <form action="/citas/nuevaCita" object="" method="POST">
+                                <form action="/citas/agendarCita/{{paciente.CEDULA}}" object="" method="POST">
 
                                     <h2 class="title text-center mb-4">
                                         Nueva Cita
@@ -34,42 +35,24 @@
 -->
 
 
-                                    <div class="row g-2">
-                                        <div class="col-md mb-3">
-                                            <div class="form-floating mb-2  ">
-                                                <input type="text" name="cedula" id="cedula" class="form-control"
-                                                    placeholder="Ingrese la cédula" autofocus>
-                                                <label for="floatingInput">Ingrese la cédula</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row g-2">
-                                            <div class="col-md mb-3">
-                                                <div class="form-group p-3">
-                                                    <a class="btn btn-warning btn-block w-100" href="/citas">
-                                                        Regresar
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-md">
-                                                <div class="form-group p-3">
-                                                    <button class="btn btn-success btn-block w-100">
-                                                        Continuar
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-<!--                                    <div class="contenedor">
+                                    <div class="contenedor">
 
                                         <div class="col-md mb-3">
-                                            <div class="form-group row mb-4">
+                                            <div class="form-group row mb-2">
+                                                <label for="inputPassword" class="col-sm-2 col-form-label">Cédula:
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="nombre"
+                                                        value="{{paciente.CEDULA}}"
+                                                        class="form-control-plaintext" id="inputPassword" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb24">
                                                 <label for="inputPassword" class="col-sm-2 col-form-label">Nombre:
                                                 </label>
                                                 <div class="col-sm-10">
                                                     <input type="text" name="nombre"
-                                                        value="{{pacientes.PRIMERNOMBRE}} {{paciente.APELLIDOPATERNO}}"
+                                                        value="{{paciente.PRIMERNOMBRE}} {{paciente.APELLIDOPATERNO}}"
                                                         class="form-control-plaintext" id="inputPassword" readonly>
                                                 </div>
                                             </div>
@@ -118,7 +101,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div>-->
+                                        </div>
 
                                 </form>
                             </div>
@@ -127,22 +110,8 @@
                 </div>
             </div>
         </div>
-    </div>-
+    </div>
 </section>
-
-<script>
-    /*const boton = document.querySelector('.btn');
-    const cedula = document.getElementById('cedula');
-    const contener = document.querySelector('.contenedor');
-
-    boton.addEventListener('click', (e) =>{
-        e.preventDefault();
-        const dato = cedula.value;
-        alert(dato);
-        contener.classList.add('contener--show');
-    }
-    )*/
-</script>
 
 <style>
     body {

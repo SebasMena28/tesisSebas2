@@ -5,7 +5,7 @@ const validar = require('../validation/citas');
 
 router.get('/', async (req, res) => {
     const citas = await pool.query('SELECT P.PRIMERNOMBRE, P.APELLIDOPATERNO, P.CEDULA, P.TELEFONO, C.IDCITANUEVA, C.FECHA, C.HORA FROM PACIENTES P, CITAS C WHERE P.CEDULA = C.CEDULA ORDER BY FECHA, HORA DESC;');
-    console.log(citas);
+    //console.log(citas);
     validar.arreglarVista(citas)
     res.render('citas/citas', { citas });
 });
@@ -15,15 +15,27 @@ router.get('/nuevaCita', async (req, res) => {
     res.render('citas/nuevaCita', { pacientes });
 });
 
-router.post('/nuevaCita', async (req, res) => {
-    const { cedula, fecha, hora, observaciones } = req.body;
+router.get('/agendarCita/:cedula', async (req, res) => {
+    const { cedula } = req.params;
+    const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
+    console.log(paciente);
+    res.render('citas/agendarCita', { paciente: paciente[0] });
+});
+
+router.post('/agendarCita/:cedula', async (req, res) => {
+    const { cedula } = req.params;
+    //console.log(cedula);
+
+    const { fecha, hora, observaciones } = req.body;
 
     const nuevaCita = {
-        cedula,
+        cedula: cedula,
         fecha,
         hora,
         observaciones
     };
+
+    //console.log(nuevaCita);
 
     if (validar.validarFecha(nuevaCita.fecha)) {
         await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
@@ -34,7 +46,18 @@ router.post('/nuevaCita', async (req, res) => {
     else{
         console.log('no es valida la fecha xd')
     }
+});
 
+router.post('/nuevaCita', async (req, res) => {
+    const { cedula } = req.body;
+
+    const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
+    if(paciente != ''){
+        res.render('citas/guardarCita', {paciente: paciente[0]})
+    }
+    else{
+        console.log('no existe ')
+    }
 })
 
 router.get('/verCita/:cedula/:id', async (req, res) => {
@@ -62,10 +85,17 @@ router.post('/editarCita/:idcitanueva', async (req, res) => {
         hora,
         observaciones
     };
+    
+    if (validar.validarFecha(cita.fecha)) {
+        await pool.query('UPDATE CITAS set ? WHERE IDCITANUEVA = ?', [cita, idcitanueva]);
+        console.log(cita, 'la cita actualizada');
+        res.redirect('/citas');
+    }
+    else{
+        console.log('esa fecha no es valida');
+    }
 
-    await pool.query('UPDATE CITAS set ? WHERE IDCITANUEVA = ?', [cita, idcitanueva]);
-    console.log(cita, 'la cita actualizada');
-    res.redirect('/citas');
+
 })
 
 router.get('/borrarCita/:cita', async (req, res) => {
