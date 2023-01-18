@@ -34,11 +34,11 @@ app.set('view engine', '.hbs');
 //MIDDLEWARS -- FUNCIONES A EJECUTARSE CADA QUE UN USUARIO PIDA UNA PETICION
 app.use(session({
     secret: 'session',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
     store: new mysqlstore(database)
 }));
-app.use(flash()); //para usar el modulo
+app.use(flash());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));//para aceptar desde los formularios los datos que envia los usuarios
 app.use(passport.initialize());
@@ -56,15 +56,14 @@ app.use(bodyParser.json());
 
 //VARIABLES GLOBALES
 app.use((req, res, next) => {
-    app.locals.guardado = req.flash('guardado'); //para hacer disponible el mensaje en las vistas
+    res.locals.exito = req.flash('exito'); //para hacer disponible el mensaje en las vistas
+    res.locals.fallo = req.flash('fallo');
     next(); //toma la informacion del usuario (req), toma la respuesta del servidor (res) y toma una funcion para seguir con el resto del codigo
 })
 
 //RUTAS (url para el servidor)
 app.use(require('./routes'));
 app.use(require('./routes/autenticacion'));
-//app.use(require('./routes/citas'));
-//app.use(require('./routes/eva'));
 app.use(require('./routes/index'));
 app.use( '/pacientes', require('./routes/pacientes')); //si yo quiero todos los pacientes, debo usar prefijo /pacientes
 app.use( '/evaluaciones', require('./routes/eva'));

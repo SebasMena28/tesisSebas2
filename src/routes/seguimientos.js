@@ -59,6 +59,7 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
         const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
         const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
         validar.arreglarVista(seguimiento)
+        //req.flash('exito', 'Seguimiento registrado exitosamente')
         res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
     }
     else{

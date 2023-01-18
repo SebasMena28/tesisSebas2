@@ -17,6 +17,14 @@
                             <h3>Datos de {{pacientes.PRIMERNOMBRE}} {{pacientes.SEGUNDONOMBRE}}
                                 {{pacientes.APELLIDOPATERNO}} {{pacientes.APELLIDOMATERNO}}</h3>
                             <div class="row g-2">
+                                <div class="col-md">
+                                    <div class="form-group p-3">
+                                        <a class="btn btn-secondary btn-block w-100"
+                                            href="/pacientes/editar/{{pacientes.CEDULA}}">
+                                            Ver historia clínica
+                                        </a>
+                                    </div>
+                                </div>
                                 <div class="col-md mb-3">
                                     <div class="form-group p-3">
 
@@ -42,16 +50,53 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-md mb-3">
-                                    <div class="form-group p-3">
-                                        <a class="btn btn-secondary btn-block w-100"
-                                            href="/evaluaciones/NuevaEvaluacion/{{pacientes.CEDULA}}">
-                                            Nueva evaluación
-                                        </a>
-                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="motivo" class="form-control" placeholder="Motivo de la terapia"
+                                        id="floatingTextarea2" style="height: 100px"
+                                        readonly> {{datos.MOTIVO}}</textarea>
+                                    <label for="floatingTextarea2">Motivo</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="historiaEnfermedad" class="form-control"
+                                        placeholder="Historia de la enfermedad" id="floatingTextarea2"
+                                        style="height: 100px" readonly> {{datos.HISTORIAENFERMEDAD}} </textarea>
+                                    <label for="floatingTextarea2">Historia de enfermedad</label>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row g-2 mb-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating mb-3">
+                                    <textarea name="diagnostico" class="form-control" placeholder="Motivo de la terapia"
+                                        id="floatingTextarea2" style="height: 100px"
+                                        readonly> {{datos.DIAGNOSTICO}}</textarea>
+                                    <label for="floatingTextarea2"> Diagnostico </label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <textarea name="plan" class="form-control" placeholder="Historia de la enfermedad"
+                                        id="floatingTextarea2" style="height: 100px"
+                                        readonly> {{datos.PLANES}} </textarea>
+                                    <label for="floatingTextarea2"> Plan </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <h3>Seguimientos </h3>
+                        </div>
+
+                        <br>
+
                         {{#each seguimiento}}
                         <div class="card mb-3 text-center">
                             <div class="card-header">

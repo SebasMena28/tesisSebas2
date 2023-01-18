@@ -8,40 +8,59 @@ const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
 var ced;
 var paciente = {}, historia = {}, funcion = {}, diag = {};
+var error;
+
+router.get('/prueba', async (req, res) => { //VISTA PARA AGREGAR PACIENTE
+    //alert('holi')
+    const pacientes = await pool.query('SELECT * FROM PACIENTES');
+    res.render('pacientes/prueba', {pacientes});
+})
+
+router.get('/fallo', (req, res) => { //VISTA PARA AGREGAR PACIENTE
+    //alert('holi')
+    res.render('pacientes/pacienteRepetido');
+})
+
+router.post('/prueba', (req, res) => { //VISTA PARA AGREGAR PACIENTE
+    //alert('holi')
+    //console.log(req.body)
+    res.redirect('/pacientes');
+})
 
 function validaciones(atributo, valor) {
     let pasa = true;
+    error = '';
     switch (atributo) {
         case 'cedula':
             pasa = validar.validarCedula(valor);
             console.log('La cedula es: ' + valor + ' ' + pasa);
             break;
         case 'apellidoPaterno':
-            pasa = validar.validarNombre(valor);
+            pasa = validar.validarApe1(valor);
             console.log('apellidoPaterno es: ' + valor + ' ' + pasa);
             break;
         case 'apellidoMaterno':
-            pasa = validar.validarNombre(valor);
+            pasa = validar.validarApe2(valor);
             console.log('apellidoMaterno es: ' + valor + ' ' + pasa);
             break;
         case 'primerNombre':
-            pasa = validar.validarNombre(valor);
+            pasa = validar.validarNombre1(valor);
             console.log('primerNombre es: ' + valor + ' ' + pasa);
             break;
         case 'segundoNombre':
-            pasa = validar.validarNombre(valor);
+            pasa = validar.validarNombre2(valor);
             console.log('segundoNombre es: ' + valor + ' ' + pasa);
             break;
         case 'fechaNacimiento':
-            pasa = validar.validarFecha(valor);
+            pasa = validar.validarFecha(valor, error);
             console.log('fechanacimiento es: ' + valor + ' ' + pasa);
             break;
         case 'correo':
-            pasa = validar.validarEmail(valor);
+            pasa = validar.validarEmail(valor, error);
             console.log('correo es: ' + valor + ' ' + pasa);
             break;
         case 'telefono':
-            pasa = validar.validarTelefono(valor);
+            pasa = validar.validarTelefono(valor, error);
             console.log('telefono es: ' + valor + ' ' + pasa);
             break;
     }
@@ -72,6 +91,7 @@ function validarDatos(objeto) {
 
 //PARA EL CRUD
 router.get('/nuevoPaciente', (req, res) => { //VISTA PARA AGREGAR PACIENTE
+    //alert('holi')
     res.render('pacientes/nuevoPaciente');
 })
 
@@ -101,23 +121,28 @@ router.post('/nuevoPaciente', async (req, res) => {
 
     ced = req.body.cedula;
     paciente = nuevoPaciente;
-    //console.log(paciente);
+    console.log(paciente);
     //console.log(Object.values(paciente)[11].length);
 
     const existe = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
     console.log(existe, 'hay este paciente');
-    if (existe == "") {
+    res.render('pacientes/nuevaHistoria');
+
+    /*if (existe == "") {
         if (validarDatos(paciente)) {
             res.render('pacientes/nuevaHistoria');
         }
         else {
-
-            console.log('la cedula ', ced, ' no es valida');
+            error = validar.enviarMensaje();
+            console.log(error);
+            //req.flash('fallo', ' ' + error + ' ');
+            //res.redirect('/pacientes');
+            //console.log('la cedula ', ced, ' no es valida');
         }
     }
     else {
         console.log('ESTE PACIENTE YA EXISTE')
-    }
+    }*/
 });
 
 
@@ -202,6 +227,7 @@ router.post('/diagnostico', async (req, res) => {
     await pool.query('INSERT INTO DIAGNOSTICO set ?', [diag]);
     console.log(diag);
 
+    req.flash('exito', 'Paciente registrado exitosamente')
     res.redirect('/pacientes');
 });
 
@@ -212,7 +238,7 @@ router.post('/BuscarPaciente/', async (req, res) => {
     const [dato1, dato2] = dato.split(' ');
     //console.log(dato1, dato2);
 
-    const resultados = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ? OR (PRIMERNOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (PRIMERNOMBRE LIKE ? AND SEGUNDONOMBRE LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOPATERNO LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOMATERNO LIKE ? AND APELLIDOPATERNO LIKE ?)', [dato, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2]);
+    const resultados = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ? OR (PRIMERNOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (PRIMERNOMBRE LIKE ? AND SEGUNDONOMBRE LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOPATERNO LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOMATERNO LIKE ? AND APELLIDOPATERNO LIKE ?) OR (APELLIDOPATERNO LIKE ?) OR (PRIMERNOMBRE LIKE ?) OR (SEGUNDONOMBRE LIKE ?) OR (APELLIDOMATERNO LIKE ?) ', [dato, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato, dato, dato, dato]);
     //console.log(resultados);
 
     res.render('pacientes/busqueda', { resultados, dato1, dato2 });
@@ -223,9 +249,10 @@ router.get('/datos/:cedula', async (req, res) => {
     //console.log(cedula);
     const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
     const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
+    const datos = await pool.query('SELECT * FROM HISTORIAENFERMEDAD H, DIAGNOSTICO D WHERE D.CEDULA = ? AND H.CEDULA = ?', [cedula, cedula]);
 
     validar.arreglarVista(seguimiento)
-    res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
+    res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento, datos: datos[0] });
 })
 
 router.get('/', async (req, res) => { //VISTA PARA LISTAR PACIENTES

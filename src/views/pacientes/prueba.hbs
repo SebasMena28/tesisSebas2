@@ -15,30 +15,30 @@
                             Datos generales del paciente
                         </h4>
                         {{! esta es la seccion de datos del paciente}}
-                        <div class="form-floating mb-4">
-                            <input type="text" name="cedula" class="form-control" placeholder="Cedula" autofocus>
-                            <label for="floatingInput">Cedula</label>
+                        <div class="col-md-4 mb-2">
+                            <label for="cedula" class="form-label">Cédula</label>
+                            <input type="text" name="cedula" class="form-control" id="cedula" required>
                             <div class="valid-feedback" id="mensaje-cedula">
                                 ¡Se ve bien!
                             </div>
                         </div>
 
-                        <div class="row g-2">
-                            <div class="col-md mb-3">
-                                <div class="form-floating mb-3">
-                                    <input type="text" name="apellidoPaterno" class="form-control"
-                                        placeholder="Apellido Paterno">
-                                    <label for="floatingInput">Apellido Paterno</label>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md">
+                                <div class="col-md-4">
+                                    <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+                                    <input type="text" name="apellidoPaterno" class="form-control" id="apellidoPaterno"
+                                        required>
                                     <div class="valid-feedback" id="mensaje-ape1">
                                         ¡Se ve bien!
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md">
-                                <div class="form-floating mb-3">
-                                    <input type="text" name="apellidoMaterno" class="form-control"
-                                        placeholder="Apellido Materno">
-                                    <label for="floatingInput">Apellido Materno</label>
+                                <div class="col-md-4">
+                                    <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+                                    <input type="text" name="apellidoMaterno" class="form-control" id="apellidoMaterno"
+                                        required>
                                     <div class="valid-feedback" id="mensaje-ape2">
                                         ¡Se ve bien!
                                     </div>
@@ -46,22 +46,22 @@
                             </div>
                         </div>
 
-                        <div class="row g-2">
-                            <div class="col-md mb-3">
-                                <div class="form-floating mb-3">
-                                    <input type="text" name="primerNombre" class="form-control"
-                                        placeholder="Primer Nombre">
-                                    <label for="floatingInput">Primer Nombre</label>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md">
+                                <div class="col-md-4">
+                                    <label for="primerNombre" class="form-label">Primer nombre</label>
+                                    <input type="text" name="primerNombre" class="form-control" id="primerNombre"
+                                        required>
                                     <div class="valid-feedback" id="mensaje-nombre1">
                                         ¡Se ve bien!
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md">
-                                <div class="form-floating mb-3">
-                                    <input type="text" name="segundoNombre" class="form-control"
-                                        placeholder="Segundo Nombre">
-                                    <label for="floatingInput">Segundo Nombre</label>
+                                <div class="col-md-4">
+                                    <label for="segundoNombre" class="form-label">Segundo Nombre</label>
+                                    <input type="text" name="segundoNombre" class="form-control" id="segundoNombre"
+                                        required>
                                     <div class="valid-feedback" id="mensaje-nombre2">
                                         ¡Se ve bien!
                                     </div>
@@ -69,78 +69,99 @@
                             </div>
                         </div>
 
-                        <div class="row g-2">
-                            <div class="col-md mb-3">
-                                <div class="form-floating mb-3">
-                                    <input type="date" name="fechaNacimiento" class="form-control">
-                                    <label for="floatingInput">Fecha de nacimiento</label>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md">
+                                <div class="col-md-4">
+                                    <label for="fechaNacimiento" class="form-label">Fecha de nacimiento</label>
+                                    <input type="date" name="fechaNacimiento" class="form-control" id="fechaNacimiento"
+                                        required>
                                     <div class="valid-feedback" id="mensaje-fecha">
                                         ¡Se ve bien!
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md">
-                                <div class="form-floating mb-3">
-                                    <select name="genero" class="form-select" id="floatingSelect"
-                                        aria-label="Floating label select example">
+                                <div class="col-md-4">
+                                    <label for="genero" class="form-label">Genero</label>
+                                    <select name="genero" class="form-select" id="genero" required>
                                         <option value="Masculino" selected>Masculino</option>
                                         <option value="Femenino">Femenino</option>
                                         <option value="LGBT">LGBT</option>
                                     </select>
-                                    <label for="floatingSelect">Género</label>
+                                    <div class="valid-feedback">
+                                        ¡Se ve bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, revise los datos de este campo.
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row g-2">
-                            <div class="col-md mb-3">
-                                <div class="form-floating mb-3">
-                                    <select name="estadoCivil" class="form-select" id="floatingSelect"
-                                        aria-label="Floating label select example">
+                        <div class="row g-2 mb-2">
+                            <div class="col-md">
+                                <div class="col-md-4">
+                                    <label for="estadoCivil" class="form-label">Estado civil</label>
+                                    <select name="estadoCivil" class="form-select" id="estadoCivil">
                                         <option value="Soltero" selected>Soltero</option>
                                         <option value="Casado">Casado</option>
                                         <option value="Divorciado">Divorciado</option>
                                         <option value="Viudo">Viudo</option>
                                         <option value="Union Libre">Union Libre</option>
                                     </select>
-                                    <label for="floatingSelect">Estado Civil</label>
+                                    <div class="valid-feedback">
+                                        ¡Se ve bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, revise los datos de este campo.
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md">
-                                <div class="form-floating mb-3">
-                                    <input type="text" name="ocupacion" class="form-control" placeholder="Ocupación">
-                                    <label for="floatingSelect">Ocupación</label>
+                                <div class="col-md-4">
+                                    <label for="ocupacion" class="form-label">Ocupación</label>
+                                    <input type="text" name="ocupacion" class="form-control" id="ocupacion" required>
+                                    <div class="valid-feedback">
+                                        ¡Se ve bien!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Por favor, revise los datos de este campo.
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-floating mb-3">
-                            <input type="text" name="religion" class="form-control" placeholder="Religión">
-                            <label for="floatingSelect">Religión</label>
+                        <div class="col-md-4 mb-2">
+                            <label for="religion" class="form-label">Religión</label>
+                            <input type="text" name="religion" class="form-control" id="religion" required>
+                            <div class="valid-feedback">
+                                ¡Se ve bien!
+                            </div>
+                            <div class="invalid-feedback">
+                                Por favor, revise los datos de este campo.
+                            </div>
                         </div>
 
-                        <div class="row g-2">
-                            <div class="col-md mb-3">
-                                <div class="form-floating mb-3">
-                                    <input type="text" name="correo" class="form-control" placeholder="Primer Nombre">
-                                    <label for="floatingInput">Correo</label>
+                        <div class="row g-2 mb-2">
+                            <div class="col-md">
+                                <div class="col-md-4">
+                                    <label for="correo" class="form-label">Correo</label>
+                                    <input type="text" name="correo" class="form-control" id="correo" required>
                                     <div class="valid-feedback" id="mensaje-correo">
                                         ¡Se ve bien!
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md">
-                                <div class="form-floating mb-3">
-                                    <input type="tel" name="telefono" class="form-control" placeholder="Segundo Nombre">
-                                    <label for="floatingInput">Teléfono</label>
+                                <div class="col-md-4">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="text" name="telefono" class="form-control" id="telefono" required>
                                     <div class="valid-feedback" id="mensaje-telefono">
                                         ¡Se ve bien!
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        {{!boton XDXDXDXD}}
 
                         <div class="row g-2">
                             <div class="col-md mb-3">
@@ -152,9 +173,9 @@
                             </div>
                             <div class="col-md">
                                 <div class="form-group p-3">
-                                    <button id="boton" type="submit" class="btn btn-success btn-block w-100" id="boton">
-                                        Siguiente
-                                    </button>
+                                    <div class="col-12">
+                                        <button class="btn btn-success w-100" type="submit">Siguiente</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -165,21 +186,6 @@
 
     </div>
 </div>
-
-<section class="modal">
-    <div class="modal_container">
-
-        <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="" class="image">
-
-        <h2 class="title">
-            Esta es la ventana modal
-        </h2>
-        <p class="text">
-            Esta en serio es la ventana modal
-        </p>
-        <a href="#" class="modal_close">Cerrar</a>
-    </div>
-</section>
 
 <script>
 
@@ -380,8 +386,22 @@
         }
     }
 
+    function calcularEdad(fecha) {
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+
+    return edad;
+}
+
     function validarFecha(fecha) {
-        return true;
+        const edad = calcularEdad(fecha);
+        return edad >= 2 && edad <= 110;
     }
 
     function validarTelefono(telefono) {
@@ -418,31 +438,100 @@
                 break;
             case 'apellidoPaterno':
                 pasa = validarApe1(objeto.apellidoPaterno.value);
+                if (!pasa) {
+                    document.getElementById('mensaje-ape1').classList.remove('mensaje-exito-activo')
+                    document.getElementById('mensaje-ape1').classList.add('mensaje-error-activo')
+                    document.getElementById('mensaje-ape1').innerHTML = 'Apellido paterno inválido. Intente de nuevo';
+                }
+                else {
+                    document.getElementById('mensaje-ape1').classList.remove('mensaje-error-activo')
+                    document.getElementById('mensaje-ape1').classList.add('mensaje-exito-activo')
+                    document.getElementById('mensaje-ape1').innerHTML = 'Completado!';
+                }
                 console.log('apellidoPaterno es: ' + objeto.apellidoPaterno.value + ' ' + pasa);
                 break;
             case 'apellidoMaterno':
                 pasa = validarApe2(objeto.apellidoMaterno.value);
+                if (!pasa) {
+                    document.getElementById('mensaje-ape2').classList.remove('mensaje-exito-activo')
+                    document.getElementById('mensaje-ape2').classList.add('mensaje-error-activo')
+                    document.getElementById('mensaje-ape2').innerHTML = 'Apellido materno inválido. Intente de nuevo';
+                }
+                else {
+                    document.getElementById('mensaje-ape2').classList.remove('mensaje-error-activo')
+                    document.getElementById('mensaje-ape2').classList.add('mensaje-exito-activo')
+                    document.getElementById('mensaje-ape2').innerHTML = 'Completado!';
+                }
                 console.log('apellidoMaterno es: ' + objeto.apellidoMaterno.value + ' ' + pasa);
                 break;
             case 'primerNombre':
                 pasa = validarNombre1(objeto.primerNombre.value);
+                if (!pasa) {
+                    document.getElementById('mensaje-nombre1').classList.remove('mensaje-exito-activo')
+                    document.getElementById('mensaje-nombre1').classList.add('mensaje-error-activo')
+                    document.getElementById('mensaje-nombre1').innerHTML = 'Primer nombre inválido. Intente de nuevo';
+                }
+                else {
+                    document.getElementById('mensaje-nombre1').classList.remove('mensaje-error-activo')
+                    document.getElementById('mensaje-nombre1').classList.add('mensaje-exito-activo')
+                    document.getElementById('mensaje-nombre1').innerHTML = 'Completado!';
+                }
                 console.log('primerNombre es: ' + objeto.primerNombre.value + ' ' + pasa);
                 break;
             case 'segundoNombre':
                 pasa = validarNombre2(objeto.segundoNombre.value);
-
+                if (!pasa) {
+                    document.getElementById('mensaje-nombre2').classList.remove('mensaje-exito-activo')
+                    document.getElementById('mensaje-nombre2').classList.add('mensaje-error-activo')
+                    document.getElementById('mensaje-nombre2').innerHTML = 'Segundo nombre inválido. Intente de nuevo';
+                }
+                else {
+                    document.getElementById('mensaje-nombre2').classList.remove('mensaje-error-activo')
+                    document.getElementById('mensaje-nombre2').classList.add('mensaje-exito-activo')
+                    document.getElementById('mensaje-nombre2').innerHTML = 'Completado!';
+                }
                 console.log('segundoNombre es: ' + objeto.segundoNombre.value + ' ' + pasa);
                 break;
             case 'fechaNacimiento':
                 pasa = validarFecha(objeto.fechaNacimiento.value, error);
+                if (!pasa) {
+                    document.getElementById('mensaje-fecha').classList.remove('mensaje-exito-activo')
+                    document.getElementById('mensaje-fecha').classList.add('mensaje-error-activo')
+                    document.getElementById('mensaje-fecha').innerHTML = 'La fecha de nacimiento no es válida. Intente de nuevo';
+                }
+                else {
+                    document.getElementById('mensaje-fecha').classList.remove('mensaje-error-activo')
+                    document.getElementById('mensaje-fecha').classList.add('mensaje-exito-activo')
+                    document.getElementById('mensaje-fecha').innerHTML = 'Completado!';
+                }
                 console.log('fechanacimiento es: ' + objeto.fechaNacimiento.value + ' ' + pasa);
                 break;
             case 'correo':
                 pasa = validarEmail(objeto.correo.value, error);
+                if (!pasa) {
+                    document.getElementById('mensaje-correo').classList.remove('mensaje-exito-activo')
+                    document.getElementById('mensaje-correo').classList.add('mensaje-error-activo')
+                    document.getElementById('mensaje-correo').innerHTML = 'El correo no es válido. Intente de nuevo';
+                }
+                else {
+                    document.getElementById('mensaje-correo').classList.remove('mensaje-error-activo')
+                    document.getElementById('mensaje-correo').classList.add('mensaje-exito-activo')
+                    document.getElementById('mensaje-correo').innerHTML = 'Completado!';
+                }
                 console.log('correo es: ' + objeto.correo.value + ' ' + pasa);
                 break;
             case 'telefono':
                 pasa = validarTelefono(objeto.telefono.value, error);
+                if (!pasa) {
+                    document.getElementById('mensaje-telefono').classList.remove('mensaje-exito-activo')
+                    document.getElementById('mensaje-telefono').classList.add('mensaje-error-activo')
+                    document.getElementById('mensaje-telefono').innerHTML = 'El teléfono celular no es aceptado. Intente de nuevo';
+                }
+                else {
+                    document.getElementById('mensaje-telefono').classList.remove('mensaje-error-activo')
+                    document.getElementById('mensaje-telefono').classList.add('mensaje-exito-activo')
+                    document.getElementById('mensaje-telefono').innerHTML = 'Completado!';
+                }
                 console.log('telefono es: ' + objeto.telefono.value + ' ' + pasa);
                 break;
         }
@@ -486,22 +575,7 @@
                 }, false)
             })
     })()
-
-    /*const open = document.getElementById('boton');
-    const modal = document.querySelector('.modal');
-    const close = document.querySelector('.modal_close');
-
-    open.addEventListener('click',(e)=>{
-        e.preventDefault();
-        modal.classList.add('modal--show')
-    });
-
-    close.addEventListener('click',(e)=>{
-        e.preventDefault();
-        modal.classList.remove('modal--show')
-    })*/
 </script>
-
 
 <style>
     body {
@@ -538,6 +612,24 @@
         pointer-events: none;
     }
 
+    .mensaje-error-activo {
+        display: block;
+        color: rgb(213, 30, 14);
+    }
+
+    .mensaje-exito-activo {
+        display: block;
+        color: rgb(14, 156, 90);
+    }
+
+    .mensaje-error-desactivo {
+        display: none;
+    }
+
+    .mensaje-exito-desactivo {
+        display: none;
+    }
+
     .modal--show {
         opacity: 1;
         pointer-events: unset;
@@ -557,22 +649,12 @@
         grid-auto-columns: 100%;
     }
 
-    .mensaje-error-activo {
-        display: block;
-        color: rgb(213, 30, 14);
+    .form-control {
+        width: 290%;
     }
 
-    .mensaje-exito-activo {
-        display: block;
-        color: rgb(14, 156, 90);
-    }
-
-    .mensaje-error-desactivo {
-        display: none;
-    }
-
-    .mensaje-exito-desactivo {
-        display: none;
+    .form-select {
+        width: 290%;
     }
 
     .title {

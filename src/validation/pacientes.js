@@ -1,6 +1,6 @@
 //SELECT * FROM pacientes WHERE (PRIMERNOMBRE+' '+APELLIDOPATERNO) LIKE 'Andres Mena'
 
-var error;
+var error = '';
 
 function arreglarVista(objeto){
     for(var i=0; i<objeto.length; i++){
@@ -66,40 +66,93 @@ function validarCedula(cedula) {
 
             //Validamos que el digito validador sea igual al de la cedula
             if (digito_validador == ultimo_digito) {
-                console.log('la cedula:' + cedula + ' es correcta');
                 return true;
             } else {
-                console.log('la cedula:' + cedula + ' es incorrecta');
+                error += 'la cedula:' + cedula + ' es incorrecta ';
                 return false;
             }
 
         } else {
             //si la region no pertenece
-            console.log('Esta cedula no pertenece a ninguna region');
+            error += 'Esta cedula no pertenece a ninguna region ';
             return false;
         }
     } else {
         //i la cedula tiene mas o menos de 10 digitos
-        console.log('Esta cedula tiene menos de 10 Digitos');
+        error += 'Esta cedula tiene menos de 10 Digitos ';
         return false;
     }
 }
 
 
 
-function validarNombre(nombre) {
+function validarNombre1(nombre) {
     if (/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(nombre) && nombre != "" && nombre.length > 1) {
         return true;
     }
     else {
         if (nombre == "") {
-            error += 'El nombre no puede quedar vacio. \n';
+            error += 'El primer nombre no puede quedar vacio. \n';
         }
         else if (nombre.length < 2) {
-            error += 'El nombre no puede ser ' + nombre + '. Se necesita una longitud mayor a un caracter. \n'
+            error += 'El primer nombre no puede ser ' + nombre + '. Se necesita una longitud mayor a un caracter. \n'
         }
         else {
-            error += 'El nombre no puede ser ' + nombre + '. \n'
+            error += 'El primer nombre no puede ser ' + nombre + '. \n'
+        }
+        return false;
+    }
+}
+
+function validarNombre2(nombre) {
+    if (/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(nombre) && nombre != "" && nombre.length > 1) {
+        return true;
+    }
+    else {
+        if (nombre == "") {
+            error += 'El segundo nombre no puede quedar vacio. \n';
+        }
+        else if (nombre.length < 2) {
+            error += 'El segundo nombre no puede ser ' + nombre + '. Se necesita una longitud mayor a un caracter. \n'
+        }
+        else {
+            error += 'El segundo nombre no puede ser ' + nombre + '. \n'
+        }
+        return false;
+    }
+}
+
+function validarApe1(nombre) {
+    if (/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(nombre) && nombre != "" && nombre.length > 1) {
+        return true;
+    }
+    else {
+        if (nombre == "") {
+            error += 'El apellido paterno no puede quedar vacio. \n';
+        }
+        else if (nombre.length < 2) {
+            error += 'El apellido paterno no puede ser ' + nombre + '. Se necesita una longitud mayor a un caracter. \n'
+        }
+        else {
+            error += 'El apellido paterno no puede ser ' + nombre + '. \n'
+        }
+        return false;
+    }
+}
+
+function validarApe2(nombre) {
+    if (/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(nombre) && nombre != "" && nombre.length > 1) {
+        return true;
+    }
+    else {
+        if (nombre == "") {
+            error += 'El apellido materno no puede quedar vacio. \n';
+        }
+        else if (nombre.length < 2) {
+            error += 'El apellido materno no puede ser ' + nombre + '. Se necesita una longitud mayor a un caracter. \n'
+        }
+        else {
+            error += 'El apellido materno no puede ser ' + nombre + '. \n'
         }
         return false;
     }
@@ -129,15 +182,24 @@ function validarTelefono(telefono) {
         return true;
     }
     else {
+        error += 'El telefono no es válido'
         return false;
     }
 }
 
+function enviarMensaje(){
+    return error;
+}
+
 module.exports = {
     validarCedula,
-    validarNombre,
+    validarNombre1,
+    validarNombre2,
+    validarApe1,
+    validarApe2,
     validarEmail,
     validarFecha,
     validarTelefono,
-    arreglarVista
+    arreglarVista,
+    enviarMensaje
 }

@@ -34,6 +34,7 @@ router.post('/nuevaEvaluacion/:cedula', async (req, res) => {
 
     await pool.query('INSERT INTO EVALUACIONPSICOLOGICA set ?', [nuevaEvaluacion])
     console.log(nuevaEvaluacion);
+    req.flash('exito', 'Evaluacion agregada')
     res.redirect('/pacientes')
 })
 

@@ -19,7 +19,9 @@ router.post('/autenticacion/inicio', async (req, res) => {
 
     //console.log(existe);
     if (existe != '') {
-        res.render('layouts/main', { iniciar });
+        //res.render('layouts/main', { iniciar });
+        req.flash('exito', 'Bienvenid@ doctor@')
+        res.redirect('/pacientes')
     }
     else {
         res.render('logeo/inicioSesion');
