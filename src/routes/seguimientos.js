@@ -10,6 +10,13 @@ var fechahoy = new Date().toISOString().slice(0, 10);
 
 var ced;
 
+router.get('/nuevo/:cedula', async (req, res) => {
+    const { cedula } = req.params;
+    const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
+    console.log(paciente);
+    res.render('seguimientos/seguimiento-agregarxd', { paciente: paciente[0] });
+});
+
 router.get('/:cedula', async (req, res) => {
     const { cedula } = req.params;
     const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
@@ -38,7 +45,31 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
         observaciones
     };
     console.log(nuevaCita.fecha);
-    if (validar.validarFecha(nuevaCita.fecha)) {
+
+    await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
+    //console.log(nuevaCita);
+    //console.log('messirve');
+
+    const nuevoSeguimiento = {
+        cedula: cedula,
+        diagnosticoinicial,
+        actividades,
+        tareapaciente,
+        proximacita,
+        proximahora,
+        fecha: fechahoy
+    }
+
+    await pool.query('INSERT INTO SEGUIMIENTO set ?', [nuevoSeguimiento]);
+    console.log(nuevoSeguimiento, 'este es el seguimiento');
+
+    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
+    const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
+    validar.arreglarVista(seguimiento)
+    //req.flash('exito', 'Seguimiento registrado exitosamente')
+    res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
+
+    /*if (validar.validarFecha(nuevaCita.fecha)) {
         await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
         console.log(nuevaCita);
         console.log('messirve');
@@ -63,10 +94,12 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
         res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
     }
     else{
-        console.log('no es valida la fecha xd')
-    }
+        req.flash('Datos de la fecha inválidos. Intente de nuevo');
+        res.redirect('/seguimientos/:cedula');
+        //console.log('no es valida la fecha xd')
+    }*/
 
-    
+
 });
 
 router.get('/verSeguimiento/:id', async (req, res) => {

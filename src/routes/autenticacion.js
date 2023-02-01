@@ -20,12 +20,12 @@ router.post('/autenticacion/inicio', async (req, res) => {
     //console.log(existe);
     if (existe != '') {
         //res.render('layouts/main', { iniciar });
-        req.flash('exito', 'Bienvenid@ doctor@')
+        req.flash('exito', 'Bienvenida Psc. Cintia Morales')
         res.redirect('/pacientes')
     }
     else {
-        res.render('logeo/inicioSesion');
-        console.log('no hay, no existe');
+        req.flash('fallo', 'El usuaio no existe, cree uno o verifique que los datos ingresados sean los correctos')
+        res.redirect('/');
     }
 });
 
@@ -43,18 +43,18 @@ router.post('/autenticacion/registro', async (req, res) => {
     console.log(nuevoUsuario);
     res.render('logeo/inicioSesion');
 
-    const existe = await pool.query('SELECT * FROM USUARIOS WHERE NOMBREUSUARIO = ? ', [nuevoUsuario.usuario]);
+    const existe = await pool.query('SELECT * FROM USUARIOS WHERE NOMBREUSUARIO = ? ', [nuevoUsuario.nombreusuario]);
 
     console.log(existe)
-    /*if (existe != '') {
-        console.log('este usuario ya existe');
-        res.render('logeo/inicioSesion');
+    if (existe != '') {
+        req.flash('fallo', 'Este nombre de usuario ya existe. Intente de nuevo')
+        res.redirect('/autenticacion/registro');
     }
     else {
         console.log('este usuario creado!');
         await pool.query('INSERT INTO USUARIOS set ?', [nuevoUsuario]);
-        res.render('layouts/main');
-    }*/
+        res.redirect('/pacientes');
+    }
 
 
     //console.log(paciente);

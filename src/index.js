@@ -3,11 +3,11 @@ const morgan = require('morgan');
 const path = require('path');
 const  {engine} = require('express-handlebars');
 const bodyParser = require('body-parser');
-const flash = require('connect-flash'); //modulo para enviar mensajes por vistas
-const session = require('express-session');
 const mysqlstore = require('express-mysql-session');
 const {database} = require('./claves');
 const passport = require('passport');
+const flash = require('connect-flash'); 
+const session = require('express-session');
 
 
 //INICIALIZACIONES
@@ -36,7 +36,6 @@ app.use(session({
     secret: 'session',
     resave: true,
     saveUninitialized: true,
-    store: new mysqlstore(database)
 }));
 app.use(flash());
 app.use(morgan('dev'));

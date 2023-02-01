@@ -5,8 +5,9 @@
                 <div class="card mb-3" style="border-radius: 1rem;">
                     <div class="row g-0">
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
-                            <img src="https://www.ligarporinternet.info/pics/2018/12/que-hacer-cuando-un-chico-cancela-una-cita-por-texto.jpg"
-                                alt="login form" height="100%" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                            <img src="https://static.diariofemenino.com/media/10543/c/dependencia-a-la-terapia-psicologica-como-evitar-la-adiccion-al-psicologo-lg.jpg"
+                                alt="login form" height="100%" class="img-fluid"
+                                style="border-radius: 1rem 0 0 1rem;" />
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
@@ -16,24 +17,20 @@
                                         ¿Realmente desea eliminar esta cita?
                                     </h2>
 
-                                    <div class="col-md">
-                                        <div class="form-floating mb-3">
-                                            <input type="date" name="fecha" class="form-control"
-                                                placeholder="Fecha de la cita">
-                                            <label for="floatingInput">Fecha</label>
-                                        </div>
+                                    <div class="col-md-4 mb-2">
+                                        <label for="fecha" class="form-label">Fecha</label>
+                                        <input type="text" name="fecha" class="form-control"
+                                            value="{{citas.FECHA}}" readonly id="cedula" required>
                                     </div>
 
 
-                                    <div class="col-md mb-3">
-                                        <div class="form-floating mb-3">
-                                            <input type="time" min="16:00:00" max="22:00:00" name="hora"
-                                                class="form-control" placeholder="Hora">
-                                            <label for="floatingSelect">Hora</label>
-                                        </div>
+                                    <div class="col-md-4 mb-2">
+                                        <label for="fecha" class="form-label">Hora</label>
+                                        <input type="text" name="fecha" class="form-control"
+                                            value="{{citas.HORA}}" readonly id="cedula" required>
                                     </div>
 
-                                    <div class="col-md">
+                                    <div class="col-md mt-4">
                                         <div class="form-floating">
                                             <textarea name="observaciones" class="form-control"
                                                 placeholder="Historia de la enfermedad" id="floatingTextarea2"

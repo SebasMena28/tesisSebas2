@@ -4,7 +4,7 @@ module.exports = {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'crud',
+        database: 'ocu-sis',
         port: 3306
     }
 }

@@ -13,12 +13,7 @@ var error;
 router.get('/prueba', async (req, res) => { //VISTA PARA AGREGAR PACIENTE
     //alert('holi')
     const pacientes = await pool.query('SELECT * FROM PACIENTES');
-    res.render('pacientes/prueba', {pacientes});
-})
-
-router.get('/fallo', (req, res) => { //VISTA PARA AGREGAR PACIENTE
-    //alert('holi')
-    res.render('pacientes/pacienteRepetido');
+    res.render('pacientes/prueba', { pacientes });
 })
 
 router.post('/prueba', (req, res) => { //VISTA PARA AGREGAR PACIENTE
@@ -88,13 +83,6 @@ function validarDatos(objeto) {
     return confirmado;
 }
 
-
-//PARA EL CRUD
-router.get('/nuevoPaciente', (req, res) => { //VISTA PARA AGREGAR PACIENTE
-    //alert('holi')
-    res.render('pacientes/nuevoPaciente');
-})
-
 router.post('/nuevoPaciente', async (req, res) => {
     const { cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil,
         ocupacion, religion, correo, telefono } = req.body;
@@ -115,6 +103,7 @@ router.post('/nuevoPaciente', async (req, res) => {
         correo,
         telefono: '593' + tel2,
         ultimacita: hoy.toLocaleDateString()
+        //ultimacita: hoy.toISOString()
     }
 
     //telefono: '+593' + telefono[1]+telefono[2]+telefono[3]+telefono[4]+telefono[5]+telefono[6]+telefono[7]+telefono[8]+telefono[9],
@@ -125,24 +114,17 @@ router.post('/nuevoPaciente', async (req, res) => {
     //console.log(Object.values(paciente)[11].length);
 
     const existe = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
-    console.log(existe, 'hay este paciente');
-    res.render('pacientes/nuevaHistoria');
+    //console.log(existe, 'hay este paciente');
+    //res.render('pacientes/nuevaHistoria');
 
-    /*if (existe == "") {
-        if (validarDatos(paciente)) {
-            res.render('pacientes/nuevaHistoria');
-        }
-        else {
-            error = validar.enviarMensaje();
-            console.log(error);
-            //req.flash('fallo', ' ' + error + ' ');
-            //res.redirect('/pacientes');
-            //console.log('la cedula ', ced, ' no es valida');
-        }
+    if (existe == "") {
+        res.render('pacientes/nuevaHistoria');
     }
     else {
-        console.log('ESTE PACIENTE YA EXISTE')
-    }*/
+        req.flash('fallo', 'Esta cédula ya se encuentra registrada. Por favor, intente de nuevo');
+        res.redirect('/pacientes/prueba')
+        console.log('ESTE PACIENTE YA EXISTE');
+    }
 });
 
 
@@ -238,7 +220,7 @@ router.post('/BuscarPaciente/', async (req, res) => {
     const [dato1, dato2] = dato.split(' ');
     //console.log(dato1, dato2);
 
-    const resultados = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ? OR (PRIMERNOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (PRIMERNOMBRE LIKE ? AND SEGUNDONOMBRE LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOPATERNO LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOMATERNO LIKE ? AND APELLIDOPATERNO LIKE ?) OR (APELLIDOPATERNO LIKE ?) OR (PRIMERNOMBRE LIKE ?) OR (SEGUNDONOMBRE LIKE ?) OR (APELLIDOMATERNO LIKE ?) ', [dato, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato, dato, dato, dato]);
+    const resultados = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ? OR (PRIMERNOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOPATERNO LIKE ?) OR (PRIMERNOMBRE LIKE ? AND SEGUNDONOMBRE LIKE ?) OR (SEGUNDONOMBRE LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOPATERNO LIKE ? AND APELLIDOMATERNO LIKE ?) OR (APELLIDOMATERNO LIKE ? AND APELLIDOPATERNO LIKE ?) OR (APELLIDOPATERNO LIKE ?) OR (PRIMERNOMBRE LIKE ?) OR (SEGUNDONOMBRE LIKE ?) OR (APELLIDOMATERNO LIKE ?) OR (APELLIDOPATERNO LIKE ? AND SEGUNDONOMBRE LIKE ?) OR (APELLIDOPATERNO LIKE ? AND PRIMERNOMBRE LIKE ?) ', [dato, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato1, dato2, dato, dato, dato, dato, dato1, dato2, dato1, dato2]);
     //console.log(resultados);
 
     res.render('pacientes/busqueda', { resultados, dato1, dato2 });
@@ -263,6 +245,7 @@ router.get('/', async (req, res) => { //VISTA PARA LISTAR PACIENTES
 router.get('/borrar/:cedula', async (req, res) => {
     const { cedula } = req.params;
     await pool.query('DELETE FROM PACIENTES WHERE CEDULA = ?', [cedula])
+    req.flash('exito', 'Paciente eliminado exitosamente')
     res.redirect('/pacientes')
 })
 
@@ -281,14 +264,14 @@ router.get('/editar/:cedula', async (req, res) => {
 
     //console.log(paciente[0].TELEFONO, 'dato final');
 
-    res.render('pacientes/editar', { paciente: paciente[0], historia: historia[0], funciones: funciones[0], diagnostico: diagnostico[0] })
+    res.render('pacientes/modificar', { paciente: paciente[0], historia: historia[0], funciones: funciones[0], diagnostico: diagnostico[0] })
 })
 
 router.post('/editar/:cedula', async (req, res) => {
     const { cedula } = req.params;
 
     //para editar datos del paciente
-    const { apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil,
+    const { apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, estadoCivil,
         ocupacion, religion, correo, telefono } = req.body;
 
     var tel2 = telefono - telefono[0];
@@ -298,8 +281,6 @@ router.post('/editar/:cedula', async (req, res) => {
         apellidoMaterno,
         primerNombre,
         segundoNombre,
-        fechaNacimiento,
-        genero,
         estadoCivil,
         ocupacion,
         religion,
@@ -364,48 +345,13 @@ router.post('/editar/:cedula', async (req, res) => {
         referencia
     }
 
-    if (validarDatos(nuevoPaciente)) {
-        await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]);
-        await pool.query('UPDATE HISTORIAENFERMEDAD set ? WHERE CEDULA = ?', [nuevaHistoria, cedula]);
-        await pool.query('UPDATE FUNCIONESPSIQUICAS set ? WHERE CEDULA = ?', [nuevaFuncion, cedula]);
-        await pool.query('UPDATE DIAGNOSTICO set ? WHERE CEDULA = ?', [nuevoDiagnostico, cedula]);
-        res.redirect('/pacientes');
-    }
-    else {
-        console.log('Revisar los datos xd');
-    }
+    await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]);
+    await pool.query('UPDATE HISTORIAENFERMEDAD set ? WHERE CEDULA = ?', [nuevaHistoria, cedula]);
+    await pool.query('UPDATE FUNCIONESPSIQUICAS set ? WHERE CEDULA = ?', [nuevaFuncion, cedula]);
+    await pool.query('UPDATE DIAGNOSTICO set ? WHERE CEDULA = ?', [nuevoDiagnostico, cedula]);
+    req.flash('exito', 'Datos actualizados correctamente')
+    res.redirect('/pacientes');
 
-
-
-    /*const { cedula, apellidoPaterno, apellidoMaterno, primerNombre, segundoNombre, fechaNacimiento, genero, estadoCivil,
-        ocupacion, religion, motivo, historiaEnfermedad, anamnesis, historiaLaboral, historiaSocial, grupoFamiliarOrigen,
-        grupoFamiliarPropio, funcionesPsiquicas, diagnostico, plan, referencia } = req.body;
-    const nuevoPaciente = {
-        cedula,
-        apellidoPaterno,
-        apellidoMaterno,
-        primerNombre,
-        segundoNombre,
-        fechaNacimiento,
-        genero,
-        estadoCivil,
-        ocupacion,
-        religion,
-        motivo,
-        historiaEnfermedad,
-        anamnesis,
-        historiaLaboral,
-        historiaSocial,
-        grupoFamiliarOrigen,
-        grupoFamiliarPropio,
-        funcionesPsiquicas,
-        diagnostico,
-        plan,
-        referencia
-    };*/
-
-    //await pool.query('UPDATE PACIENTES set ? WHERE CEDULA = ?', [nuevoPaciente, cedula]);
-    //res.redirect('/pacientes');
 })
 
 

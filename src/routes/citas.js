@@ -11,8 +11,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/nuevaCita', async (req, res) => {
-    const pacientes = await pool.query('SELECT * FROM PACIENTES ORDER BY APELLIDOPATERNO, APELLIDOMATERNO, PRIMERNOMBRE, SEGUNDONOMBRE');
-    res.render('citas/nuevaCita', { pacientes });
+    res.render('citas/nuevaCita');
 });
 
 router.get('/agendarCita/:cedula', async (req, res) => {
@@ -35,9 +34,14 @@ router.post('/agendarCita/:cedula', async (req, res) => {
         observaciones
     };
 
+    await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
+    //console.log(nuevaCita);
+    req.flash('exito', 'Cita agregada correctamente');
+    res.redirect('/citas');
+
     //console.log(nuevaCita);
 
-    if (validar.validarFecha(nuevaCita.fecha)) {
+    /*if (validar.validarFecha(nuevaCita.fecha)) {
         await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
         console.log(nuevaCita);
         res.redirect('/citas')
@@ -45,7 +49,7 @@ router.post('/agendarCita/:cedula', async (req, res) => {
     }
     else{
         console.log('no es valida la fecha xd')
-    }
+    }*/
 });
 
 router.post('/nuevaCita', async (req, res) => {
@@ -56,7 +60,8 @@ router.post('/nuevaCita', async (req, res) => {
         res.render('citas/guardarCita', {paciente: paciente[0]})
     }
     else{
-        console.log('no existe ')
+        req.flash('fallo', 'El paciente no existe. Intente de nuevo');
+        res.redirect('/citas/nuevaCita');
     }
 })
 
@@ -101,7 +106,8 @@ router.post('/editarCita/:idcitanueva', async (req, res) => {
 router.get('/borrarCita/:cita', async (req, res) => {
     const { cita } = req.params;
     console.log(cita);
-    const citas = await pool.query('SELECT * FROM CITAS WHERE IDCITANUEVA = ?', [cita])
+    const citas = await pool.query('SELECT * FROM CITAS WHERE IDCITANUEVA = ?', [cita]);
+    validar.arreglarVista(citas)
     console.log(citas);
     res.render('citas/borrarCita', { citas: citas[0] })
 });
@@ -110,10 +116,21 @@ router.post('/borrarCita/:idcitanueva', async (req, res) => {
     const idcitanueva = req.params;
     console.log(idcitanueva);
 
-    await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva])
+    await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva]);
+
     console.log('ya se debio eliminar')
     res.redirect('/citas');
 })
+
+router.post('/borrarcita/:idcitanueva', async (req, res) => {
+    const {idcitanueva} = req.params;
+    
+    await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva]);
+
+    req.flash('exito', 'Cita eliminada ');
+    res.redirect('/citas');
+
+});
 
 
 module.exports = router;
