@@ -1,6 +1,6 @@
 //IMPORTANDO MODULO DE MYSQL
 const mysql = require('mysql');
-const {promisify} = require('util');
+const {promisify} = require('util'); //para manejar promesas
 const {database} = require('./claves')
 const pool = mysql.createPool(database);
 

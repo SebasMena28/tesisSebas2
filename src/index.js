@@ -76,7 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //PARA EMPEZAR EL SERVIDOR
 app.listen(app.get('port'), () =>{
-    console.log('ESTÁ VIIIVOOOOOO!!!! ' + app.get('port'));
+    console.log('Software levantado en el puerto: ' + app.get('port'));
 });
 
 
