@@ -244,10 +244,25 @@ router.get('/', async (req, res) => { //VISTA PARA LISTAR PACIENTES
 
 router.get('/borrar/:cedula', async (req, res) => {
     const { cedula } = req.params;
+    const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
+    const historia = await pool.query('SELECT * FROM HISTORIAENFERMEDAD WHERE CEDULA = ?', [cedula])
+    const funciones = await pool.query('SELECT * FROM FUNCIONESPSIQUICAS WHERE CEDULA = ?', [cedula])
+    const diagnostico = await pool.query('SELECT * FROM DIAGNOSTICO WHERE CEDULA = ?', [cedula])
+
+    var tel = paciente[0].TELEFONO;
+    tel = tel.split("593").join('0');
+    //console.log(tel);
+    paciente[0].TELEFONO = tel;
+
+    res.render('pacientes/borrar', { paciente: paciente[0], historia: historia[0], funciones: funciones[0], diagnostico: diagnostico[0] });
+})
+
+router.post('/borrar/:cedula', async (req, res) => {
+    const { cedula } = req.params;
     await pool.query('DELETE FROM PACIENTES WHERE CEDULA = ?', [cedula])
     req.flash('exito', 'Paciente eliminado exitosamente')
     res.redirect('/pacientes')
-})
+});
 
 router.get('/editar/:cedula', async (req, res) => {
     const { cedula } = req.params;
@@ -261,6 +276,8 @@ router.get('/editar/:cedula', async (req, res) => {
     tel = tel.split("593").join('0');
     //console.log(tel);
     paciente[0].TELEFONO = tel;
+
+    validar.arreglarVista(paciente)
 
     //console.log(paciente[0].TELEFONO, 'dato final');
 
