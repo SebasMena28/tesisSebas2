@@ -20,12 +20,12 @@ router.post('/autenticacion/inicio', async (req, res) => {
     //console.log(existe);
     if (existe != '') {
         //res.render('layouts/main', { iniciar });
-        req.flash('exito', 'Bienvenida Psc. Cintia Morales')
+        req.flash('exito', 'Inicio de sesión exitoso. Bienvenid@')
         res.redirect('/pacientes')
     }
     else {
-        req.flash('fallo', 'El usuaio no existe, cree uno o verifique que los datos ingresados sean los correctos')
-        res.redirect('/');
+        req.flash('fallo', 'Error al iniciar sesión. Por favor verifique que los datos ingresados sean correctos')
+        res.redirect('/registro');
     }
 });
 
@@ -51,9 +51,9 @@ router.post('/autenticacion/registro', async (req, res) => {
         res.redirect('/autenticacion/registro');
     }
     else {
-        console.log('este usuario creado!');
         await pool.query('INSERT INTO USUARIOS set ?', [nuevoUsuario]);
-        res.redirect('/pacientes');
+        req.flash('exito', 'Usuario creado exitosamente!')
+        res.redirect('/registro');
     }
 
 
