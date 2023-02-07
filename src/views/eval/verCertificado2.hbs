@@ -1,0 +1,95 @@
+<div class="container p-1 mb-5">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+
+            <div class="card w-100 mt-5">
+                <div class="card-body">
+                    <div class="col-2 p-2">
+                        <a href="/evaluaciones/verCertificado" type="button" class="btn btn-warning"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z" />
+                            </svg> Regresar</a>
+                    </div>
+                    <div class="container p-4">
+                        <div class="col-2 p-2">
+                            <div class="text-center">
+                                <img src="https://pbs.twimg.com/profile_images/1158408311932432384/bjvit15u_400x400.jpg"
+                                    height="100" width="100">
+                            </div>
+                        </div>
+                        <h2 class="title text-center">
+                            CERTIFICADO DE SALUD MENTAL PSICOLOGICA
+                        </h2>
+                    </div>
+
+
+                    <h3 class="text-center">
+                        El que suscribe la psicológica Cintia Morales, personal psicológico de la clínica OCUMEDIC
+                    </h3>
+
+                    <br>
+
+                    <h4 class="text-center">
+                        HACE CONSTAR QUE:
+                    </h4>
+
+                    <br>
+
+                    <h5 class="p-5">
+                        El/la paciente <strong>{{paciente.APELLIDOPATERNO}} {{paciente.APELLIDOMATERNO}}
+                            {{paciente.PRIMERNOMBRE}} {{paciente.SEGUNDONOMBRE}} </strong> con cédula de identidad
+                        <strong>{{paciente.CEDULA}}</strong>, ha sido evaluada, presentando a la fecha:
+                        <strong>{{certificado.DESCRIPCION}}</strong>
+                    </h5>
+
+                    <br>
+                    <br>
+
+                    <div class="text-center">
+                        <h5 class="text-center">
+                            <strong>Riobamba, {{certificado.FECHA}}</strong>
+                        </h5>
+                    </div>
+
+                    <br>
+                    <br>
+                    <br>
+
+                    <footer>
+                        <div class="container p-3">
+                            <div class="row text-center text-black">
+                                <div class="col ml-auto">
+                                    <h6>OCUMEDIC - Olmedo y Pichinca - Riobamba - Tlf: 098 383 4551</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+
+                    <form action="/evaluaciones/generarCertificado" object="" method="POST">
+                        <div class="row g-2">
+                            <div class="col-md ">
+                                <div class="form-group">
+                                    <a class="btn btn-warning btn-block w-100"
+                                        href="/evaluaciones/verCertificado">
+                                        Regresar
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <button class="btn btn-success btn-block w-100">
+                                        Generar PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

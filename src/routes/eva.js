@@ -5,8 +5,10 @@ const validar = require('../validation/eval');
 
 //const tiempoTranscurrido = Date.now();
 //const hoy = new Date(tiempoTranscurrido);
-
+const tiempoTranscurrido = Date.now();
+const hoy = new Date(tiempoTranscurrido);
 var fechahoy = new Date().toISOString().slice(0, 10);
+
 var content = '';
 var datosP, descripcionP;
 
@@ -112,10 +114,10 @@ router.post('/generarCertificado', async (req, res) => {
     const certificado = {
         cedula: datos.CEDULA,
         descripcion: descripcion,
-        fecha: fecha
+        fecha: fechahoy
     }
 
-    //await pool.query('INSERT INTO CERTIFICADO set ?', [certificado])
+    await pool.query('INSERT INTO CERTIFICADO set ?', [certificado])
 
     const content = `
     <!DOCTYPE html>
@@ -212,10 +214,34 @@ router.post('/generarCertificado', async (req, res) => {
         }
     });
 
-
-
     req.flash('exito', 'Certificado generado exitosamente!');
     res.redirect('/pacientes');
+});
+
+router.get('/verCertificado', async (req, res) => {
+    const certificado = await pool.query('SELECT * FROM CERTIFICADO C, PACIENTES P WHERE C.CEDULA = P.CEDULA ')
+    //validar.arreglarVista(certificado)
+    res.render('eval/verCertificados', { certificado });
+});
+
+router.get('/verCertificado2/:id/:cedula', async (req, res) => {
+    //const {idcertificado, cedula} = req.params;
+    const idcertificado = req.params.id;
+    const cedula = req.params.cedula;
+    const certificado = await pool.query('SELECT * FROM CERTIFICADO WHERE IDCERTIFICADO = ?', [idcertificado])
+    console.log(idcertificado, cedula)
+    const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
+    res.render('eval/verCertificado2', { certificado: certificado[0], paciente: paciente[0]});
+});
+
+router.post('/buscar', async (req, res) => {
+
+    const { dato } = req.body;
+    //console.log(dato);
+    const certificado = await pool.query('SELECT * FROM CERTIFICADO WHERE CEDULA = ?', [dato])
+
+
+    res.render('eval/busqueda', { certificado });
 });
 
 module.exports = router

@@ -1,0 +1,85 @@
+<div class="container p-1 mb-5">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+
+            <div class="card w-100 mt-5">
+                <div class="card-body">
+                    <div class="col-2 p-2">
+                        <a href="/pacientes" type="button" class="btn btn-warning"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-90deg-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z" />
+                            </svg> Regresar</a>
+                    </div>
+                    <div class="container p-4">
+                        <h2 class="title text-center">
+                            Lista de certificados
+                        </h2>
+                        <div class="search p-3 m-2" style="backgorung-color: #000">     
+                            <form class="form mt-3" action="/evaluaciones/buscar" method="POST">
+                                <div class="input-group mb-3" width="60%">
+                                    <input type="text" class="form-control" name="dato"
+                                        placeholder="Búsqueda por cédula o nombre y apellido">
+                                    <div class="form-group">
+                                        <button class="btn btn-success btn-block w-100" id="boton">
+                                            Buscar
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <br>
+                        {{#each certificado}}
+                        <div class="card mb-3 text-center">
+                            <div class="card-header">
+                                Certificado generado el: {{FECHA}}
+                                <a href="/evaluaciones/verCertificado2/{{IDCERTIFICADO}}/{{CEDULA}}"
+                                    class="btn btn-secondary" style="width:5%; float: right;"> <svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                        <path
+                                            d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                    </svg></a>
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row g-2">
+                                    <div class="col-md mb-3">
+                                        <h5 class="card-title">Paciente</h5>
+                                        <p class="card-text">{{PRIMERNOMBRE}} {{SEGUNDONOMBRE}} {{APELLIDOPATERNO}}
+                                            {{APELLIDOMATERNO}}
+                                        </p>
+                                    </div>
+                                    <div class="col-md">
+                                        <h5 class="card-title">Descripcion</h5>
+                                        <p class="card-text">{{DESCRIPCION}}
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-center mb-3">
+                                    <label for="staticEmail" class=""> Cedula del paciente: {{CEDULA}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        {{else}}
+                        <div class="text-center">
+                            <p class="text-muted mt-2">
+                                Actualmente no se han generado certificados.
+                            </p>
+                        </div>
+
+                        {{/each}}
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
