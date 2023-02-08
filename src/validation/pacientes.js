@@ -3,11 +3,12 @@
 var error = '';
 
 function arreglarVista(objeto){
-    /*for(var i=0; i<objeto.length; i++){
-        objeto[i].ULTIMACITA = objeto[i].ULTIMACITA.toLocaleDateString();
+    for(var i=0; i<objeto.length; i++){
+        //objeto[i].ULTIMACITA = objeto[i].ULTIMACITA.toLocaleDateString();
         objeto[i].FECHA = objeto[i].FECHA.toLocaleDateString();
-        objeto[i].FECHANACIMIENTO = objeto[i].FECHANACIMIENTO.toLocaleDateString();
-    }*/
+        objeto[i].PROXIMACITA = objeto[i].PROXIMACITA.toLocaleDateString();
+        //objeto[i].FECHANACIMIENTO = objeto[i].FECHANACIMIENTO.toLocaleDateString();
+    }
 }
 
 ///FUNCIONES PARA VALIDAR CAMPOS

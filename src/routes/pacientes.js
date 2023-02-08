@@ -277,7 +277,7 @@ router.get('/editar/:cedula', async (req, res) => {
     //console.log(tel);
     paciente[0].TELEFONO = tel;
 
-    validar.arreglarVista(paciente)
+    //validar.arreglarVista(paciente)
 
     //console.log(paciente[0].TELEFONO, 'dato final');
 

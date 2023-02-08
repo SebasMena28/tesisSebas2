@@ -4,7 +4,7 @@ const pool = require('../basedatos');
 const validar = require('../validation/citas');
 
 router.get('/', async (req, res) => {
-    const citas = await pool.query('SELECT P.PRIMERNOMBRE, P.APELLIDOPATERNO, P.CEDULA, P.TELEFONO, C.IDCITANUEVA, C.FECHA, C.HORA FROM PACIENTES P, CITAS C WHERE P.CEDULA = C.CEDULA ORDER BY FECHA, HORA DESC;');
+    const citas = await pool.query('SELECT P.PRIMERNOMBRE, P.APELLIDOPATERNO, P.CEDULA, P.TELEFONO, C.IDCITANUEVA, C.FECHA, C.HORA, C.OBSERVACIONES FROM PACIENTES P, CITAS C WHERE P.CEDULA = C.CEDULA AND C.OBSERVACIONES != ? ORDER BY FECHA, HORA DESC;', ['CANCELADA']);
     //console.log(citas);
     validar.arreglarVista(citas)
     res.render('citas/citas', { citas });
@@ -23,7 +23,10 @@ router.get('/agendarCita/:cedula', async (req, res) => {
 
 router.post('/agendarCita/:cedula', async (req, res) => {
     const { cedula } = req.params;
+    var ruta = '/citas/agendarCita/' + cedula;
     //console.log(cedula);
+
+    const citas = await pool.query('SELECT * FROM CITAS')
 
     const { fecha, hora, observaciones } = req.body;
 
@@ -34,32 +37,43 @@ router.post('/agendarCita/:cedula', async (req, res) => {
         observaciones
     };
 
-    await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
+    /*await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
     //console.log(nuevaCita);
     req.flash('exito', 'Cita agregada correctamente');
-    res.redirect('/citas');
+    res.redirect('/citas');*/
 
     //console.log(nuevaCita);
 
-    /*if (validar.validarFecha(nuevaCita.fecha)) {
+    if (validar.validarFecha(nuevaCita.fecha)) {
         await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
         console.log(nuevaCita);
+        req.flash('exito', 'Cita agendada correctamente');
         res.redirect('/citas')
-        console.log('messirve')
+        /*if (validar.norepite(citas, nuevaCita)) {
+            await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
+            console.log(nuevaCita);
+            req.flash('exito', 'Cita agendada correctamente');
+            res.redirect('/citas')
+        }
+        else {
+            req.flash('fallo', 'Este horario ya se encuentra agendado');
+            res.redirect(ruta);
+        }*/
     }
-    else{
-        console.log('no es valida la fecha xd')
-    }*/
+    else {
+        req.flash('fallo', 'Las fechas no son permitidas');
+        res.redirect(ruta);
+    }
 });
 
 router.post('/nuevaCita', async (req, res) => {
     const { cedula } = req.body;
 
     const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
-    if(paciente != ''){
-        res.render('citas/guardarCita', {paciente: paciente[0]})
+    if (paciente != '') {
+        res.render('citas/guardarCita', { paciente: paciente[0] })
     }
-    else{
+    else {
         req.flash('fallo', 'El paciente no existe. Intente de nuevo');
         res.redirect('/citas/nuevaCita');
     }
@@ -90,13 +104,13 @@ router.post('/editarCita/:idcitanueva', async (req, res) => {
         hora,
         observaciones
     };
-    
+
     if (validar.validarFecha(cita.fecha)) {
         await pool.query('UPDATE CITAS set ? WHERE IDCITANUEVA = ?', [cita, idcitanueva]);
         console.log(cita, 'la cita actualizada');
         res.redirect('/citas');
     }
-    else{
+    else {
         console.log('esa fecha no es valida');
     }
 
@@ -116,15 +130,16 @@ router.post('/borrarCita/:idcitanueva', async (req, res) => {
     const idcitanueva = req.params;
     console.log(idcitanueva);
 
-    await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva]);
+    await pool.query('UPDATE CITAS set OBSERVACIONES = ? WHERE IDCITANUEVA = ?', ['CANCELADA', idcitanueva])
+    //await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva]);
 
     console.log('ya se debio eliminar')
     res.redirect('/citas');
 })
 
 router.post('/borrarcita/:idcitanueva', async (req, res) => {
-    const {idcitanueva} = req.params;
-    
+    const { idcitanueva } = req.params;
+
     await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva]);
 
     req.flash('exito', 'Cita eliminada ');

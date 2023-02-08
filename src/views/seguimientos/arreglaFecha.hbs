@@ -1,0 +1,168 @@
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card mb-5" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <form id="form" action="/seguimientos/nuevoSeguimiento/{{paciente.CEDULA}}" object="" method="POST">
+
+                                    <h2 class="title text-center mb-4">
+                                        Seguimiento de {{paciente.PRIMERNOMBRE}} {{paciente.APELLIDOPATERNO}}
+                                    </h2>
+
+                                    <div class="col-md">
+                                        <div class="form-floating mb-3">
+                                            <textarea name="diagnosticoinicial" class="form-control"
+                                                placeholder="Diagnostivo Inicial" id="floatingTextarea2"
+                                                style="height: 100px"></textarea>
+                                            <label for="floatingTextarea2">Diagnóstico Inicial</label>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md">
+                                        <div class="form-floating mb-3">
+                                            <textarea name="actividades" class="form-control" placeholder="Actividades"
+                                                id="floatingTextarea2" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea2">Actividades</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <textarea name="tareapaciente" class="form-control"
+                                                placeholder="Indicaciones" id="floatingTextarea2"
+                                                style="height: 100px"></textarea>
+                                            <label for="floatingTextarea2">Indicaciones</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8 mx-auto mt-3" style="width: 100%; height: 100%; ">
+                                        <div class="card card-body text-center" style="width: 100%; height: 100%;">
+                                            <p>Nueva cita.</p>
+                                            <div class="row g-2">
+                                                <div class="col-md">
+                                                    <div class="col-md">
+                                                        <div class="form-floating">
+                                                            <input type="date" name="proximacita" class="form-control">
+                                                            <label for="floatingInput">Fecha de la siguiente
+                                                                cita</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md mb-3">
+                                                    <div class="form-floating">
+                                                        <input type="time" min="16:00:00" max="22:00:00"
+                                                            name="proximahora" class="form-control" placeholder="Hora">
+                                                        <label for="floatingSelect">Hora</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <textarea name="observaciones" class="form-control"
+                                                        placeholder="Historia de la enfermedad" id="floatingTextarea2"
+                                                        style="height: 100px"></textarea>
+                                                    <label for="floatingTextarea2">Observaciones</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row g-2 mt-2">
+                                        <div class="col-md">
+                                            <div class="form-group p-3">
+                                                <a class="btn btn-warning btn-block w-100" href="/pacientes/datos/{{paciente.CEDULA}}">
+                                                    Regresar
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-group p-3">
+                                                <button id="button" class="btn btn-success btn-block w-100">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                                <!--<script type="text/javascript"
+                                    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+                                <script type="text/javascript">
+                                    emailjs.init('6mzQ8O_Y05EEQ1fb4')
+                                </script>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    body {
+        /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
+        background-color: #6495ed;
+        /* Fijar la imagen de fondo este vertical y
+    horizontalmente y centrado */
+        background-position: center center;
+
+        /* Esta imagen no debe de repetirse */
+        background-repeat: no-repeat;
+
+        /* COn esta regla fijamos la imagen en la pantalla. */
+        background-attachment: fixed;
+
+        /* La imagen ocupa el 100% y se reescala */
+        background-size: cover;
+    }
+
+    img {
+        background-repeat: no-repeat;
+
+        /* COn esta regla fijamos la imagen en la pantalla. */
+        background-attachment: fixed;
+
+        /* La imagen ocupa el 100% y se reescala */
+        background-size: cover;
+    }
+
+    .card {
+        border: solid 1px;
+        border-radius: 15px;
+    }
+</style>
+<!--
+<script>
+    const btn = document.getElementById('button');
+
+    document.getElementById('form')
+        .addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            btn.value = 'Enviando...';
+
+            const serviceID = 'default_service';
+            const templateID = 'template_fnhq168';
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    btn.value = 'Enviado';
+                    alert('Sent!');
+                }, (err) => {
+                    btn.value = 'Send Email';
+                    alert(JSON.stringify(err));
+                });
+        });
+</script>-->

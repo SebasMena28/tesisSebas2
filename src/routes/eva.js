@@ -206,7 +206,7 @@ router.post('/generarCertificado', async (req, res) => {
     </body>
 `;
 
-    pdf.create(content).toFile('./certificado.pdf', function (err, res) {
+    pdf.create(content).toFile('./certificado-'+datos.CEDULA+'.pdf', function (err, res) {
         if (err) {
             console.log(err);
         } else {

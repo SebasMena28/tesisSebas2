@@ -34,6 +34,15 @@ router.get('/nuevoSeguimiento/:cedula', async (req, res) => {
     res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
 });
 
+router.get('/arreglarFecha/:cedula', async (req, res) => {
+    const { cedula } = req.params;
+    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
+    const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
+    console.log(pacientes[0])
+    console.log(seguimiento);
+    res.render('evaluaciones/datos', { pacientes: pacientes[0], seguimiento });
+});
+
 router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
     const { cedula } = req.params;
     const { diagnosticoinicial, actividades, tareapaciente, proximacita, proximahora, observaciones } = req.body;
@@ -44,9 +53,9 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
         hora: proximahora,
         observaciones
     };
-    console.log(nuevaCita.fecha);
+    //console.log(nuevaCita.fecha);
 
-    await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
+    
     //console.log(nuevaCita);
     //console.log('messirve');
 
@@ -60,8 +69,9 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
         fecha: fechahoy
     }
 
+    await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
+
     await pool.query('INSERT INTO SEGUIMIENTO set ?', [nuevoSeguimiento]);
-    console.log(nuevoSeguimiento, 'este es el seguimiento');
 
     const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
     const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
@@ -94,8 +104,9 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
         res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
     }
     else{
-        req.flash('Datos de la fecha inválidos. Intente de nuevo');
-        res.redirect('/seguimientos/:cedula');
+        var ruta = '/citas/agendarCita/' + cedula;
+        req.flash('fallo', 'La fecha no es permitida. Re agende la cita por favor');
+        res.redirect(ruta);
         //console.log('no es valida la fecha xd')
     }*/
 
