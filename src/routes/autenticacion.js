@@ -20,7 +20,7 @@ router.post('/autenticacion/inicio', async (req, res) => {
     //console.log(existe);
     if (existe != '') {
         //res.render('layouts/main', { iniciar });
-        req.flash('exito', 'Inicio de sesión exitoso. Bienvenid@')
+        req.flash('exito', 'Inicio de sesión exitoso. Bienvenida Psc. Cintia Morales')
         res.redirect('/pacientes')
     }
     else {

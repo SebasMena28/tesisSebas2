@@ -244,4 +244,27 @@ router.post('/buscar', async (req, res) => {
     res.render('eval/busqueda', { certificado });
 });
 
+router.get('/nCertificado', async (req, res) => {
+    //const certificado = await pool.query('SELECT * FROM CERTIFICADO C, PACIENTES P WHERE C.CEDULA = P.CEDULA ')
+    //validar.arreglarVista(certificado)
+    res.render('eval/buscarPacCer');
+});
+
+router.post('/nCertificado', async (req, res) => {
+    const { cedula } = req.body;
+
+    const evaluacion = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
+
+    if (evaluacion != '') {
+        res.render('eval/nuevoCertificado', { evaluacion: evaluacion[0] });
+    }
+    else {
+        req.flash('fallo', 'El paciente no existe. Intente de nuevo');
+        res.redirect('/evaluaciones/ncertificado');
+    }
+});
+
+
+
+
 module.exports = router

@@ -59,7 +59,7 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
     //console.log(nuevaCita);
     //console.log('messirve');
 
-    const nuevoSeguimiento = {
+    /*const nuevoSeguimiento = {
         cedula: cedula,
         diagnosticoinicial,
         actividades,
@@ -77,12 +77,10 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
     const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
     validar.arreglarVista(seguimiento)
     //req.flash('exito', 'Seguimiento registrado exitosamente')
-    res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
+    res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });*/
 
-    /*if (validar.validarFecha(nuevaCita.fecha)) {
+    if (validar.validarFecha(nuevaCita.fecha)) {
         await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
-        console.log(nuevaCita);
-        console.log('messirve');
 
         const nuevoSeguimiento = {
             cedula: cedula,
@@ -100,17 +98,13 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
         const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
         const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
         validar.arreglarVista(seguimiento)
-        //req.flash('exito', 'Seguimiento registrado exitosamente')
         res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
     }
     else{
-        var ruta = '/citas/agendarCita/' + cedula;
-        req.flash('fallo', 'La fecha no es permitida. Re agende la cita por favor');
+        var ruta = '/seguimientos/' + cedula;
+        req.flash('fallo', 'La fecha no es permitida. Intente de nuevo por favor');
         res.redirect(ruta);
-        //console.log('no es valida la fecha xd')
-    }*/
-
-
+    }
 });
 
 router.get('/verSeguimiento/:id', async (req, res) => {
@@ -123,6 +117,7 @@ router.get('/verSeguimiento/:id', async (req, res) => {
 
 router.get('/borrar/:id', async (req, res) => {
     const { id } = req.params;
+ 
     const seg = await pool.query('SELECT * FROM SEGUIMIENTO WHERE ID = ?', [id])
     if (seg == undefined) {
         const cedula = ced;

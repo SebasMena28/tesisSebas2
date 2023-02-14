@@ -11,6 +11,7 @@
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
+
                                 <form action="/citas/agendarCita/{{paciente.CEDULA}}" object="" method="POST">
 
                                     <h2 class="title text-center mb-4">
@@ -42,8 +43,7 @@
                                                 <label for="inputPassword" class="col-sm-2 col-form-label">Cédula:
                                                 </label>
                                                 <div class="col-sm-10">
-                                                    <input type="text" name="nombre"
-                                                        value="{{paciente.CEDULA}}"
+                                                    <input type="text" name="nombre" value="{{paciente.CEDULA}}"
                                                         class="form-control-plaintext" id="inputPassword" readonly>
                                                 </div>
                                             </div>
@@ -60,7 +60,7 @@
                                             <div class="col-md">
                                                 <div class="form-floating mb-3">
                                                     <input type="date" name="fecha" class="form-control"
-                                                        placeholder="Fecha de la cita" required>
+                                                        placeholder="Fecha de la cita">
                                                     <label for="floatingInput">Fecha</label>
                                                 </div>
                                             </div>
@@ -69,7 +69,7 @@
                                             <div class="col-md mb-3">
                                                 <div class="form-floating mb-3">
                                                     <input type="time" min="16:00:00" max="22:00:00" name="hora"
-                                                        class="form-control" placeholder="Hora" required>
+                                                        class="form-control" placeholder="Hora">
                                                     <label for="floatingSelect">Hora</label>
                                                 </div>
                                             </div>
@@ -84,10 +84,8 @@
                                             </div>
 
                                         </div>
-
-
                                         <div class="row g-2">
-                                            <div class="col-md mb-3">
+                                            <div class="col-md">
                                                 <div class="form-group p-3">
                                                     <a class="btn btn-warning btn-block w-100" href="/citas">
                                                         Regresar
@@ -96,13 +94,21 @@
                                             </div>
                                             <div class="col-md">
                                                 <div class="form-group p-3">
-                                                    <button class="btn btn-success btn-block w-100">
-                                                        Guardar
-                                                    </button>
+                                                    <a class="btn btn-dark btn-block w-100"
+                                                        href="/citas/lista/{{paciente.CEDULA}}">
+                                                        Ver citas actuales
+                                                    </a>
                                                 </div>
                                             </div>
-                                        </div>
 
+                                        </div>
+                                        <div class="col-md mb-2">
+                                            <div class="form-group p-3">
+                                                <button class="btn btn-success btn-block w-100">
+                                                    Guardar
+                                                </button>
+                                            </div>
+                                        </div>
                                 </form>
                             </div>
                         </div>
@@ -146,10 +152,11 @@
         border-radius: 15px;
     }
 
-    .btn{
+    .btn {
         width: "100%";
     }
-    .contenedor{
+
+    .contenedor {
         /*display: none;*/
     }
 

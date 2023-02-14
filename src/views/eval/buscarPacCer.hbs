@@ -1,22 +1,21 @@
 <section class="vh-100">
     <div class="container py-5 h-100">
-        
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col col-xl-10">
                 <div class="card mb-3" style="border-radius: 1rem;">
                     <div class="row g-0">
-                        
                         <div class="col-md-6 col-lg-5 d-none d-md-block">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                                alt="login form" class="img-fluid"
-                                style="border-radius: 1rem 0 0 1rem; height: 100%;" />
+                            <img src="https://consultoriomga.com/wp-content/uploads/2016/05/evaluacion-psicologica.jpg"
+                                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%;" />
                         </div>
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
-                                <form action="/citas/nuevaCita" object="" method="POST">
+                                <form action="/evaluaciones/nCertificado" object="" method="POST">
+
                                     <h2 class="title text-center mb-4">
-                                        Nueva Cita
+                                        Ingrese la cédula del paciente para generar el certificado
                                     </h2>
+
                                     <div class="row g-2">
                                         <div class="col-md mb-3">
                                             <div class="form-floating mb-2  ">
@@ -28,21 +27,21 @@
                                     </div>
 
                                     <div class="row g-2">
-                                        <div class="col-md mb-3">
-                                            <div class="form-group p-3">
-                                                <a class="btn btn-warning btn-block w-100" href="/citas">
-                                                    Regresar
-                                                </a>
+                                            <div class="col-md mb-3">
+                                                <div class="form-group p-3">
+                                                    <a class="btn btn-warning btn-block w-100" href="/pacientes">
+                                                        Regresar
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="form-group p-3">
+                                                    <button class="btn btn-success btn-block w-100">
+                                                        Continuar
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md">
-                                            <div class="form-group p-3">
-                                                <button class="btn btn-success btn-block w-100">
-                                                    Continuar
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                 </form>
                             </div>
@@ -101,11 +100,10 @@
         border-radius: 15px;
     }
 
-    .btn {
+    .btn{
         width: "100%";
     }
-
-    .contenedor {
+    .contenedor{
         /*display: none;*/
     }
 

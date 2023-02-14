@@ -108,10 +108,13 @@ router.post('/editarCita/:idcitanueva', async (req, res) => {
     if (validar.validarFecha(cita.fecha)) {
         await pool.query('UPDATE CITAS set ? WHERE IDCITANUEVA = ?', [cita, idcitanueva]);
         console.log(cita, 'la cita actualizada');
+        req.flash('exito','Cita actualizada!');
         res.redirect('/citas');
     }
     else {
-        console.log('esa fecha no es valida');
+        //console.log('esa fecha no es valida');
+        req.flash('fallo','La cita no puede tomar esa fecha, intente de nuevo');
+        res.redirect('/citas');
     }
 
 
@@ -145,6 +148,13 @@ router.post('/borrarcita/:idcitanueva', async (req, res) => {
     req.flash('exito', 'Cita eliminada ');
     res.redirect('/citas');
 
+});
+
+router.get('/lista/:cedula', async (req, res) => {
+    const { cedula } = req.params;
+    const citas = await pool.query('SELECT * FROM CITAS C, PACIENTES P WHERE C.CEDULA = P.CEDULA ORDER BY FECHA DESC');
+    validar.arreglarVista(citas)
+    res.render('citas/lista', {citas, cedula})
 });
 
 
