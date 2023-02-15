@@ -43,6 +43,11 @@ router.get('/arreglarFecha/:cedula', async (req, res) => {
     res.render('evaluaciones/datos', { pacientes: pacientes[0], seguimiento });
 });
 
+function arreglarFecha(string) {
+    var fech = string.split('/');
+    return fech[0];
+}
+
 router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
     const { cedula } = req.params;
     const { diagnosticoinicial, actividades, tareapaciente, proximacita, proximahora, observaciones } = req.body;
@@ -55,7 +60,7 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
     };
     //console.log(nuevaCita.fecha);
 
-    
+
     //console.log(nuevaCita);
     //console.log('messirve');
 
@@ -80,7 +85,24 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
     res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });*/
 
     if (validar.validarFecha(nuevaCita.fecha)) {
-        await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
+
+
+        var dato = nuevaCita.fecha;
+        const date = arreglarFecha(dato);
+        const hora = nuevaCita.hora + ':00'
+        const existe = await pool.query('SELECT * FROM CITAS WHERE FECHA = ? AND HORA = ?', [date, hora])
+
+        if (existe != '') {
+            var ruta = '/seguimientos/' + cedula;
+            req.flash('fallo', 'EL horario ya está ocupado. Intente de nuevo por favor');
+            res.redirect(ruta);
+        }
+        else {
+            await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
+            //console.log(nuevaCita);
+            req.flash('exito', 'Cita agendada correctamente');
+            res.redirect('/citas')
+        }
 
         const nuevoSeguimiento = {
             cedula: cedula,
@@ -91,16 +113,16 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
             proximahora,
             fecha: fechahoy
         }
-    
+
         await pool.query('INSERT INTO SEGUIMIENTO set ?', [nuevoSeguimiento]);
         console.log(nuevoSeguimiento, 'este es el seguimiento');
-    
+
         const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
         const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
         validar.arreglarVista(seguimiento)
         res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
     }
-    else{
+    else {
         var ruta = '/seguimientos/' + cedula;
         req.flash('fallo', 'La fecha no es permitida. Intente de nuevo por favor');
         res.redirect(ruta);
@@ -117,7 +139,7 @@ router.get('/verSeguimiento/:id', async (req, res) => {
 
 router.get('/borrar/:id', async (req, res) => {
     const { id } = req.params;
- 
+
     const seg = await pool.query('SELECT * FROM SEGUIMIENTO WHERE ID = ?', [id])
     if (seg == undefined) {
         const cedula = ced;
