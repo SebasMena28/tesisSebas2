@@ -131,11 +131,14 @@ router.get('/borrarCita/:cita', async (req, res) => {
 });
 
 router.post('/borrarCita/:idcitanueva', async (req, res) => {
-    const idcitanueva = req.params;
+    const {idcitanueva} = req.params;
     console.log(idcitanueva);
-    await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva]);
-    res.redirect('/citas');
-})
+    if(1 == 1){
+        await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva]);
+        req.flash('exito','Cita eliminada');
+        res.redirect('/citas');
+    }
+});
 
 router.post('/borrarcita/:idcitanueva', async (req, res) => {
     const { idcitanueva } = req.params;

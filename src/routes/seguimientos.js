@@ -109,7 +109,7 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
 
 router.get('/verSeguimiento/:id', async (req, res) => {
     const { id } = req.params;
-    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE ID = ?', [id]);
+    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO S, PACIENTES P WHERE S.ID = ? AND S.CEDULA = P.CEDULA', [id]);
     validar.arreglarVista(seguimiento)
     console.log(seguimiento);
     res.render('seguimientos/verSeguimiento', { seguimiento: seguimiento[0] });
