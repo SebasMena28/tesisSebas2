@@ -54,7 +54,8 @@ router.get('/evaluacionesPaciente/:cedula', async (req, res) => {
 router.get('/verEvaluacion/:id', async (req, res) => {
     const { id } = req.params;
     console.log(id);
-    const evaluacion = await pool.query('SELECT * FROM EVALUACIONPSICOLOGICA WHERE ID = ?', [id])
+    const evaluacion = await pool.query('SELECT * FROM EVALUACIONPSICOLOGICA E, PACIENTES P WHERE E.ID = ? AND P.CEDULA = E.CEDULA', [id]);
+    console.log(evaluacion);
     validar.arreglarVista(evaluacion)
     res.render('eval/verEvaluacion', { evaluacion: evaluacion[0] });
 });

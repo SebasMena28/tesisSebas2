@@ -95,8 +95,8 @@ router.get('/editarCita/:cedula/:id', async (req, res) => {
     res.render('citas/editarCita', { cita: cita[0] })
 });
 
-router.post('/editarCita/:idcitanueva', async (req, res) => {
-    const idcitanueva = req.params;
+router.post('/editarCita/:idcitanueva/:cedula', async (req, res) => {
+    const {idcitanueva, cedula} = req.params;
     console.log(idcitanueva);
     const { fecha, hora, observaciones } = req.body;
     const cita = {
@@ -107,14 +107,15 @@ router.post('/editarCita/:idcitanueva', async (req, res) => {
 
     if (validar.validarFecha(cita.fecha)) {
         await pool.query('UPDATE CITAS set ? WHERE IDCITANUEVA = ?', [cita, idcitanueva]);
-        console.log(cita, 'la cita actualizada');
+        //console.log(cita, 'la cita actualizada');
         req.flash('exito','Cita actualizada!');
         res.redirect('/citas');
     }
     else {
         //console.log('esa fecha no es valida');
+        var ruta = '/citas/editarCita/'+ '' + idcitanueva + '/' + cedula 
         req.flash('fallo','La cita no puede tomar esa fecha, intente de nuevo');
-        res.redirect('/citas');
+        res.redirect(ruta);
     }
 
 
@@ -132,11 +133,7 @@ router.get('/borrarCita/:cita', async (req, res) => {
 router.post('/borrarCita/:idcitanueva', async (req, res) => {
     const idcitanueva = req.params;
     console.log(idcitanueva);
-
-    await pool.query('UPDATE CITAS set OBSERVACIONES = ? WHERE IDCITANUEVA = ?', ['CANCELADA', idcitanueva])
-    //await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva]);
-
-    console.log('ya se debio eliminar')
+    await pool.query('DELETE FROM CITAS WHERE IDCITANUEVA = ?', [idcitanueva]);
     res.redirect('/citas');
 })
 
