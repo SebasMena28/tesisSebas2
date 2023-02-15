@@ -220,7 +220,7 @@ router.post('/generarCertificado', async (req, res) => {
 
 router.get('/verCertificado', async (req, res) => {
     const certificado = await pool.query('SELECT * FROM CERTIFICADO C, PACIENTES P WHERE C.CEDULA = P.CEDULA ')
-    //validar.arreglarVista(certificado)
+    validar.arreglarVista(certificado)
     res.render('eval/verCertificados', { certificado });
 });
 
@@ -229,7 +229,7 @@ router.get('/verCertificado2/:id/:cedula', async (req, res) => {
     const idcertificado = req.params.id;
     const cedula = req.params.cedula;
     const certificado = await pool.query('SELECT * FROM CERTIFICADO WHERE IDCERTIFICADO = ?', [idcertificado])
-    console.log(idcertificado, cedula)
+    validar.arreglarVista(certificado)
     const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
     res.render('eval/verCertificado2', { certificado: certificado[0], paciente: paciente[0]});
 });
@@ -237,10 +237,8 @@ router.get('/verCertificado2/:id/:cedula', async (req, res) => {
 router.post('/buscar', async (req, res) => {
 
     const { dato } = req.body;
-    //console.log(dato);
     const certificado = await pool.query('SELECT * FROM CERTIFICADO WHERE CEDULA = ?', [dato])
-
-
+    validar.arreglarVista(certificado)
     res.render('eval/busqueda', { certificado });
 });
 
