@@ -20,7 +20,7 @@ function norepite(objeto1, objeto2){
 
 
 function validarFecha(fecha) {
-    return (Date.parse(fechahoy) < Date.parse(fecha))
+    return (Date.parse(fechahoy) <= Date.parse(fecha))
 }
 
 module.exports = {

@@ -127,6 +127,14 @@ router.post('/nuevoPaciente', async (req, res) => {
     }
 });
 
+router.get('/nuevaHistoria', async (req, res) => {
+    res.render('pacientes/nuevaHistoria')
+});
+
+router.get('/nuevaFuncion', async (req, res) => {
+    res.render('pacientes/nuevaFuncion')
+});
+
 
 router.post('/nuevaHistoria', async (req, res) => {
 
