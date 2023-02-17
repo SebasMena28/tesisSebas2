@@ -94,14 +94,14 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
 
         if (existe != '') {
             var ruta = '/seguimientos/' + cedula;
-            req.flash('fallo', 'EL horario ya está ocupado. Intente de nuevo por favor');
+            req.flash('fallo', 'El horario ya está ocupado. Intente de nuevo por favor');
             res.redirect(ruta);
         }
         else {
             await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
             //console.log(nuevaCita);
-            req.flash('exito', 'Cita agendada correctamente');
-            res.redirect('/citas')
+            req.flash('exito', 'Seguimiento almacenado con éxito');
+            res.redirect('/pacientes')
         }
 
         const nuevoSeguimiento = {

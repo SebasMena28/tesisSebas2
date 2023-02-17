@@ -28,7 +28,7 @@
 <body>
 
     <div class="area">
-        <nav class="main-menu">
+        <nav class="main-menu" id="mmm0">
             <ul>
 
                 <li class="has-subnav">
@@ -98,13 +98,13 @@
     </div>
 
 
-<div>
-    {{> mensajes}}
+    <div>
+        {{> mensajes}}
 
-    {{{
-    body
-    }}}
-</div>
+        {{{
+        body
+        }}}
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -116,13 +116,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script>
+        /*let cert = document.getElementById('certi');
+        let cosa0 = document.getElementById('mmm0');
+        let cosa1 = document.getElementById('mmm1');
+        let cosa2 = document.getElementById('mmm2');
+        let cosa3 = document.getElementById('mmm3');
+        cert.addEventListener('click', (e) => {
+            e.preventDefault();
+            cosa0.
+            window.print();
+        });
+
+    </script>
 
 </body>
 
 </html>
 
 <style>
-
     body {
         /*background-image: url(https://www.universidades.com.ec/img/article/que-cantidad-de-psicologos-hay-en-ecuador);*/
         background-color: #6495ed;
@@ -139,6 +151,7 @@
         /* La imagen ocupa el 100% y se reescala */
         background-size: cover;
     }
+
     .nav-item:hover {
         transform: scale(1.1, 1.1);
         cursor: pointer;
