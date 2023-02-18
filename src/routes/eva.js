@@ -238,7 +238,7 @@ router.get('/verCertificado2/:id/:cedula', async (req, res) => {
 router.post('/buscar', async (req, res) => {
 
     const { dato } = req.body;
-    const certificado = await pool.query('SELECT * FROM CERTIFICADO WHERE CEDULA = ?', [dato])
+    const certificado = await pool.query('SELECT * FROM CERTIFICADO C, PACIENTES P WHERE C.CEDULA = ? AND P.CEDULA = C.CEDULA', [dato])
     validar.arreglarVista(certificado)
     res.render('eval/busqueda', { certificado });
 });
