@@ -100,8 +100,7 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
         else {
             await pool.query('INSERT INTO CITAS set ?', [nuevaCita])
             //console.log(nuevaCita);
-            req.flash('exito', 'Seguimiento almacenado con éxito');
-            res.redirect('/pacientes')
+            
         }
 
         const nuevoSeguimiento = {
@@ -118,9 +117,9 @@ router.post('/nuevoSeguimiento/:cedula', async (req, res) => {
         console.log(nuevoSeguimiento, 'este es el seguimiento');
 
         const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ? ORDER BY ID DESC', [cedula])
-        const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
         validar.arreglarVista(seguimiento)
-        res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
+        req.flash('exito', 'Seguimiento almacenado con éxito');
+        res.redirect('/pacientes/datos/'+cedula);
     }
     else {
         var ruta = '/seguimientos/' + cedula;
@@ -140,7 +139,7 @@ router.get('/verSeguimiento/:id', async (req, res) => {
 router.get('/borrar/:id', async (req, res) => {
     const { id } = req.params;
 
-    const seg = await pool.query('SELECT * FROM SEGUIMIENTO WHERE ID = ?', [id])
+    /*const seg = await pool.query('SELECT * FROM SEGUIMIENTO WHERE ID = ?', [id])
     if (seg == undefined) {
         const cedula = ced;
         const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE CEDULA = ?', [cedula])
@@ -156,8 +155,20 @@ router.get('/borrar/:id', async (req, res) => {
         const pacientes = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula]);
         validar.arreglarVista(seguimiento);
         res.render('pacientes/datos', { pacientes: pacientes[0], seguimiento });
-    }
+    }*/
+
+    const seguimiento = await pool.query('SELECT * FROM SEGUIMIENTO WHERE ID = ?', [id])
+    validar.arreglarVista(seguimiento);
+    res.render('seguimientos/borrarSeguimiento', { seguimiento: seguimiento[0]});
 
 })
+
+router.post('/borrarSeguimiento/:id/:cedula', async (req, res) => {
+    const id = req.params.id;
+    const cedula = req.params.cedula;
+    await pool.query('DELETE FROM SEGUIMIENTO WHERE ID = ?', [id]);
+    req.flash('exito', 'Evaluacion eliminada correctamente');
+    res.redirect('/pacientes/datos/'+cedula);
+});
 
 module.exports = router;
