@@ -149,7 +149,7 @@ router.post('/generarCertificado', async (req, res) => {
                                 <div class="text-center">
                                     <img src="https://pbs.twimg.com/profile_images/1158408311932432384/bjvit15u_400x400.jpg"
                                         height="100" width="100">
-                                </div>
+                                </div>  
                             </div>
                             <br>
                             <div class="text-center">
@@ -279,6 +279,132 @@ router.post('/nCertificado', async (req, res) => {
         req.flash('fallo', 'El paciente no existe. Intente de nuevo');
         res.redirect('/evaluaciones/ncertificado');
     }
+});
+
+
+router.post('/repetirCertificado/:idcertificado', async (req, res) => {
+
+    const { idcertificado } = req.params;
+    console.log(idcertificado);
+    const pdf = require('html-pdf');
+
+    var datos = await pool.query('SELECT P.CEDULA, P.PRIMERNOMBRE, P.SEGUNDONOMBRE, P.APELLIDOPATERNO, P.APELLIDOMATERNO, C.DESCRIPCION, C.FECHA FROM CERTIFICADO C, PACIENTES P WHERE C.IDCERTIFICADO = ? AND P.CEDULA = C.CEDULA', [idcertificado])
+
+    validar.arreglarVista(datos);
+    const content = `
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCUMEDIC - Psicologia</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel='stylesheet' href=''>
+</head>
+
+<body>
+
+    <div class="container p-1 mb-5">
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+
+                <div class="card w-100 mt-5">
+                    <div class="card-body">
+                        <div class="container p-4" id="todo">
+                            <div class="col-2 p-2">
+                                <div class="text-center">
+                                    <img src="https://pbs.twimg.com/profile_images/1158408311932432384/bjvit15u_400x400.jpg"
+                                        height="100" width="100">
+                                </div>  
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <h2 class="texto">
+                                    CERTIFICADO DE SALUD MENTAL PSICOLOGICA
+                                </h2>
+                            </div>
+
+                            <div class="text-center">
+                                <h3 class="texto">
+                                    El que suscribe la psicológica Cintia Morales, personal psicológico de la clínica
+                                    OCUMEDIC
+                                </h3>
+                            </div>
+                            <br>
+
+                            <h3 class="text-center">
+                                HACE CONSTAR QUE:
+                            </h3>
+
+                            <br>
+
+                            <h3 class="p-5">
+                                El/la paciente <strong>` + datos[0].APELLIDOPATERNO + ` ` + datos[0].APELLIDOMATERNO + ` ` +
+                                    datos[0].PRIMERNOMBRE + ` ` + datos[0].SEGUNDONOMBRE + `<strong> con cédula de identidad
+                                        <strong>`+ datos[0].CEDULA + `</strong>, ha sido evaluada, presentando a la fecha:
+                                        <strong>`+ datos[0].DESCRIPCION + `</strong>
+                            </h3>
+
+                            <br>
+                            <br>
+
+                            <div class="text-center">
+                                <h3 class="text-center">
+                                    <strong>Riobamba, ` + datos[0].FECHA + `</strong>
+                                </h3>
+                            </div>
+
+                            <br>
+                            <br>
+                            <br>
+
+                            <footer>
+                                <div class="container p-3">
+                                    <div class="row text-center text-black">
+                                        <div class="col ml-auto">
+                                            <h6>OCUMEDIC - Olmedo y Pichinca - Riobamba - Tlf: 098 383 4551</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+`;
+
+    pdf.create(content).toFile('C:\\Users\\Usuario\\Desktop\\certificado-'+datos[0].CEDULA+'.pdf', function (err, res) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(res);
+        }
+    });
+
+    req.flash('exito', 'Certificado generado exitosamente!');
+    res.redirect('/pacientes');
 });
 
 router.get('/borrarCertificado/:id/:cedula', async (req, res) => {
