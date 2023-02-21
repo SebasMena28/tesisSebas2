@@ -174,8 +174,8 @@ router.post('/generarCertificado', async (req, res) => {
 
                             <h3 class="p-5">
                                 El/la paciente <strong>` + datos.APELLIDOPATERNO + ` ` + datos.APELLIDOMATERNO + ` ` +
-                                    datos.PRIMERNOMBRE + ` ` + datos.SEGUNDONOMBRE + `<strong> con cédula de identidad
-                                        <strong>`+ datos.CEDULA + `</strong>, ha sido evaluada, presentando a la fecha:
+                                    datos.PRIMERNOMBRE + ` ` + datos.SEGUNDONOMBRE + `</strong> con cédula de identidad
+                                        <strong>`+ datos.CEDULA + `</strong>, ha sido evaluad@, presentando a la fecha:
                                         <strong>`+ descripcion + `</strong>
                             </h3>
 
@@ -344,8 +344,8 @@ router.post('/repetirCertificado/:idcertificado', async (req, res) => {
 
                             <h3 class="p-5">
                                 El/la paciente <strong>` + datos[0].APELLIDOPATERNO + ` ` + datos[0].APELLIDOMATERNO + ` ` +
-                                    datos[0].PRIMERNOMBRE + ` ` + datos[0].SEGUNDONOMBRE + `<strong> con cédula de identidad
-                                        <strong>`+ datos[0].CEDULA + `</strong>, ha sido evaluada, presentando a la fecha:
+                                    datos[0].PRIMERNOMBRE + ` ` + datos[0].SEGUNDONOMBRE + `</strong> con cédula de identidad
+                                        <strong>`+ datos[0].CEDULA + `</strong>, ha sido evaluad@, presentando a la fecha:
                                         <strong>`+ datos[0].DESCRIPCION + `</strong>
                             </h3>
 
