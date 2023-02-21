@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../basedatos');
 const validar = require('../validation/eval');
+const {CreateOptions} = require('html-pdf')
 
 //const tiempoTranscurrido = Date.now();
 //const hoy = new Date(tiempoTranscurrido);
@@ -130,7 +131,7 @@ router.post('/generarCertificado', async (req, res) => {
 
     <body>
         <style>
-            .container {
+            .card {
                 display: grid;
                 place-items: center;
             }
@@ -149,13 +150,13 @@ router.post('/generarCertificado', async (req, res) => {
                                     </div>
                                 </div>
                                 <div>
-                                    <h2 class="title text-center">
+                                    <h2 class="texto">
                                         CERTIFICADO DE SALUD MENTAL PSICOLOGICA
                                     </h2>
                                 </div>
 
 
-                                <h3 class="text-center">
+                                <h3 class="texto">
                                     El que suscribe la psicológica Cintia Morales, personal psicológico de la clínica
                                     OCUMEDIC
                                 </h3>
@@ -261,6 +262,37 @@ router.post('/nCertificado', async (req, res) => {
         req.flash('fallo', 'El paciente no existe. Intente de nuevo');
         res.redirect('/evaluaciones/ncertificado');
     }
+});
+
+router.get('/borrarCertificado/:id/:cedula', async (req, res) => {
+    const idcertificado = req.params.id;
+    const cedula = req.params.cedula;
+    const certificado = await pool.query('SELECT * FROM CERTIFICADO WHERE IDCERTIFICADO = ?', [idcertificado])
+    validar.arreglarVista(certificado)
+    const paciente = await pool.query('SELECT * FROM PACIENTES WHERE CEDULA = ?', [cedula])
+    res.render('eval/borrarCertificado', { certificado: certificado[0], paciente: paciente[0]});
+});
+
+router.post('/borrarCertificado/:id', async (req, res) => {
+    const idcertificado = req.params.id;
+    await pool.query('DELETE FROM CERTIFICADO WHERE IDCERTIFICADO = ?', [idcertificado]);
+    req.flash('exito', 'Certificado eliminado correctamente');
+    res.redirect('/evaluaciones/verCertificado');
+});
+
+router.get('/borrarEvaluacion/:id', async (req, res) => {
+    const id = req.params.id;
+    const evaluacion = await pool.query('SELECT * FROM EVALUACIONPSICOLOGICA WHERE ID = ?', [id])
+    validar.arreglarVista(evaluacion);
+    res.render('eval/borrarEvaluacion', { evaluacion: evaluacion[0]});
+});
+
+router.post('/borrarEvaluacion/:id/:cedula', async (req, res) => {
+    const id = req.params.id;
+    const cedula = req.params.cedula;
+    await pool.query('DELETE FROM EVALUACIONPSICOLOGICA WHERE ID = ?', [id]);
+    req.flash('exito', 'Evaluacion eliminada correctamente');
+    res.redirect('/evaluaciones/evaluacionesPaciente/'+cedula);
 });
 
 

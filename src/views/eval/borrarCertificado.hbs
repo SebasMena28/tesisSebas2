@@ -4,6 +4,7 @@
 
             <div class="card w-100 mt-5">
                 <div class="card-body">
+                    
                     <div class="col-2 p-2">
                         <a href="/evaluaciones/verCertificado" type="button" class="btn btn-warning"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -12,6 +13,9 @@
                                     d="M1.146 4.854a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H12.5A2.5 2.5 0 0 1 15 6.5v8a.5.5 0 0 1-1 0v-8A1.5 1.5 0 0 0 12.5 5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4z" />
                             </svg> Regresar</a>
                     </div>
+                    <h1 class="title text-center">
+                            ¿Realmente desea eliminar este certificado?
+                    </h1>
                     <div class="container p-4">
                         <div class="col-2 p-2">
                             <div class="text-center">
@@ -67,7 +71,7 @@
                         </div>
                     </footer>
 
-                    <form action="/evaluaciones/generarCertificado" object="" method="POST">
+                    <form action="/evaluaciones/borrarCertificado/{{certificado.IDCERTIFICADO}}" object="" method="POST">
                         <div class="row g-2">
                             <div class="col-md ">
                                 <div class="form-group">
@@ -79,8 +83,8 @@
                             </div>
                             <div class="col-md">
                                 <div class="form-group">
-                                    <button class="btn btn-success btn-block w-100">
-                                        Generar PDF
+                                    <button class="btn btn-danger btn-block w-100">
+                                        Borrar certificado
                                     </button>
                                 </div>
                             </div>
