@@ -123,89 +123,106 @@ router.post('/generarCertificado', async (req, res) => {
 
     const content = `
     <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
-    <head>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCUMEDIC - Psicologia</title>
 
-    </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel='stylesheet' href=''>
+</head>
 
-    <body>
-        <style>
-            .card {
-                display: grid;
-                place-items: center;
-            }
-        </style>
-        <div class="container p-1 mb-5">
-            <div class="row">
-                <div class="col-md-12 mx-auto">
+<body>
 
-                    <div class="card w-100 mt-5">
-                        <div class="card-body">
-                            <div class="container p-4" id="todo">
-                                <div class="col-2 p-2">
-                                    <div class="text-center">
-                                        <img src="https://pbs.twimg.com/profile_images/1158408311932432384/bjvit15u_400x400.jpg"
-                                            height="100" width="100">
-                                    </div>
+    <div class="container p-1 mb-5">
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+
+                <div class="card w-100 mt-5">
+                    <div class="card-body">
+                        <div class="container p-4" id="todo">
+                            <div class="col-2 p-2">
+                                <div class="text-center">
+                                    <img src="https://pbs.twimg.com/profile_images/1158408311932432384/bjvit15u_400x400.jpg"
+                                        height="100" width="100">
                                 </div>
-                                <div>
-                                    <h2 class="texto">
-                                        CERTIFICADO DE SALUD MENTAL PSICOLOGICA
-                                    </h2>
-                                </div>
+                            </div>
+                            <br>
+                            <div class="text-center">
+                                <h2 class="texto">
+                                    CERTIFICADO DE SALUD MENTAL PSICOLOGICA
+                                </h2>
+                            </div>
 
-
+                            <div class="text-center">
                                 <h3 class="texto">
                                     El que suscribe la psicológica Cintia Morales, personal psicológico de la clínica
                                     OCUMEDIC
                                 </h3>
+                            </div>
+                            <br>
 
-                                <br>
+                            <h3 class="text-center">
+                                HACE CONSTAR QUE:
+                            </h3>
 
+                            <br>
+
+                            <h3 class="p-5">
+                                El/la paciente <strong>` + datos.APELLIDOPATERNO + ` ` + datos.APELLIDOMATERNO + ` ` +
+                                    datos.PRIMERNOMBRE + ` ` + datos.SEGUNDONOMBRE + `<strong> con cédula de identidad
+                                        <strong>`+ datos.CEDULA + `</strong>, ha sido evaluada, presentando a la fecha:
+                                        <strong>`+ descripcion + `</strong>
+                            </h3>
+
+                            <br>
+                            <br>
+
+                            <div class="text-center">
                                 <h3 class="text-center">
-                                    HACE CONSTAR QUE:
+                                    <strong>Riobamba, ` + fecha + `</strong>
                                 </h3>
+                            </div>
 
-                                <br>
+                            <br>
+                            <br>
+                            <br>
 
-                                <h3 class="p-5">
-                                    El/la paciente <strong>` + datos.APELLIDOPATERNO + ` ` + datos.APELLIDOMATERNO + ` ` +
-                                        datos.PRIMERNOMBRE + ` ` + datos.SEGUNDONOMBRE + `<strong> con cédula de identidad
-                                            <strong>`+ datos.CEDULA + `</strong>, ha sido evaluada, presentando a la fecha:
-                                            <strong>`+ descripcion + `</strong>
-                                </h3>
-
-                                <br>
-                                <br>
-
-                                <div class="text-center">
-                                    <h3 class="text-center">
-                                        <strong>Riobamba, ` + fecha + `</strong>
-                                    </h3>
-                                </div>
-
-                                <br>
-                                <br>
-                                <br>
-
-                                <footer>
-                                    <div class="container p-3">
-                                        <div class="row text-center text-black">
-                                            <div class="col ml-auto">
-                                                <h6>OCUMEDIC - Olmedo y Pichinca - Riobamba - Tlf: 098 383 4551</h6>
-                                            </div>
+                            <footer>
+                                <div class="container p-3">
+                                    <div class="row text-center text-black">
+                                        <div class="col ml-auto">
+                                            <h6>OCUMEDIC - Olmedo y Pichinca - Riobamba - Tlf: 098 383 4551</h6>
                                         </div>
                                     </div>
-                                </footer>
-                            </div>
+                                </div>
+                            </footer>
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
-    </body>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
 `;
 
     pdf.create(content).toFile('C:\\Users\\Usuario\\Desktop\\certificado-'+datos.CEDULA+'.pdf', function (err, res) {
