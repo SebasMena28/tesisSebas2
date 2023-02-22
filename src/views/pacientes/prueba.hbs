@@ -322,7 +322,7 @@
     }
 
     function validarNombre2(nombre) {
-        if (/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(nombre) && nombre != "" && nombre.length > 1) {
+        /*if (/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(nombre) && nombre != "" && nombre.length > 1) {
             return true;
         }
         else {
@@ -336,7 +336,8 @@
                 error += 'El segundo nombre no puede ser ' + nombre + '. \n'
             }
             return false;
-        }
+        }*/
+        return true;
     }
 
     function validarApe1(nombre) {
