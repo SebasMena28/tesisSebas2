@@ -154,13 +154,13 @@ router.post('/generarCertificado', async (req, res) => {
                             <br>
                             <div class="text-center">
                                 <h2 class="texto">
-                                    CERTIFICADO DE SALUD MENTAL PSICOLOGICA
+                                    CERTIFICADO DE SALUD MENTAL PSICÓLOGICA
                                 </h2>
                             </div>
 
                             <div class="text-center">
                                 <h3 class="texto">
-                                    El que suscribe la psicológica Cintia Morales, personal psicológico de la clínica
+                                    El que suscribe la psicóloga Cintia Morales, personal psicológico de la clínica
                                     OCUMEDIC
                                 </h3>
                             </div>
@@ -324,13 +324,13 @@ router.post('/repetirCertificado/:idcertificado', async (req, res) => {
                             <br>
                             <div class="text-center">
                                 <h2 class="texto">
-                                    CERTIFICADO DE SALUD MENTAL PSICOLOGICA
+                                    CERTIFICADO DE SALUD MENTAL PSICOLÓGICA
                                 </h2>
                             </div>
 
                             <div class="text-center">
                                 <h3 class="texto">
-                                    El que suscribe la psicológica Cintia Morales, personal psicológico de la clínica
+                                    El que suscribe la psicóloga Cintia Morales, personal psicológico de la clínica
                                     OCUMEDIC
                                 </h3>
                             </div>
