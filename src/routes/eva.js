@@ -154,7 +154,7 @@ router.post('/generarCertificado', async (req, res) => {
                             <br>
                             <div class="text-center">
                                 <h2 class="texto">
-                                    CERTIFICADO DE SALUD MENTAL PSICÓLOGICA
+                                    CERTIFICADO DE SALUD MENTAL PSICOLÓGICA
                                 </h2>
                             </div>
 
