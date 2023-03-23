@@ -10,6 +10,16 @@ const flash = require('connect-flash');
 const session = require('express-session');
 
 
+
+/*module.exports = {
+    DB_HOST,
+    DB_USER,
+    DB_PASSWORD,
+    DB_NAME,
+    DB_PORT,
+}*/
+
+
 //INICIALIZACIONES
 const app = express();
 require('./lib/passport');
